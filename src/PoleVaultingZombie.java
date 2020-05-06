@@ -3,7 +3,6 @@ import javax.swing.JOptionPane;
 public class PoleVaultingZombie  extends Zombie {
     public PoleVaultingZombie(GamePanel parent, int lane) {
         super(parent, lane);
-        setHealth(5400);
         setSpeed(2);
     }
     

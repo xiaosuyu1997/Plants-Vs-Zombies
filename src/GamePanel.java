@@ -98,7 +98,7 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
 
         activeSuns = new ArrayList<>();
 
-        redrawTimer = new Timer(25, (ActionEvent e) -> {
+        redrawTimer = new Timer(5, (ActionEvent e) -> {
             repaint();
         });
         redrawTimer.start();
@@ -143,7 +143,15 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
                 Pea p = lanePeas.get(i).get(j);
                 p.advance();
             }
-
+            
+            for(int j = 0;j < laneZombies.get(i).size();j++) {
+            	if(laneZombies.get(i).get(j).isDead()) {
+                	System.out.println("ZOMBIE DIED");
+                	laneZombies.get(i).remove(laneZombies.get(i).get(j));
+                	j--;
+                    GamePanel.setProgress(10);
+            	}
+            }
         }
 
         for (int i = 0; i < activeSuns.size(); i++) {
@@ -176,12 +184,12 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
 
         for (int i = 0; i < 5; i++) {
             for (Zombie z : laneZombies.get(i)) {
-                if (z instanceof NormalZombie) {
+                if (z instanceof NormalZombie && !z.isDead()) {
                     g.drawImage(normalZombieImage, z.getPosX(), 69 + (i * 120), null);
-                } else if (z instanceof ConeHeadZombie) {
-                    g.drawImage(coneHeadZombieImage, z.getPosX(), 69 + (i * 120), null);
+                } else if (z instanceof ConeHeadZombie && !z.isDead()) {
+                    g.drawImage(coneHeadZombieImage, z.getPosX(), 69 + (i * 120),null);
                 }
-                else if (z instanceof MetalBucketZombie) {
+                else if (z instanceof MetalBucketZombie && !z.isDead()) {
                     g.drawImage(metalBucketZombie, z.getPosX(), 69 + (i * 120), null);
                 }
             }

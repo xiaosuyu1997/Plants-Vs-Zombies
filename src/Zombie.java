@@ -13,6 +13,8 @@ public class Zombie {
     private int posX = 1000;
     private int myLane;
     private boolean isMoving = true;
+    private boolean isAttacking = false;
+    private boolean isDead = false;
 
     public Zombie(GamePanel parent, int lane) {
         this.gp = parent;
@@ -30,6 +32,7 @@ public class Zombie {
                 }
             }
             if (!isCollides) {
+            	isAttacking = false;
                 if (slowInt > 0) {
                     if (slowInt % 2 == 0) {
                     	posX -= speed;
@@ -39,9 +42,15 @@ public class Zombie {
                     posX -= speed;
                 }
             } else {
+            	isMoving = false;
+            	isAttacking = true;
+            }
+            if(isAttacking) {
                 collided.assignedPlant.setHealth(collided.assignedPlant.getHealth() - 10);
                 if (collided.assignedPlant.getHealth() < 0) {
                     collided.removePlant();
+                    isAttacking = false;
+                    isMoving = true;
                 }
             }
             if (posX < 0) {
@@ -51,6 +60,9 @@ public class Zombie {
                 GameWindow.gw = new GameWindow();
             }
         }
+        if(health < 50) {
+        	isDead = true;
+        }
     }
 
     int slowInt = 0;
@@ -59,6 +71,8 @@ public class Zombie {
         slowInt = 1000;
     }
 
+   
+    
     public static Zombie getZombie(String type, GamePanel parent, int lane) {
         Zombie z = new Zombie(parent, lane);
         switch (type) {
@@ -117,6 +131,14 @@ public class Zombie {
 
     public boolean isMoving() {
         return isMoving;
+    }
+    
+    public boolean isAttacking() {
+        return isAttacking;
+    }
+    
+    public boolean isDead() {
+        return isDead;
     }
 
     public void setMoving(boolean moving) {

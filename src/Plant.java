@@ -3,7 +3,7 @@
  */
 public abstract class Plant {
 
-    private int health = 200;
+    private int health = 50;
 
     private int x;
     private int y;
