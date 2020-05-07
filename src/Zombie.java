@@ -85,6 +85,9 @@ public class Zombie {
             case "MetalBucketZombie":
             	z = new MetalBucketZombie(parent, lane);
                 break;
+            case "PoleVaultingZombie":
+            	z = new PoleVaultingZombie(parent, lane);
+                break;
         }
         return z;
     }
@@ -133,16 +136,22 @@ public class Zombie {
         return isMoving;
     }
     
+   
+
+    public void setMoving(boolean moving) {
+        isMoving = moving;
+    }
+    
     public boolean isAttacking() {
         return isAttacking;
     }
     
+    public void setAttacking(boolean Attacking) {
+    	isAttacking = Attacking;
+    }
+    
     public boolean isDead() {
         return isDead;
-    }
-
-    public void setMoving(boolean moving) {
-        isMoving = moving;
     }
 
     public int getSlowInt() {
