@@ -46,7 +46,7 @@ public class Zombie {
             	isAttacking = true;
             }
             if(isAttacking) {
-                collided.assignedPlant.setHealth(collided.assignedPlant.getHealth() - 10);
+                collided.assignedPlant.setHealth(collided.assignedPlant.getHealth() - 25);
                 if (collided.assignedPlant.getHealth() < 0) {
                     collided.removePlant();
                     isAttacking = false;

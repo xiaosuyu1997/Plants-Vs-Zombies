@@ -10,7 +10,8 @@ public class GameWindow extends JFrame {
         None,
         Sunflower,
         Peashooter,
-        FreezePeashooter
+        FreezePeashooter,
+        Torchwood
     }
 
     //PlantType activePlantingBrush = PlantType.None;
@@ -48,6 +49,13 @@ public class GameWindow extends JFrame {
             gp.setActivePlantingBrush(PlantType.FreezePeashooter);
         });
         getLayeredPane().add(freezepeashooter, new Integer(3));
+
+        PlantCard Torchwood = new PlantCard(new ImageIcon(this.getClass().getResource("images/cards/card_torchwood.png")).getImage());
+        Torchwood.setLocation(305, 8);
+        Torchwood.setAction((ActionEvent e) -> {
+            gp.setActivePlantingBrush(PlantType.Torchwood);
+        });
+        getLayeredPane().add(Torchwood, new Integer(3));
 
 
         getLayeredPane().add(sun, new Integer(2));
