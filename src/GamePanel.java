@@ -19,8 +19,10 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
     private Image peashooterImage;
     private Image freezePeashooterImage;
     private Image sunflowerImage;
+    private Image torchwoodImage;
     private Image peaImage;
     private Image freezePeaImage;
+    private Image burnPeaImage;
 
     private Image normalZombieImage;
     private Image coneHeadZombieImage;
@@ -65,8 +67,10 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
         peashooterImage = new ImageIcon(this.getClass().getResource("images/plants/peashooter.gif")).getImage();
         freezePeashooterImage = new ImageIcon(this.getClass().getResource("images/plants/freezepeashooter.gif")).getImage();
         sunflowerImage = new ImageIcon(this.getClass().getResource("images/plants/sunflower.gif")).getImage();
+        torchwoodImage = new ImageIcon(this.getClass().getResource("images/plants/torchwood.gif")).getImage();
         peaImage = new ImageIcon(this.getClass().getResource("images/pea.png")).getImage();
         freezePeaImage = new ImageIcon(this.getClass().getResource("images/freezepea.png")).getImage();
+        burnPeaImage = new ImageIcon(this.getClass().getResource("images/BurnPea.gif")).getImage();
 
         normalZombieImage = new ImageIcon(this.getClass().getResource("images/zombies/Zombie.gif")).getImage();
         coneHeadZombieImage = new ImageIcon(this.getClass().getResource("images/zombies/ConeheadZombie.gif")).getImage();
@@ -189,6 +193,9 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
                 if (p instanceof Sunflower) {
                     g.drawImage(sunflowerImage, 60 + (i % 9) * 100, 129 + (i / 9) * 120, null);
                 }
+                if (p instanceof Torchwood){
+                    g.drawImage(torchwoodImage, 60 + (i % 9) * 100, 129 + (i / 9) * 120, null);
+                }
             }
         }
 
@@ -211,9 +218,14 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
                 Pea pea = lanePeas.get(i).get(j);
                 if (pea instanceof FreezePea) {
                     g.drawImage(freezePeaImage, pea.getPosX(), 130 + (i * 120), null);
-                } else {
+                }
+                else if(pea instanceof BurnPea){
+                    g.drawImage(burnPeaImage, pea.getPosX(), 130 + (i * 120), null);
+                }
+                else{
                     g.drawImage(peaImage, pea.getPosX(), 130 + (i * 120), null);
                 }
+                
             }
 
         }
@@ -259,6 +271,14 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
                     setSunScore(getSunScore() - 175);
                 }
             }
+
+            if (activePlantingBrush == GameWindow.PlantType.Torchwood) {
+                if (getSunScore() >= 175) {
+                    colliders[x + y * 9].setPlant(new Torchwood(GamePanel.this, x, y));
+                    setSunScore(getSunScore() - 175);
+                }
+            }
+
             activePlantingBrush = GameWindow.PlantType.None;
         }
     }
