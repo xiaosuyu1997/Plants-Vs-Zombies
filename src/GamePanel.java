@@ -20,6 +20,8 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
     private Image freezePeashooterImage;
     private Image sunflowerImage;
     private Image torchwoodImage;
+    private Image twicepeashootImage;
+    private Image threepeashootImage;
     private Image peaImage;
     private Image freezePeaImage;
     private Image burnPeaImage;
@@ -68,6 +70,8 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
         freezePeashooterImage = new ImageIcon(this.getClass().getResource("images/plants/freezepeashooter.gif")).getImage();
         sunflowerImage = new ImageIcon(this.getClass().getResource("images/plants/sunflower.gif")).getImage();
         torchwoodImage = new ImageIcon(this.getClass().getResource("images/plants/torchwood.gif")).getImage();
+        twicepeashootImage = new ImageIcon(this.getClass().getResource("images/plants/twicepeashooter.gif")).getImage();
+        threepeashootImage = new ImageIcon(this.getClass().getResource("images/plants/threepeashooter.gif")).getImage();
         peaImage = new ImageIcon(this.getClass().getResource("images/pea.png")).getImage();
         freezePeaImage = new ImageIcon(this.getClass().getResource("images/freezepea.png")).getImage();
         burnPeaImage = new ImageIcon(this.getClass().getResource("images/BurnPea.gif")).getImage();
@@ -196,6 +200,12 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
                 if (p instanceof Torchwood){
                     g.drawImage(torchwoodImage, 60 + (i % 9) * 100, 129 + (i / 9) * 120, null);
                 }
+                if (p instanceof TwicePeashooter){
+                    g.drawImage(twicepeashootImage, 60 + (i % 9) * 100, 129 + (i / 9) * 120, null);
+                }
+                if (p instanceof ThreePeashooter){
+                    g.drawImage(threepeashootImage, 60 + (i % 9) * 100, 129 + (i / 9) * 120, null);
+                }
             }
         }
 
@@ -252,6 +262,10 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
+            if (colliders[x + y * 9].assignedPlant!=null){
+                activePlantingBrush = GameWindow.PlantType.None;
+            }
+            
             if (activePlantingBrush == GameWindow.PlantType.Sunflower) {
                 if (getSunScore() >= 50) {
                     colliders[x + y * 9].setPlant(new Sunflower(GamePanel.this, x, y));
@@ -279,6 +293,19 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
                 }
             }
 
+            if (activePlantingBrush == GameWindow.PlantType.TwicePeashooter){
+                if (getSunScore() >= 200) {
+                    colliders[x + y * 9].setPlant(new TwicePeashooter(GamePanel.this, x, y));
+                    setSunScore(getSunScore() - 200);
+                }
+            }
+
+            if (activePlantingBrush == GameWindow.PlantType.ThreePeashooter){
+                if (getSunScore() >= 325) {
+                    colliders[x + y * 9].setPlant(new ThreePeashooter(GamePanel.this, x, y));
+                    setSunScore(getSunScore() - 325);
+                }
+            }
             activePlantingBrush = GameWindow.PlantType.None;
         }
     }
