@@ -8,6 +8,7 @@ public abstract class Plant {
     private int x;
     private int y;
 
+    
     private GamePanel gp;
 
 
@@ -28,6 +29,8 @@ public abstract class Plant {
         this.health = health;
     }
 
+
+    
     public int getX() {
         return x;
     }

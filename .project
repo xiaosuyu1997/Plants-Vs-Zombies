@@ -14,4 +14,21 @@
 	<natures>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>src/ThreePeashooter.class</name>
+			<type>1</type>
+			<locationURI>PROJECT_LOC/bin/ThreePeashooter.class</locationURI>
+		</link>
+		<link>
+			<name>src/Torchwood.class</name>
+			<type>1</type>
+			<locationURI>PROJECT_LOC/bin/Torchwood.class</locationURI>
+		</link>
+		<link>
+			<name>src/TwicePeashooter.class</name>
+			<type>1</type>
+			<locationURI>PROJECT_LOC/bin/TwicePeashooter.class</locationURI>
+		</link>
+	</linkedResources>
 </projectDescription>
