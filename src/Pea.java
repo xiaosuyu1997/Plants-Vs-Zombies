@@ -9,10 +9,15 @@ public class Pea {
     protected GamePanel gp;
     private int myLane;
 
+    private SoundEffect pea = new SoundEffect("./src/bgms/Pea.wav");
+    
+    
     public Pea(GamePanel parent, int lane, int startX) {
         this.gp = parent;
         this.myLane = lane;
         posX = startX;
+        
+        pea.prepare();
     }
 
     public void advance() {
@@ -21,6 +26,7 @@ public class Pea {
             Zombie z = gp.getLaneZombies().get(myLane).get(i);
             Rectangle zRect = new Rectangle(z.getPosX(), 109 + myLane * 120, 400, 120);
             if (pRect.intersects(zRect)) {
+            	pea.player.start();
                 z.setHealth(z.getHealth() - 200);
                 boolean exit = false;
                 gp.getLanePeas().get(myLane).remove(this);
