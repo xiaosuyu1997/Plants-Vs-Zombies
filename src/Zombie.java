@@ -15,6 +15,7 @@ public class Zombie {
     private boolean isMoving = true;
     private boolean isAttacking = false;
     private boolean isDead = false;
+    private Collider collided = null;
 
     public Zombie(GamePanel parent, int lane) {
         this.gp = parent;
@@ -24,7 +25,6 @@ public class Zombie {
     public void advance() {
         if (isMoving) {
             boolean isCollides = false;
-            Collider collided = null;
             for (int i = myLane * 9; i < (myLane + 1) * 9; i++) {
                 if (gp.getColliders()[i].assignedPlant != null && gp.getColliders()[i].isInsideCollider(posX)) {
                     isCollides = true;
@@ -45,19 +45,19 @@ public class Zombie {
             	isMoving = false;
             	isAttacking = true;
             }
-            if(isAttacking) {
-                collided.assignedPlant.setHealth(collided.assignedPlant.getHealth() - 25);
-                if (collided.assignedPlant.getHealth() < 0) {
-                    collided.removePlant();
-                    isAttacking = false;
-                    isMoving = true;
-                }
-            }
             if (posX < 0) {
                 isMoving = false;
                 JOptionPane.showMessageDialog(gp, "ZOMBIES ATE YOUR BRAIN !" + '\n' + "Starting the level again");
                 GameWindow.gw.dispose();
                 GameWindow.gw = new GameWindow();
+            }
+        }
+        if(isAttacking) {
+            collided.assignedPlant.setHealth(collided.assignedPlant.getHealth() - 1);
+            if (collided.assignedPlant.getHealth() <= 0) {
+                collided.removePlant();
+                isAttacking = false;
+                isMoving = true;
             }
         }
         if(health < 50) {

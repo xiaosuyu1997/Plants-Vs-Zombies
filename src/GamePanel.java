@@ -28,6 +28,7 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
 
     private Image normalZombieImage;
     private Image coneHeadZombieImage;
+    private Image coneHeadZombieAttackImage;
     private Image metalBucketZombie;
     private Image  poleVaultingZombie;
     private Collider[] colliders;
@@ -78,6 +79,7 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
 
         normalZombieImage = new ImageIcon(this.getClass().getResource("images/zombies/Zombie.gif")).getImage();
         coneHeadZombieImage = new ImageIcon(this.getClass().getResource("images/zombies/ConeheadZombie.gif")).getImage();
+        coneHeadZombieAttackImage = new ImageIcon(this.getClass().getResource("images/zombies/ConeheadZombieAttack2.gif")).getImage();
         metalBucketZombie = new ImageIcon(this.getClass().getResource("images/zombies/BucketheadZombie.gif")).getImage();
         poleVaultingZombie = new ImageIcon(this.getClass().getResource("images/zombies/PoleVaultingZombie.gif")).getImage();
         /**try {
@@ -214,7 +216,12 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
                 if (z instanceof NormalZombie && !z.isDead()) {
                     g.drawImage(normalZombieImage, z.getPosX(), 69 + (i * 120), null);
                 } else if (z instanceof ConeHeadZombie && !z.isDead()) {
-                    g.drawImage(coneHeadZombieImage, z.getPosX(), 69 + (i * 120),null);
+                	if(z.isAttacking()) {
+                		g.drawImage(coneHeadZombieAttackImage, z.getPosX(), 69 + (i * 120),null);
+                	}
+                	else if(z.isMoving()) {
+                        g.drawImage(coneHeadZombieImage, z.getPosX(), 69 + (i * 120),null);
+                	}
                 }
                 else if (z instanceof MetalBucketZombie && !z.isDead()) {
                     g.drawImage(metalBucketZombie, z.getPosX(), 69 + (i * 120), null);
