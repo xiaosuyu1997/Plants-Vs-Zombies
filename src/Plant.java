@@ -1,10 +1,12 @@
-/**
- * Created by Armin on 6/25/2016.
- */
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import javax.imageio.*;
+import java.awt.image.BufferedImage;
 public abstract class Plant {
 
     private int health = 50;
-
+    private Image Ima=null;
     private int x;
     private int y;
 
@@ -53,5 +55,9 @@ public abstract class Plant {
 
     public void setGp(GamePanel gp) {
         this.gp = gp;
+    }
+
+    public Image getImage(){
+        return Ima;
     }
 }
