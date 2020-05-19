@@ -1,4 +1,5 @@
 import javax.swing.*;
+import javax.sound.sampled.Clip;
 
 /**
  * Created by Armin on 6/25/2016.
@@ -16,10 +17,19 @@ public class Zombie {
     private boolean isAttacking = false;
     private boolean isDead = false;
     private Collider collided = null;
+    
+    
+    private SoundEffect zombiesEating = new SoundEffect("./src/bgms/zombieEat.wav");
+    private SoundEffect zombiesWin = new SoundEffect("./src/bgms/zombiegroup.wav");
+    private SoundEffect gulp = new SoundEffect("./src/bgms/gulp.wav");
 
     public Zombie(GamePanel parent, int lane) {
         this.gp = parent;
         myLane = lane;
+        
+        zombiesEating.prepare();
+        zombiesWin.prepare();
+        gulp.prepare();
     }
 
     public void advance() {
@@ -42,10 +52,12 @@ public class Zombie {
                     posX -= speed;
                 }
             } else {
+            	
             	isMoving = false;
             	isAttacking = true;
             }
             if (posX < 0) {
+            	zombiesWin.player.start();
                 isMoving = false;
                 JOptionPane.showMessageDialog(gp, "ZOMBIES ATE YOUR BRAIN !" + '\n' + "Starting the level again");
                 GameWindow.gw.dispose();
@@ -53,8 +65,11 @@ public class Zombie {
             }
         }
         if(isAttacking) {
+        	zombiesEating.player.loop(Clip.LOOP_CONTINUOUSLY);
             collided.assignedPlant.setHealth(collided.assignedPlant.getHealth() - 1);
             if (collided.assignedPlant.getHealth() <= 0) {
+            	zombiesEating.player.stop();
+            	gulp.player.start();
                 collided.removePlant();
                 isAttacking = false;
                 isMoving = true;

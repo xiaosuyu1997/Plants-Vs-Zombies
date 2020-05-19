@@ -27,10 +27,11 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
     private Image burnPeaImage;
 
     private Image normalZombieImage;
-    private Image coneHeadZombieImage;
+    //private Image coneHeadZombieImage;
+    private GifManipulation coneHeadZombieImage = new GifManipulation();
     private Image coneHeadZombieAttackImage;
     private Image metalBucketZombie;
-    private Image  poleVaultingZombie;
+    private Image poleVaultingZombie;
     private Collider[] colliders;
 
     private ArrayList<ArrayList<Zombie>> laneZombies;
@@ -42,7 +43,12 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
     private Timer sunProducer;
     private Timer zombieProducer;
     private JLabel sunScoreboard;
-
+    
+    private SoundEffect bgm = new SoundEffect("./src/bgms/pvzBG1.wav");
+    private SoundEffect zombiesComing = new SoundEffect("./src/bgms/zombiecoming.wav");
+    
+    
+    
     private GameWindow.PlantType activePlantingBrush = GameWindow.PlantType.None;
 
     private int mouseX, mouseY;
@@ -78,7 +84,8 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
         burnPeaImage = new ImageIcon(this.getClass().getResource("images/BurnPea.gif")).getImage();
 
         normalZombieImage = new ImageIcon(this.getClass().getResource("images/zombies/Zombie.gif")).getImage();
-        coneHeadZombieImage = new ImageIcon(this.getClass().getResource("images/zombies/ConeheadZombie.gif")).getImage();
+        //coneHeadZombieImage = new ImageIcon(this.getClass().getResource("images/zombies/ConeheadZombie.gif")).getImage();
+        coneHeadZombieImage.readGif("./src/images/zombies/ConeheadZombie.gif");
         coneHeadZombieAttackImage = new ImageIcon(this.getClass().getResource("images/zombies/ConeheadZombieAttack2.gif")).getImage();
         metalBucketZombie = new ImageIcon(this.getClass().getResource("images/zombies/BucketheadZombie.gif")).getImage();
         poleVaultingZombie = new ImageIcon(this.getClass().getResource("images/zombies/PoleVaultingZombie.gif")).getImage();
@@ -150,7 +157,14 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
             laneZombies.get(l).add(z);
         });
         zombieProducer.start();
-
+        
+        bgm.prepare();
+        zombiesComing.prepare();
+        
+        
+        
+        bgm.player.start();
+        zombiesComing.player.start();
     }
 
     private void advance() {
@@ -220,7 +234,13 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
                 		g.drawImage(coneHeadZombieAttackImage, z.getPosX(), 69 + (i * 120),null);
                 	}
                 	else if(z.isMoving()) {
-                        g.drawImage(coneHeadZombieImage, z.getPosX(), 69 + (i * 120),null);
+                        //g.drawImage(coneHeadZombieImage, z.getPosX(), 69 + (i * 120),null);
+                		try {
+							coneHeadZombieImage.printGif(g, z.getPosX(), 69 + (i * 120));
+						} catch (InterruptedException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
                 	}
                 }
                 else if (z instanceof MetalBucketZombie && !z.isDead()) {
@@ -261,14 +281,17 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
     private class PlantActionListener implements ActionListener {
 
         int x, y;
+        private SoundEffect seedLift = new SoundEffect("./src/bgms/seedlift.wav");
 
         public PlantActionListener(int x, int y) {
             this.x = x;
             this.y = y;
+            seedLift.prepare();
         }
 
         @Override
         public void actionPerformed(ActionEvent e) {
+        	seedLift.player.start();
             if (colliders[x + y * 9].assignedPlant!=null){
                 activePlantingBrush = GameWindow.PlantType.None;
             }

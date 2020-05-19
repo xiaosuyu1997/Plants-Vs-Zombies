@@ -1,6 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
-
+import javax.sound.sampled.Clip;
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -16,12 +16,14 @@ public class Menu extends JPanel {
      * Creates new form Menu
      */
     private Image bgImage;
-
+    private SoundEffect menuBgm = new SoundEffect("./src/bgms/menuBgm.wav");
+    
     public Menu() {
         initComponents();
         setSize(1012, 785);
         bgImage = new ImageIcon(this.getClass().getResource("images/menu.jpg")).getImage();
-
+        menuBgm.prepare();
+        menuBgm.player.loop(Clip.LOOP_CONTINUOUSLY);
     }
 
     /**
@@ -82,6 +84,7 @@ public class Menu extends JPanel {
 
     private void jPanel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseClicked
         // TODO add your handling code here:
+    	menuBgm.player.stop();
         GameWindow.begin();
     }//GEN-LAST:event_jPanel1MouseClicked
 
