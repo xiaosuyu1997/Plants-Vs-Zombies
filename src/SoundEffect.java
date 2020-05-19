@@ -19,9 +19,9 @@ public class SoundEffect{
 			File playFile = new File(bgmPath);
 			player = Manager.createRealizedPlayer(playFile.toURI().toURL());
         } catch(javax.media.CannotRealizeException ex) {
-            System.out.println("²»ÄÜ´´½¨²¥·ÅÆ÷");
+            System.out.println("ï¿½ï¿½ï¿½Ü´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
         } catch(NoPlayerException ex) {
-            System.out.println("²»ÄÜ²¥·ÅÎÄ¼þ");
+            System.out.println("ï¿½ï¿½ï¿½Ü²ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½");
         } catch(IOException ex) {
         }
         if (player == null) {
