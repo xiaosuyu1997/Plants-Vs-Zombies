@@ -246,18 +246,19 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-        	seedLift.player.start();
             if (colliders[x + y * 9].assignedPlant!=null){
                 activePlantingBrush = GameWindow.PlantType.None;
             }
             
             if (activePlantingBrush == GameWindow.PlantType.Sunflower) {
+            	seedLift.player.start();
                 if (getSunScore() >= 50) {
                     colliders[x + y * 9].setPlant(new Sunflower(GamePanel.this, x, y));
                     setSunScore(getSunScore() - 50);
                 }
             }
             if (activePlantingBrush == GameWindow.PlantType.Peashooter) {
+            	seedLift.player.start();
                 if (getSunScore() >= 100) {
                     colliders[x + y * 9].setPlant(new Peashooter(GamePanel.this, x, y));
                     setSunScore(getSunScore() - 100);
@@ -265,6 +266,7 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
             }
 
             if (activePlantingBrush == GameWindow.PlantType.FreezePeashooter) {
+            	seedLift.player.start();
                 if (getSunScore() >= 175) {
                     colliders[x + y * 9].setPlant(new FreezePeashooter(GamePanel.this, x, y));
                     setSunScore(getSunScore() - 175);
@@ -272,6 +274,7 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
             }
 
             if (activePlantingBrush == GameWindow.PlantType.Torchwood) {
+            	seedLift.player.start();
                 if (getSunScore() >= 175) {
                     colliders[x + y * 9].setPlant(new Torchwood(GamePanel.this, x, y));
                     setSunScore(getSunScore() - 175);
@@ -279,6 +282,7 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
             }
 
             if (activePlantingBrush == GameWindow.PlantType.TwicePeashooter){
+            	seedLift.player.start();
                 if (getSunScore() >= 200) {
                     colliders[x + y * 9].setPlant(new TwicePeashooter(GamePanel.this, x, y));
                     setSunScore(getSunScore() - 200);
@@ -286,6 +290,7 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
             }
 
             if (activePlantingBrush == GameWindow.PlantType.ThreePeashooter){
+            	seedLift.player.start();
                 if (getSunScore() >= 325) {
                     colliders[x + y * 9].setPlant(new ThreePeashooter(GamePanel.this, x, y));
                     setSunScore(getSunScore() - 325);
@@ -293,6 +298,7 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
             }
             
             if (activePlantingBrush == GameWindow.PlantType.Chomper){
+            	seedLift.player.start();
                 if (getSunScore() >= 150) {
                     colliders[x + y * 9].setPlant(new Chomper(GamePanel.this, x, y,1,0));
                     setSunScore(getSunScore() - 150);
@@ -300,6 +306,7 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
             }
 
             if (activePlantingBrush == GameWindow.PlantType.Wallnut){
+            	seedLift.player.start();
                 if (getSunScore() >= 50) {
                     colliders[x + y * 9].setPlant(new Wallnut(GamePanel.this, x, y,1));
                     setSunScore(getSunScore() - 50);

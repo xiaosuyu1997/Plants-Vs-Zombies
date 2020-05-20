@@ -30,6 +30,8 @@ public class Zombie {
         zombiesEating.prepare();
         zombiesWin.prepare();
         gulp.prepare();
+        
+        zombiesEating.gainControl.setValue(-10.0f);
     }
 
     public void advance() {
@@ -66,6 +68,7 @@ public class Zombie {
         }
         if(isAttacking) {
             zombiesEating.player.loop(Clip.LOOP_CONTINUOUSLY);
+            
             if(collided.assignedPlant!=null){
                 collided.assignedPlant.setHealth(collided.assignedPlant.getHealth() - 1);
                 if (collided.assignedPlant.getHealth() <= 0) {
@@ -83,6 +86,7 @@ public class Zombie {
         }
         if(health < 50) {
         	isDead = true;
+        	zombiesEating.player.stop();
         }
     }
 
