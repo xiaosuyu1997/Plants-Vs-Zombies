@@ -14,7 +14,8 @@ public class GameWindow extends JFrame {
         Torchwood,
         TwicePeashooter,
         ThreePeashooter,
-        Chomper
+        Chomper,
+        Wallnut
     }
 
     //PlantType activePlantingBrush = PlantType.None;
@@ -80,6 +81,13 @@ public class GameWindow extends JFrame {
             gp.setActivePlantingBrush(PlantType.Chomper);
         });
         getLayeredPane().add(Chomper, new Integer(3));
+
+        PlantCard Wallnut = new PlantCard(new ImageIcon(this.getClass().getResource("images/cards/card_wallnut.png")).getImage());
+        Wallnut.setLocation(565, 8);
+        Wallnut.setAction((ActionEvent e) -> {
+            gp.setActivePlantingBrush(PlantType.Wallnut);
+        });
+        getLayeredPane().add(Wallnut, new Integer(3));
 
         getLayeredPane().add(sun, new Integer(2));
         setResizable(false);

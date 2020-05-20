@@ -69,7 +69,7 @@ public class Zombie {
             collided.assignedPlant.setHealth(collided.assignedPlant.getHealth() - 1);
             if (collided.assignedPlant.getHealth() <= 0) {
             	zombiesEating.player.stop();
-            	gulp.player.start();
+                gulp.player.start();
                 collided.removePlant();
                 isAttacking = false;
                 isMoving = true;

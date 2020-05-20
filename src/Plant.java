@@ -60,4 +60,8 @@ public abstract class Plant {
     public Image getImage(){
         return Ima;
     }
+    
+    public void setImage(Image im){
+        Ima=im;
+    }
 }

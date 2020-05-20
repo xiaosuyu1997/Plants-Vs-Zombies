@@ -8,6 +8,7 @@ public class ThreePeashooter extends Plant{
 
     public ThreePeashooter(GamePanel parent, int x, int y) {
         super(parent, x, y);
+        setImage(new ImageIcon(this.getClass().getResource("images/plants/threepeashooter.gif")).getImage());
         shootTimer = new Timer(2000, (ActionEvent e) -> {
             //System.out.println("SHOOT");
             if ((y!=0&&y!=4)) {

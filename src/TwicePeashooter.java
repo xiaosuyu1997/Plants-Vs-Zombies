@@ -8,6 +8,7 @@ public class TwicePeashooter extends Plant {
 
     public TwicePeashooter(GamePanel parent, int x, int y) {
         super(parent, x, y);
+        setImage(new ImageIcon(this.getClass().getResource("images/plants/twicepeashooter.gif")).getImage());
         shootTimer = new Timer(2000, (ActionEvent e) -> {
             //System.out.println("SHOOT");
             if (getGp().getLaneZombies().get(y).size() > 0) {
