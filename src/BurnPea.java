@@ -1,8 +1,10 @@
 import java.awt.*;
+import javax.swing.*;
 
 public class BurnPea extends Pea{
     public BurnPea(GamePanel parent, int lane, int startX) {
         super(parent, lane, startX);
+        setImage(new ImageIcon(this.getClass().getResource("images/BurnPea.gif")).getImage());
     }
 
     @Override

@@ -1,4 +1,5 @@
 import java.awt.*;
+import javax.swing.*;
 
 /**
  * Created by Armin on 6/28/2016.
@@ -6,6 +7,7 @@ import java.awt.*;
 public class FreezePea extends Pea {
     public FreezePea(GamePanel parent, int lane, int startX) {
         super(parent, lane, startX);
+        setImage(new ImageIcon(this.getClass().getResource("images/freezepea.png")).getImage());
     }
     
     @Override

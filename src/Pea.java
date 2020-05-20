@@ -1,5 +1,5 @@
 import java.awt.*;
-
+import javax.swing.*;
 /**
  * Created by Armin on 6/25/2016.
  */
@@ -8,6 +8,7 @@ public class Pea {
     private int posX;
     protected GamePanel gp;
     private int myLane;
+    private Image Ima=null;
 
     private SoundEffect pea = new SoundEffect("./src/bgms/Pea.wav");
     
@@ -16,6 +17,7 @@ public class Pea {
         this.gp = parent;
         this.myLane = lane;
         posX = startX;
+        Ima = new ImageIcon(this.getClass().getResource("images/pea.png")).getImage();
         
         pea.prepare();
     }
@@ -59,5 +61,13 @@ public class Pea {
 
     public void setMyLane(int myLane) {
         this.myLane = myLane;
+    }
+
+    public Image getImage(){
+        return Ima;
+    }
+    
+    public void setImage(Image im){
+        Ima=im;
     }
 }

@@ -16,9 +16,6 @@ import java.io.*;
 public class GamePanel extends JLayeredPane implements MouseMotionListener {
 
     private Image bgImage;
-    private Image peaImage;
-    private Image freezePeaImage;
-    private Image burnPeaImage;
 
     private Image normalZombieImage;
     //private Image coneHeadZombieImage;
@@ -66,9 +63,6 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
         setSunScore(5000);  //pool avalie
 
         bgImage = new ImageIcon(this.getClass().getResource("images/mainBG.png")).getImage();
-        peaImage = new ImageIcon(this.getClass().getResource("images/pea.png")).getImage();
-        freezePeaImage = new ImageIcon(this.getClass().getResource("images/freezepea.png")).getImage();
-        burnPeaImage = new ImageIcon(this.getClass().getResource("images/BurnPea.gif")).getImage();
 
         normalZombieImage = new ImageIcon(this.getClass().getResource("images/zombies/Zombie.gif")).getImage();
         //coneHeadZombieImage = new ImageIcon(this.getClass().getResource("images/zombies/ConeheadZombie.gif")).getImage();
@@ -223,16 +217,7 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
 
             for (int j = 0; j < lanePeas.get(i).size(); j++) {
                 Pea pea = lanePeas.get(i).get(j);
-                if (pea instanceof FreezePea) {
-                    g.drawImage(freezePeaImage, pea.getPosX(), 130 + (i * 120), null);
-                }
-                else if(pea instanceof BurnPea){
-                    g.drawImage(burnPeaImage, pea.getPosX(), 130 + (i * 120), null);
-                }
-                else{
-                    g.drawImage(peaImage, pea.getPosX(), 130 + (i * 120), null);
-                }
-                
+                g.drawImage(pea.getImage(), pea.getPosX(), 130 + (i * 120), null);
             }
 
         }
