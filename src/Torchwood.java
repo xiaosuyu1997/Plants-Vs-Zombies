@@ -8,6 +8,7 @@ public class Torchwood extends Plant {
 
     public Torchwood(GamePanel parent, int x, int y) {
         super(parent, x, y);
+        setImage(new ImageIcon(this.getClass().getResource("images/plants/torchwood.gif")).getImage());
         shootTimer = new Timer(0, (ActionEvent e) -> {
             for(int i=0;i<getGp().getLanePeas().get(y).size();i++){
                 if (getGp().getLanePeas().get(y).get(i) instanceof FreezePea){
@@ -37,6 +38,7 @@ public class Torchwood extends Plant {
 
     @Override
     public void stop() {
+        super.stop();
         shootTimer.stop();
     }
 }

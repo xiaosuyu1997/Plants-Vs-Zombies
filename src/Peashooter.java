@@ -8,9 +8,9 @@ public class Peashooter extends Plant {
 
     public Timer shootTimer;
 
-
     public Peashooter(GamePanel parent, int x, int y) {
         super(parent, x, y);
+        setImage(new ImageIcon(this.getClass().getResource("images/plants/peashooter.gif")).getImage());
         shootTimer = new Timer(2000, (ActionEvent e) -> {
             //System.out.println("SHOOT");
             if (getGp().getLaneZombies().get(y).size() > 0) {
@@ -22,6 +22,7 @@ public class Peashooter extends Plant {
 
     @Override
     public void stop() {
+        super.stop();
         shootTimer.stop();
     }
 

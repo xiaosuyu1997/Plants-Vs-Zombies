@@ -16,12 +16,6 @@ import java.io.*;
 public class GamePanel extends JLayeredPane implements MouseMotionListener {
 
     private Image bgImage;
-    private Image peashooterImage;
-    private Image freezePeashooterImage;
-    private Image sunflowerImage;
-    private Image torchwoodImage;
-    private Image twicepeashootImage;
-    private Image threepeashootImage;
     private Image peaImage;
     private Image freezePeaImage;
     private Image burnPeaImage;
@@ -72,13 +66,6 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
         setSunScore(5000);  //pool avalie
 
         bgImage = new ImageIcon(this.getClass().getResource("images/mainBG.png")).getImage();
-
-        peashooterImage = new ImageIcon(this.getClass().getResource("images/plants/peashooter.gif")).getImage();
-        freezePeashooterImage = new ImageIcon(this.getClass().getResource("images/plants/freezepeashooter.gif")).getImage();
-        sunflowerImage = new ImageIcon(this.getClass().getResource("images/plants/sunflower.gif")).getImage();
-        torchwoodImage = new ImageIcon(this.getClass().getResource("images/plants/torchwood.gif")).getImage();
-        twicepeashootImage = new ImageIcon(this.getClass().getResource("images/plants/twicepeashooter.gif")).getImage();
-        threepeashootImage = new ImageIcon(this.getClass().getResource("images/plants/threepeashooter.gif")).getImage();
         peaImage = new ImageIcon(this.getClass().getResource("images/pea.png")).getImage();
         freezePeaImage = new ImageIcon(this.getClass().getResource("images/freezepea.png")).getImage();
         burnPeaImage = new ImageIcon(this.getClass().getResource("images/BurnPea.gif")).getImage();
@@ -204,27 +191,7 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
             Collider c = colliders[i];
             if (c.assignedPlant != null) {
                 Plant p = c.assignedPlant;
-                if (p instanceof Peashooter) {
-                    g.drawImage(peashooterImage, 60 + (i % 9) * 100, 129 + (i / 9) * 120, null);
-                }
-                if (p instanceof FreezePeashooter) {
-                    g.drawImage(freezePeashooterImage, 60 + (i % 9) * 100, 129 + (i / 9) * 120, null);
-                }
-                if (p instanceof Sunflower) {
-                    g.drawImage(sunflowerImage, 60 + (i % 9) * 100, 129 + (i / 9) * 120, null);
-                }
-                if (p instanceof Torchwood){
-                    g.drawImage(torchwoodImage, 60 + (i % 9) * 100, 129 + (i / 9) * 120, null);
-                }
-                if (p instanceof TwicePeashooter){
-                    g.drawImage(twicepeashootImage, 60 + (i % 9) * 100, 129 + (i / 9) * 120, null);
-                }
-                if (p instanceof ThreePeashooter){
-                    g.drawImage(threepeashootImage, 60 + (i % 9) * 100, 129 + (i / 9) * 120, null);
-                }
-                if (p instanceof Chomper){
-                    g.drawImage(p.getImage(), 60 + (i % 9) * 100, 129 + (i / 9) * 120, null);
-                }
+                g.drawImage(p.getImage(), 60 + (i % 9) * 100, 129 + (i / 9) * 120, null);
             }
         }
 
@@ -344,6 +311,13 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
                 if (getSunScore() >= 150) {
                     colliders[x + y * 9].setPlant(new Chomper(GamePanel.this, x, y,1,0));
                     setSunScore(getSunScore() - 150);
+                }
+            }
+
+            if (activePlantingBrush == GameWindow.PlantType.Wallnut){
+                if (getSunScore() >= 50) {
+                    colliders[x + y * 9].setPlant(new Wallnut(GamePanel.this, x, y,1));
+                    setSunScore(getSunScore() - 50);
                 }
             }
             activePlantingBrush = GameWindow.PlantType.None;
