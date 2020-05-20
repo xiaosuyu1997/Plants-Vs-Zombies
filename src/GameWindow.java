@@ -15,7 +15,9 @@ public class GameWindow extends JFrame {
         TwicePeashooter,
         ThreePeashooter,
         Chomper,
-        Wallnut
+        Wallnut,
+        GatlingPea,
+        PotatoMine
     }
 
     //PlantType activePlantingBrush = PlantType.None;
@@ -88,6 +90,20 @@ public class GameWindow extends JFrame {
             gp.setActivePlantingBrush(PlantType.Wallnut);
         });
         getLayeredPane().add(Wallnut, new Integer(3));
+
+        PlantCard GatlingPea = new PlantCard(new ImageIcon(this.getClass().getResource("images/cards/card_gatling.png")).getImage());
+        GatlingPea.setLocation(630, 8);
+        GatlingPea.setAction((ActionEvent e) -> {
+            gp.setActivePlantingBrush(PlantType.GatlingPea);
+        });
+        getLayeredPane().add(GatlingPea, new Integer(3));
+
+        PlantCard PotatoMine = new PlantCard(new ImageIcon(this.getClass().getResource("images/cards/card_potatomine.png")).getImage());
+        PotatoMine.setLocation(695, 8);
+        PotatoMine.setAction((ActionEvent e) -> {
+            gp.setActivePlantingBrush(PlantType.PotatoMine);
+        });
+        getLayeredPane().add(PotatoMine, new Integer(3));
 
         getLayeredPane().add(sun, new Integer(2));
         setResizable(false);
