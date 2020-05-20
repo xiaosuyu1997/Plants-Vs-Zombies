@@ -22,8 +22,8 @@ public class FreezePea extends Pea {
                     System.out.println("ZOMBIE DIE");
                     GamePanel.setProgress(10);
                     gp.getLaneZombies().get(getMyLane()).remove(i);
-                    exit = true;
                 }
+                exit = true;
                 gp.getLanePeas().get(getMyLane()).remove(this);
                 if (exit) break;
             }

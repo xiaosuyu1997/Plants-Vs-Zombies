@@ -25,10 +25,16 @@ public class Pea {
         for (int i = 0; i < gp.getLaneZombies().get(myLane).size(); i++) {
             Zombie z = gp.getLaneZombies().get(myLane).get(i);
             Rectangle zRect = new Rectangle(z.getPosX(), 109 + myLane * 120, 400, 120);
+            boolean exit = false;
             if (pRect.intersects(zRect)) {
             	pea.player.start();
                 z.setHealth(z.getHealth() - 200);
-                boolean exit = false;
+                if (z.getHealth() < 0) {
+                    System.out.println("ZOMBIE DIE");
+                    GamePanel.setProgress(10);
+                    gp.getLaneZombies().get(getMyLane()).remove(i);
+                }
+                exit = true;
                 gp.getLanePeas().get(myLane).remove(this);
                 if (exit) break;
             }

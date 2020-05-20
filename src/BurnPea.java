@@ -11,15 +11,15 @@ public class BurnPea extends Pea{
         for (int i = 0; i < gp.getLaneZombies().get(getMyLane()).size(); i++) {
             Zombie z = gp.getLaneZombies().get(getMyLane()).get(i);
             Rectangle zRect = new Rectangle(z.getPosX(), 109 + getMyLane() * 120, 400, 120);
+            boolean exit = false;
             if (pRect.intersects(zRect)){
                 z.setHealth(z.getHealth() - 500);
-                boolean exit = false;
                 if (z.getHealth() < 0) {
                     System.out.println("ZOMBIE DIE");
                     GamePanel.setProgress(10);
                     gp.getLaneZombies().get(getMyLane()).remove(i);
-                    exit = true;
                 }
+                exit = true;
                 gp.getLanePeas().get(getMyLane()).remove(this);
                 if (exit) break;
             }
