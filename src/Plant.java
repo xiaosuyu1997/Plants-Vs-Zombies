@@ -9,7 +9,7 @@ public abstract class Plant {
     private Image Ima=null;
     private int x;
     private int y;
-
+    public Timer Time;
     
     private GamePanel gp;
 
@@ -18,9 +18,16 @@ public abstract class Plant {
         this.x = x;
         this.y = y;
         gp = parent;
+        Time = new Timer(0,(ActionEvent e) ->{
+            if(health<=0){
+                gp.getColliders()[x + y * 9].removePlant();
+            }
+        });
+        Time.start();
     }
 
     public void stop() {
+        Time.stop();
     }
 
     public int getHealth() {

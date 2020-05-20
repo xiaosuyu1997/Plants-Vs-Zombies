@@ -65,12 +65,18 @@ public class Zombie {
             }
         }
         if(isAttacking) {
-        	zombiesEating.player.loop(Clip.LOOP_CONTINUOUSLY);
-            collided.assignedPlant.setHealth(collided.assignedPlant.getHealth() - 1);
-            if (collided.assignedPlant.getHealth() <= 0) {
-            	zombiesEating.player.stop();
-                gulp.player.start();
-                collided.removePlant();
+            zombiesEating.player.loop(Clip.LOOP_CONTINUOUSLY);
+            if(collided.assignedPlant!=null){
+                collided.assignedPlant.setHealth(collided.assignedPlant.getHealth() - 1);
+                if (collided.assignedPlant.getHealth() <= 0) {
+                    zombiesEating.player.stop();
+                    gulp.player.start();
+                    isAttacking = false;
+                    isMoving = true;
+                }
+            }
+            if(collided.assignedPlant==null){
+                zombiesEating.player.stop();
                 isAttacking = false;
                 isMoving = true;
             }

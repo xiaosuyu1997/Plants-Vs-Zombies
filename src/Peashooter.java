@@ -22,6 +22,7 @@ public class Peashooter extends Plant {
 
     @Override
     public void stop() {
+        super.stop();
         shootTimer.stop();
     }
 

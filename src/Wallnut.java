@@ -37,6 +37,7 @@ public class Wallnut extends Plant{
     }
     @Override
     public void stop() {
+        super.stop();
         Ti.stop();
     }
 }

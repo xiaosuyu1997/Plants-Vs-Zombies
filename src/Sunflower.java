@@ -21,6 +21,7 @@ public class Sunflower extends Plant {
     }
     @Override
     public void stop() {
+        super.stop();
         sunProduceTimer.stop();
     }
 }
