@@ -222,6 +222,9 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
                 if (p instanceof ThreePeashooter){
                     g.drawImage(threepeashootImage, 60 + (i % 9) * 100, 129 + (i / 9) * 120, null);
                 }
+                if (p instanceof Chomper){
+                    g.drawImage(p.getImage(), 60 + (i % 9) * 100, 129 + (i / 9) * 120, null);
+                }
             }
         }
 
@@ -334,6 +337,13 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
                 if (getSunScore() >= 325) {
                     colliders[x + y * 9].setPlant(new ThreePeashooter(GamePanel.this, x, y));
                     setSunScore(getSunScore() - 325);
+                }
+            }
+            
+            if (activePlantingBrush == GameWindow.PlantType.Chomper){
+                if (getSunScore() >= 150) {
+                    colliders[x + y * 9].setPlant(new Chomper(GamePanel.this, x, y,1,0));
+                    setSunScore(getSunScore() - 150);
                 }
             }
             activePlantingBrush = GameWindow.PlantType.None;

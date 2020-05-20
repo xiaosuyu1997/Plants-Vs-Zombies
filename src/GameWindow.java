@@ -13,7 +13,8 @@ public class GameWindow extends JFrame {
         FreezePeashooter,
         Torchwood,
         TwicePeashooter,
-        ThreePeashooter
+        ThreePeashooter,
+        Chomper
     }
 
     //PlantType activePlantingBrush = PlantType.None;
@@ -72,6 +73,13 @@ public class GameWindow extends JFrame {
             gp.setActivePlantingBrush(PlantType.ThreePeashooter);
         });
         getLayeredPane().add(ThreePeashooter, new Integer(3));
+
+        PlantCard Chomper = new PlantCard(new ImageIcon(this.getClass().getResource("images/cards/card_chomper.png")).getImage());
+        Chomper.setLocation(500, 8);
+        Chomper.setAction((ActionEvent e) -> {
+            gp.setActivePlantingBrush(PlantType.Chomper);
+        });
+        getLayeredPane().add(Chomper, new Integer(3));
 
         getLayeredPane().add(sun, new Integer(2));
         setResizable(false);
