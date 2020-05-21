@@ -17,7 +17,8 @@ public class GameWindow extends JFrame {
         Chomper,
         Wallnut,
         GatlingPea,
-        PotatoMine
+        PotatoMine,
+        Sholve
     }
 
     //PlantType activePlantingBrush = PlantType.None;
@@ -104,6 +105,16 @@ public class GameWindow extends JFrame {
             gp.setActivePlantingBrush(PlantType.PotatoMine);
         });
         getLayeredPane().add(PotatoMine, new Integer(3));
+
+
+        PlantCard Sholve = new PlantCard(new ImageIcon(this.getClass().getResource("images/cards/ShovelBack.png")).getImage());
+        Sholve.setLocation(760, 0);
+        Sholve.setSize(100,50);
+        Sholve.setAction((ActionEvent e) -> {
+            gp.setActivePlantingBrush(PlantType.Sholve);
+        });
+        getLayeredPane().add(Sholve, new Integer(3));
+        
 
         getLayeredPane().add(sun, new Integer(2));
         setResizable(false);

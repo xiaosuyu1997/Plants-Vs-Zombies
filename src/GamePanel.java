@@ -256,6 +256,13 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
                 }
             }
 
+            if (activePlantingBrush == GameWindow.PlantType.Sholve){
+                if (colliders[x + y * 9].assignedPlant!=null) {
+                    colliders[x + y * 9].removePlant();
+                    activePlantingBrush = GameWindow.PlantType.None;
+                }
+            }
+
             if (colliders[x + y * 9].assignedPlant!=null){
                 activePlantingBrush = GameWindow.PlantType.None;
             }
