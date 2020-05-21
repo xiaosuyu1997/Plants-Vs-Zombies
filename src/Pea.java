@@ -20,6 +20,7 @@ public class Pea {
         Ima = new ImageIcon(this.getClass().getResource("images/pea.png")).getImage();
         
         pea.prepare();
+        pea.gainControl.setValue(-10.0f);
     }
 
     public void advance() {
@@ -29,7 +30,9 @@ public class Pea {
             Rectangle zRect = new Rectangle(z.getPosX(), 109 + myLane * 120, 400, 120);
             boolean exit = false;
             if (pRect.intersects(zRect)) {
+            	
             	pea.player.start();
+            	
                 z.setHealth(z.getHealth() - 200);
                 if (z.getHealth() < 0) {
                     System.out.println("ZOMBIE DIE");

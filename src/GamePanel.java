@@ -18,9 +18,9 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
     private Image bgImage;
 
     private Image normalZombieImage;
-    //private Image coneHeadZombieImage;
-    private GifManipulation coneHeadZombieImage = new GifManipulation();
-    private Image coneHeadZombieAttackImage;
+    private Image coneHeadZombieImage;
+    private GifManipulation coneHeadZombieAttackImage = new GifManipulation("./src/images/zombies/ConeheadZombieAttack.gif",this);
+    //private Image coneHeadZombieAttackImage;
     private Image metalBucketZombie;
     private Image poleVaultingZombie;
     private Collider[] colliders;
@@ -63,11 +63,12 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
         setSunScore(5000);  //pool avalie
 
         bgImage = new ImageIcon(this.getClass().getResource("images/mainBG.png")).getImage();
-
+        
+        
         normalZombieImage = new ImageIcon(this.getClass().getResource("images/zombies/Zombie.gif")).getImage();
-        //coneHeadZombieImage = new ImageIcon(this.getClass().getResource("images/zombies/ConeheadZombie.gif")).getImage();
-        coneHeadZombieImage.readGif("./src/images/zombies/ConeheadZombie.gif");
-        coneHeadZombieAttackImage = new ImageIcon(this.getClass().getResource("images/zombies/ConeheadZombieAttack2.gif")).getImage();
+        coneHeadZombieImage = new ImageIcon(this.getClass().getResource("images/zombies/ConeheadZombie.gif")).getImage();
+        //coneHeadZombieImage.readGif("./src/images/zombies/ConeheadZombie.gif");
+        //coneHeadZombieAttackImage = new ImageIcon(this.getClass().getResource("images/zombies/ConeheadZombieAttack2.gif")).getImage();
         metalBucketZombie = new ImageIcon(this.getClass().getResource("images/zombies/BucketheadZombie.gif")).getImage();
         poleVaultingZombie = new ImageIcon(this.getClass().getResource("images/zombies/PoleVaultingZombie.gif")).getImage();
         /**try {
@@ -195,16 +196,21 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
                     g.drawImage(normalZombieImage, z.getPosX(), 69 + (i * 120), null);
                 } else if (z instanceof ConeHeadZombie && !z.isDead()) {
                 	if(z.isAttacking()) {
-                		g.drawImage(coneHeadZombieAttackImage, z.getPosX(), 69 + (i * 120),null);
-                	}
-                	else if(z.isMoving()) {
-                        //g.drawImage(coneHeadZombieImage, z.getPosX(), 69 + (i * 120),null);
                 		try {
-							coneHeadZombieImage.printGif(g, z.getPosX(), 69 + (i * 120));
+							coneHeadZombieAttackImage.printGif(g, z.getPosX(), 69 + (i * 120));
 						} catch (InterruptedException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
+                	}
+                	else if(z.isMoving()) {
+                        g.drawImage(coneHeadZombieImage, z.getPosX(), 69 + (i * 120),null);
+                		//try {
+							//coneHeadZombieImage.printGif(g, z.getPosX(), 69 + (i * 120));
+						//} catch (InterruptedException e) {
+							// TODO Auto-generated catch block
+							//e.printStackTrace();
+						//}
                 	}
                 }
                 else if (z instanceof MetalBucketZombie && !z.isDead()) {
@@ -246,6 +252,8 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
+<<<<<<< HEAD
+=======
             seedLift.player.start();
             
             if (activePlantingBrush == GameWindow.PlantType.GatlingPea){
@@ -263,17 +271,20 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
                 }
             }
 
+>>>>>>> 1d7d786c9ba7b860c76d86eee8abff934ef8878f
             if (colliders[x + y * 9].assignedPlant!=null){
                 activePlantingBrush = GameWindow.PlantType.None;
             }
             
             if (activePlantingBrush == GameWindow.PlantType.Sunflower) {
+            	seedLift.player.start();
                 if (getSunScore() >= 50) {
                     colliders[x + y * 9].setPlant(new Sunflower(GamePanel.this, x, y));
                     setSunScore(getSunScore() - 50);
                 }
             }
             if (activePlantingBrush == GameWindow.PlantType.Peashooter) {
+            	seedLift.player.start();
                 if (getSunScore() >= 100) {
                     colliders[x + y * 9].setPlant(new Peashooter(GamePanel.this, x, y));
                     setSunScore(getSunScore() - 100);
@@ -281,6 +292,7 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
             }
 
             if (activePlantingBrush == GameWindow.PlantType.FreezePeashooter) {
+            	seedLift.player.start();
                 if (getSunScore() >= 175) {
                     colliders[x + y * 9].setPlant(new FreezePeashooter(GamePanel.this, x, y));
                     setSunScore(getSunScore() - 175);
@@ -288,6 +300,7 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
             }
 
             if (activePlantingBrush == GameWindow.PlantType.Torchwood) {
+            	seedLift.player.start();
                 if (getSunScore() >= 175) {
                     colliders[x + y * 9].setPlant(new Torchwood(GamePanel.this, x, y));
                     setSunScore(getSunScore() - 175);
@@ -295,6 +308,7 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
             }
 
             if (activePlantingBrush == GameWindow.PlantType.TwicePeashooter){
+            	seedLift.player.start();
                 if (getSunScore() >= 200) {
                     colliders[x + y * 9].setPlant(new TwicePeashooter(GamePanel.this, x, y));
                     setSunScore(getSunScore() - 200);
@@ -302,6 +316,7 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
             }
 
             if (activePlantingBrush == GameWindow.PlantType.ThreePeashooter){
+            	seedLift.player.start();
                 if (getSunScore() >= 325) {
                     colliders[x + y * 9].setPlant(new ThreePeashooter(GamePanel.this, x, y));
                     setSunScore(getSunScore() - 325);
@@ -309,6 +324,7 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
             }
             
             if (activePlantingBrush == GameWindow.PlantType.Chomper){
+            	seedLift.player.start();
                 if (getSunScore() >= 150) {
                     colliders[x + y * 9].setPlant(new Chomper(GamePanel.this, x, y,1,0));
                     setSunScore(getSunScore() - 150);
@@ -316,6 +332,7 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
             }
 
             if (activePlantingBrush == GameWindow.PlantType.Wallnut){
+            	seedLift.player.start();
                 if (getSunScore() >= 50) {
                     colliders[x + y * 9].setPlant(new Wallnut(GamePanel.this, x, y,1));
                     setSunScore(getSunScore() - 50);
