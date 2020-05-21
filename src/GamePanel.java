@@ -18,9 +18,9 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
     private Image bgImage;
 
     private Image normalZombieImage;
-    //private Image coneHeadZombieImage;
-    private GifManipulation coneHeadZombieImage = new GifManipulation();
-    private Image coneHeadZombieAttackImage;
+    private Image coneHeadZombieImage;
+    private GifManipulation coneHeadZombieAttackImage = new GifManipulation("./src/images/zombies/ConeheadZombieAttack.gif",this);
+    //private Image coneHeadZombieAttackImage;
     private Image metalBucketZombie;
     private Image poleVaultingZombie;
     private Collider[] colliders;
@@ -63,11 +63,12 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
         setSunScore(5000);  //pool avalie
 
         bgImage = new ImageIcon(this.getClass().getResource("images/mainBG.png")).getImage();
-
+        
+        
         normalZombieImage = new ImageIcon(this.getClass().getResource("images/zombies/Zombie.gif")).getImage();
-        //coneHeadZombieImage = new ImageIcon(this.getClass().getResource("images/zombies/ConeheadZombie.gif")).getImage();
-        coneHeadZombieImage.readGif("./src/images/zombies/ConeheadZombie.gif");
-        coneHeadZombieAttackImage = new ImageIcon(this.getClass().getResource("images/zombies/ConeheadZombieAttack2.gif")).getImage();
+        coneHeadZombieImage = new ImageIcon(this.getClass().getResource("images/zombies/ConeheadZombie.gif")).getImage();
+        //coneHeadZombieImage.readGif("./src/images/zombies/ConeheadZombie.gif");
+        //coneHeadZombieAttackImage = new ImageIcon(this.getClass().getResource("images/zombies/ConeheadZombieAttack2.gif")).getImage();
         metalBucketZombie = new ImageIcon(this.getClass().getResource("images/zombies/BucketheadZombie.gif")).getImage();
         poleVaultingZombie = new ImageIcon(this.getClass().getResource("images/zombies/PoleVaultingZombie.gif")).getImage();
         /**try {
@@ -195,16 +196,21 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
                     g.drawImage(normalZombieImage, z.getPosX(), 69 + (i * 120), null);
                 } else if (z instanceof ConeHeadZombie && !z.isDead()) {
                 	if(z.isAttacking()) {
-                		g.drawImage(coneHeadZombieAttackImage, z.getPosX(), 69 + (i * 120),null);
-                	}
-                	else if(z.isMoving()) {
-                        //g.drawImage(coneHeadZombieImage, z.getPosX(), 69 + (i * 120),null);
                 		try {
-							coneHeadZombieImage.printGif(g, z.getPosX(), 69 + (i * 120));
+							coneHeadZombieAttackImage.printGif(g, z.getPosX(), 69 + (i * 120));
 						} catch (InterruptedException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
+                	}
+                	else if(z.isMoving()) {
+                        g.drawImage(coneHeadZombieImage, z.getPosX(), 69 + (i * 120),null);
+                		//try {
+							//coneHeadZombieImage.printGif(g, z.getPosX(), 69 + (i * 120));
+						//} catch (InterruptedException e) {
+							// TODO Auto-generated catch block
+							//e.printStackTrace();
+						//}
                 	}
                 }
                 else if (z instanceof MetalBucketZombie && !z.isDead()) {

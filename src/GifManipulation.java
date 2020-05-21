@@ -1,5 +1,6 @@
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.event.ActionEvent;
 import java.awt.image.BufferedImage;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -13,12 +14,17 @@ import javax.imageio.metadata.IIOMetadataNode;
 
 import javax.swing.*;
 
-public class GifManipulation{
+public class GifManipulation extends JPanel{
 	private List<BufferedImage> imgList = new ArrayList<BufferedImage>();
-	private long delayTime = 0;
-	Color c = new Color(0,0,0,0);
-	
-	public void readGif(String filename) {
+	private int delayTime = 0;
+	private GamePanel gp;
+	private Timer timer;
+	private int curImg;
+	 
+
+	public GifManipulation(String filename,GamePanel parent) {
+		this.gp = parent;
+		curImg = 0;
 	    try {
 	        ImageReader reader = ImageIO.getImageReadersBySuffix("gif").next();
 	        reader.setInput(ImageIO.createImageInputStream(new FileInputStream(filename)));
@@ -26,6 +32,7 @@ public class GifManipulation{
 	        int numImages = reader.getNumImages(true);
 	        while (i < numImages)
 	        {
+	        	setOpaque(false);
 	        	imgList.add(reader.read(i++));
 	        }
 	        IIOMetadata imageMetaData =  reader.getImageMetadata(0);
@@ -34,8 +41,12 @@ public class GifManipulation{
 	        IIOMetadataNode root = (IIOMetadataNode)imageMetaData.getAsTree(metaFormatName);
 
 	        IIOMetadataNode graphicsControlExtensionNode = getNode(root, "GraphicControlExtension");
-	        delayTime = Long.valueOf(graphicsControlExtensionNode.getAttribute("delayTime").toString());
+	        delayTime = Integer.valueOf(graphicsControlExtensionNode.getAttribute("delayTime").toString());
 	        System.out.println(graphicsControlExtensionNode.getAttribute("delayTime"));
+	        
+	        timer = new Timer(delayTime*10, (ActionEvent e) -> {
+	            repaint();
+	        });
 	    
 	    } catch (Exception e) {
 	        e.printStackTrace();
@@ -53,11 +64,17 @@ public class GifManipulation{
         rootNode.appendChild(node);
         return(node);
     }
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        g.drawImage(imgList.get(curImg % imgList.size()), 0, 0,null);
+        curImg++;
+    }
+    
     
     public void printGif(Graphics g, int x,int y) throws InterruptedException {
-    	for(int i = 0;i < imgList.size();i++) {
-    		g.drawImage(imgList.get(i), x, y, null);
-    	}
+    	setLocation(x, y);
+    	timer.start();
     }
 	
 }
