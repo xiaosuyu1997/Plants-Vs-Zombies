@@ -44,9 +44,9 @@ public class Pea {
                 if (exit) break;
             }
         }
-        /*if(posX > 2000){
-            gp.lanePeas.get(myLane).remove(this);
-        }*/
+        if(posX > 2000){
+            gp.getLanePeas().get(myLane).remove(this);
+        }
         posX += 15;
     }
 

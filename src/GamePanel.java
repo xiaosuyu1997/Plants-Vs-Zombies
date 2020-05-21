@@ -62,7 +62,7 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
         this.sunScoreboard = sunScoreboard;
         setSunScore(5000);  //pool avalie
 
-        bgImage = new ImageIcon(this.getClass().getResource("images/mainBG.png")).getImage();
+        bgImage = new ImageIcon(this.getClass().getResource("images/mainB.png")).getImage();
         
         
         normalZombieImage = new ImageIcon(this.getClass().getResource("images/zombies/Zombie.gif")).getImage();
@@ -90,7 +90,11 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
         lanePeas.add(new ArrayList<>()); //line 3
         lanePeas.add(new ArrayList<>()); //line 4
         lanePeas.add(new ArrayList<>()); //line 5
-
+        
+        for (int i=0;i<5;i++){
+            lanePeas.get(i).add(new LawnCleaner(this,i,0,0));
+        }
+        
         colliders = new Collider[45];
         for (int i = 0; i < 45; i++) {
             Collider a = new Collider();
@@ -252,8 +256,6 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-<<<<<<< HEAD
-=======
             seedLift.player.start();
             
             if (activePlantingBrush == GameWindow.PlantType.GatlingPea){
@@ -271,7 +273,6 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
                 }
             }
 
->>>>>>> 1d7d786c9ba7b860c76d86eee8abff934ef8878f
             if (colliders[x + y * 9].assignedPlant!=null){
                 activePlantingBrush = GameWindow.PlantType.None;
             }
