@@ -104,7 +104,6 @@ public class GameWindow extends JFrame {
         });
         getLayeredPane().add(Sholve, new Integer(3));
         
-
         getLayeredPane().add(sun, new Integer(2));
         setResizable(false);
         setVisible(true);
