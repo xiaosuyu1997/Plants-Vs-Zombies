@@ -25,6 +25,9 @@ public class BurnPea extends Pea{
                 gp.getLanePeas().get(getMyLane()).remove(this);
                 if (exit) break;
             }
+            if(getPosX() > 2000){
+                gp.getLanePeas().get(getMyLane()).remove(this);
+            }
         }
         setPosX(getPosX() + 15);
     }

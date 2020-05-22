@@ -30,9 +30,9 @@ public class FreezePea extends Pea {
                 if (exit) break;
             }
         }
-        /*if(posX > 2000){
-            gp.lanePeas.get(myLane).remove(this);
-        }*/
+        if(getPosX() > 2000){
+            gp.getLanePeas().get(getMyLane()).remove(this);
+        }
         setPosX(getPosX() + 15);
     }
 
