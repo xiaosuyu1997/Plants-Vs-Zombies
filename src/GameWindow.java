@@ -37,74 +37,73 @@ public class GameWindow extends JFrame {
         gp.setLocation(0, 0);
         getLayeredPane().add(gp, new Integer(0));
 
-        sunflower = new PlantCard(new ImageIcon(this.getClass().getResource("images/cards/card_sunflower.png")).getImage());
+        sunflower = new PlantCard("images/cards/card_sunflower.png");
         sunflower.setAction(110, 8,7500,(ActionEvent e) -> {
             gp.setActivePlantingBrush(PlantType.Sunflower);
         });
         getLayeredPane().add(sunflower, new Integer(3));
 
-        peashooter = new PlantCard(new ImageIcon(this.getClass().getResource("images/cards/card_peashooter.png")).getImage());
+        peashooter = new PlantCard("images/cards/card_peashooter.png");
         peashooter.setAction(175, 8,7500,(ActionEvent e) -> {
             gp.setActivePlantingBrush(PlantType.Peashooter);
         });
         getLayeredPane().add(peashooter, new Integer(3));
 
-        freezepeashooter = new PlantCard(new ImageIcon(this.getClass().getResource("images/cards/card_freezepeashooter.png")).getImage());
+        freezepeashooter = new PlantCard("images/cards/card_freezepeashooter.png");
         freezepeashooter.setAction(240, 8,7500,(ActionEvent e) -> {
             gp.setActivePlantingBrush(PlantType.FreezePeashooter);
         });
         getLayeredPane().add(freezepeashooter, new Integer(3));
 
-        Torchwood = new PlantCard(new ImageIcon(this.getClass().getResource("images/cards/card_torchwood.png")).getImage());
+        Torchwood = new PlantCard("images/cards/card_torchwood.png");
         Torchwood.setAction(305, 8,7500,(ActionEvent e) -> {
             gp.setActivePlantingBrush(PlantType.Torchwood);
         });
         getLayeredPane().add(Torchwood, new Integer(3));
 
-        TwicePeashooter = new PlantCard(new ImageIcon(this.getClass().getResource("images/cards/card_twicepeashooter.png")).getImage());
+        TwicePeashooter = new PlantCard("images/cards/card_twicepeashooter.png");
         TwicePeashooter.setAction(370, 8,7500,(ActionEvent e) -> {
             gp.setActivePlantingBrush(PlantType.TwicePeashooter);
         });
         getLayeredPane().add(TwicePeashooter, new Integer(3));
         
-        ThreePeashooter = new PlantCard(new ImageIcon(this.getClass().getResource("images/cards/card_threepeashooter.png")).getImage());
+        ThreePeashooter = new PlantCard("images/cards/card_threepeashooter.png");
         ThreePeashooter.setAction(435,8,7500,(ActionEvent e) -> {
             gp.setActivePlantingBrush(PlantType.ThreePeashooter);
         });
         getLayeredPane().add(ThreePeashooter, new Integer(3));
 
-        Chomper = new PlantCard(new ImageIcon(this.getClass().getResource("images/cards/card_chomper.png")).getImage());
+        Chomper = new PlantCard("images/cards/card_chomper.png");
         Chomper.setAction(500, 8,7500,(ActionEvent e) -> {
             gp.setActivePlantingBrush(PlantType.Chomper);
         });
         getLayeredPane().add(Chomper, new Integer(3));
 
-        Wallnut = new PlantCard(new ImageIcon(this.getClass().getResource("images/cards/card_wallnut.png")).getImage());
+        Wallnut = new PlantCard("images/cards/card_wallnut.png");
         Wallnut.setAction(565, 8,30000,(ActionEvent e) -> {
             gp.setActivePlantingBrush(PlantType.Wallnut);
         });
         getLayeredPane().add(Wallnut, new Integer(3));
 
-        GatlingPea = new PlantCard(new ImageIcon(this.getClass().getResource("images/cards/card_gatling.png")).getImage());
+        GatlingPea = new PlantCard("images/cards/card_gatling.png");
         GatlingPea.setAction(630, 8,50000,(ActionEvent e) -> {
             gp.setActivePlantingBrush(PlantType.GatlingPea);
         });
         getLayeredPane().add(GatlingPea, new Integer(3));
 
-        PotatoMine = new PlantCard(new ImageIcon(this.getClass().getResource("images/cards/card_potatomine.png")).getImage());
+        PotatoMine = new PlantCard("images/cards/card_potatomine.png");
         PotatoMine.setAction(695, 8,30000,(ActionEvent e) -> {
             gp.setActivePlantingBrush(PlantType.PotatoMine);
         });
         getLayeredPane().add(PotatoMine, new Integer(3));
 
-        Sholve = new PlantCard(new ImageIcon(this.getClass().getResource("images/cards/ShovelBack.png")).getImage());
+        Sholve = new PlantCard("images/cards/ShovelBack.png");
         Sholve.setSize(100,50);
         Sholve.setAction(760, 0,0,(ActionEvent e) -> {
             gp.setActivePlantingBrush(PlantType.Sholve);
         });
         getLayeredPane().add(Sholve, new Integer(3));
         
-
         getLayeredPane().add(sun, new Integer(2));
         setResizable(false);
         setVisible(true);
@@ -131,5 +130,4 @@ public class GameWindow extends JFrame {
     public static void main(String[] args) {
         gw = new GameWindow(true);
     }
-
 }
