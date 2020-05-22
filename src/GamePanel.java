@@ -20,8 +20,8 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
 
     private Image normalZombieImage;
     private Image coneHeadZombieImage;
-    private GifManipulation coneHeadZombieAttackImage = new GifManipulation("./src/images/zombies/ConeheadZombieAttack.gif",this);
-    // private Image coneHeadZombieAttackImage;
+    //private GifManipulation coneHeadZombieAttackImage = new GifManipulation("./src/images/zombies/ConeheadZombieAttack.gif",this);
+    private Image coneHeadZombieAttackImage;
     private Image metalBucketZombie;
     private Image poleVaultingZombie;
     private Collider[] colliders;
@@ -73,7 +73,7 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
         normalZombieImage = new ImageIcon(this.getClass().getResource("images/zombies/Zombie.gif")).getImage();
         coneHeadZombieImage = new ImageIcon(this.getClass().getResource("images/zombies/ConeheadZombie.gif")).getImage();
         //coneHeadZombieImage.readGif("./src/images/zombies/ConeheadZombie.gif");
-        //coneHeadZombieAttackImage = new ImageIcon(this.getClass().getResource("images/zombies/ConeheadZombieAttack2.gif")).getImage();
+        coneHeadZombieAttackImage = new ImageIcon(this.getClass().getResource("images/zombies/ConeheadZombieAttack.gif")).getImage();
         metalBucketZombie = new ImageIcon(this.getClass().getResource("images/zombies/BucketheadZombie.gif")).getImage();
         poleVaultingZombie = new ImageIcon(this.getClass().getResource("images/zombies/PoleVaultingZombie.gif")).getImage();
         /**try {
@@ -97,12 +97,12 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
         lanePeas.add(new ArrayList<>()); //line 5
         
         deadZombies = new ArrayList<>();
-        // 小推车
+        // 灏忔帹杞�
         for (int i=0;i<5;i++){
             lanePeas.get(i).add(new LawnCleaner(this,i,0,0));
         }
         
-        // 植物网格
+        // 妞嶇墿缃戞牸
         colliders = new Collider[45];
         for (int i = 0; i < 45; i++) {
             Collider a = new Collider();
@@ -119,13 +119,13 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
 
         activeSuns = new ArrayList<>();
 
-        // 5ms刷新一次界面（gif播放），实现动态过程
+        // 5ms鍒锋柊涓�娆＄晫闈紙gif鎾斁锛夛紝瀹炵幇鍔ㄦ�佽繃绋�
         redrawTimer = new Timer(5, (ActionEvent e) -> {
             repaint();
         });
         redrawTimer.start();
 
-        // 每60s刷新一次逻辑
+        // 姣�60s鍒锋柊涓�娆￠�昏緫
         advancerTimer = new Timer(60, (ActionEvent e) -> advance());
         advancerTimer.start();
 
@@ -181,7 +181,7 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
                     // System.out.printf("dead zombies%d", deadZombies.size());
                 	laneZombies.get(i).remove(laneZombies.get(i).get(j));
                     j--;
-                    // 每只僵尸10分，分数达到150之后终止此关卡
+                    // 姣忓彧鍍靛案10鍒嗭紝鍒嗘暟杈惧埌150涔嬪悗缁堟姝ゅ叧鍗�
                     GamePanel.setProgress(10);
             	}
             }
@@ -214,21 +214,11 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
                     g.drawImage(normalZombieImage, z.getPosX(), 69 + (i * 120), null);
                 } else if (z instanceof ConeHeadZombie && !z.isDead()) {
                 	if(z.isAttacking()) {
-                		try {
-							coneHeadZombieAttackImage.printGif(g, z.getPosX(), 69 + (i * 120));
-						} catch (InterruptedException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
+                		g.drawImage(coneHeadZombieAttackImage, z.getPosX()-110, 69 + (i * 120), null);
+
                 	}
                 	else if(z.isMoving()) {
                         g.drawImage(coneHeadZombieImage, z.getPosX(), 69 + (i * 120),null);
-                		//try {
-							//coneHeadZombieImage.printGif(g, z.getPosX(), 69 + (i * 120));
-						//} catch (InterruptedException e) {
-							// TODO Auto-generated catch block
-							//e.printStackTrace();
-						//}
                 	}
                 }
                 else if (z instanceof MetalBucketZombie && !z.isDead()) {
@@ -266,7 +256,7 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
 
     }
 
-    // 种植物
+    // 绉嶆鐗�
     private class PlantActionListener implements ActionListener {
 
         int x, y;
@@ -280,7 +270,6 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            seedLift.player.start();
             
             if (activePlantingBrush == GameWindow.PlantType.GatlingPea){
                 if (getSunScore() >= 250&&colliders[x + y * 9].assignedPlant instanceof TwicePeashooter) {
@@ -374,6 +363,7 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
             }
 
             if (activePlantingBrush == GameWindow.PlantType.PotatoMine){
+            	seedLift.player.start();
                 if (getSunScore() >= 25) {
                     colliders[x + y * 9].setPlant(new PotatoMine(GamePanel.this, x, y,1));
                     setSunScore(getSunScore() -25);
