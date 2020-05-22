@@ -43,6 +43,7 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
     
     
     private GameWindow.PlantType activePlantingBrush = GameWindow.PlantType.None;
+    private GameWindow gw;
 
     private int mouseX, mouseY;
 
@@ -57,7 +58,9 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
         sunScoreboard.setText(String.valueOf(sunScore));
     }
 
-    public GamePanel(JLabel sunScoreboard) {
+    public GamePanel(GameWindow gamewin,JLabel sunScoreboard) {
+        gw = gamewin;
+
         setSize(1000, 752);
         setLayout(null);
         addMouseMotionListener(this);
@@ -284,6 +287,7 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
                     colliders[x + y * 9].removePlant();
                     colliders[x + y * 9].setPlant(new GatlingPea(GamePanel.this, x, y));
                     setSunScore(getSunScore() - 250);
+                    gw.GatlingPea.countwaittime();
                 }
             }
 
@@ -303,6 +307,7 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
                 if (getSunScore() >= 50) {
                     colliders[x + y * 9].setPlant(new Sunflower(GamePanel.this, x, y));
                     setSunScore(getSunScore() - 50);
+                    gw.sunflower.countwaittime();
                 }
             }
             if (activePlantingBrush == GameWindow.PlantType.Peashooter) {
@@ -310,6 +315,7 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
                 if (getSunScore() >= 100) {
                     colliders[x + y * 9].setPlant(new Peashooter(GamePanel.this, x, y));
                     setSunScore(getSunScore() - 100);
+                    gw.peashooter.countwaittime();
                 }
             }
 
@@ -318,6 +324,7 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
                 if (getSunScore() >= 175) {
                     colliders[x + y * 9].setPlant(new FreezePeashooter(GamePanel.this, x, y));
                     setSunScore(getSunScore() - 175);
+                    gw.freezepeashooter.countwaittime();
                 }
             }
 
@@ -326,6 +333,7 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
                 if (getSunScore() >= 175) {
                     colliders[x + y * 9].setPlant(new Torchwood(GamePanel.this, x, y));
                     setSunScore(getSunScore() - 175);
+                    gw.Torchwood.countwaittime();
                 }
             }
 
@@ -334,6 +342,7 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
                 if (getSunScore() >= 200) {
                     colliders[x + y * 9].setPlant(new TwicePeashooter(GamePanel.this, x, y));
                     setSunScore(getSunScore() - 200);
+                    gw.TwicePeashooter.countwaittime();
                 }
             }
 
@@ -342,6 +351,7 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
                 if (getSunScore() >= 325) {
                     colliders[x + y * 9].setPlant(new ThreePeashooter(GamePanel.this, x, y));
                     setSunScore(getSunScore() - 325);
+                    gw.ThreePeashooter.countwaittime();
                 }
             }
             
@@ -350,6 +360,7 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
                 if (getSunScore() >= 150) {
                     colliders[x + y * 9].setPlant(new Chomper(GamePanel.this, x, y,1,0));
                     setSunScore(getSunScore() - 150);
+                    gw.Chomper.countwaittime();
                 }
             }
 
@@ -358,6 +369,7 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
                 if (getSunScore() >= 50) {
                     colliders[x + y * 9].setPlant(new Wallnut(GamePanel.this, x, y,1));
                     setSunScore(getSunScore() - 50);
+                    gw.Wallnut.countwaittime();
                 }
             }
 
@@ -365,6 +377,7 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
                 if (getSunScore() >= 25) {
                     colliders[x + y * 9].setPlant(new PotatoMine(GamePanel.this, x, y,1));
                     setSunScore(getSunScore() -25);
+                    gw.PotatoMine.countwaittime();
                 }
             }
             activePlantingBrush = GameWindow.PlantType.None;
