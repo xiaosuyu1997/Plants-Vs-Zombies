@@ -126,10 +126,10 @@ public class PlantCard extends JPanel implements MouseListener {
                 final int b = color & 0xff;
                 int gray=0;
                 if(9*status>image.getHeight()-j){
-                    gray = (int) (0.3 * r + 0.59 * g + 0.11 * b);//加权法灰度化
+                    gray = getBigger(r, g, b);
                 }
                 else{
-                    gray=getAvg(r, g, b)+2;
+                    gray = getAvg(r, g, b);//加权法灰度化
                 }
                 // if(status==1){
                 //     gray=getBigger(r, g, b);//最大值法灰度化
