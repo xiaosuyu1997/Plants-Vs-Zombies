@@ -8,6 +8,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.Iterator;
 import java.io.*;
 
 /**
@@ -20,12 +21,13 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
     private Image normalZombieImage;
     private Image coneHeadZombieImage;
     private GifManipulation coneHeadZombieAttackImage = new GifManipulation("./src/images/zombies/ConeheadZombieAttack.gif",this);
-    //private Image coneHeadZombieAttackImage;
+    // private Image coneHeadZombieAttackImage;
     private Image metalBucketZombie;
     private Image poleVaultingZombie;
     private Collider[] colliders;
 
     private ArrayList<ArrayList<Zombie>> laneZombies;
+    private ArrayList<DeadZombie> deadZombies;
     private ArrayList<ArrayList<Pea>> lanePeas;
     private ArrayList<Sun> activeSuns;
 
@@ -91,10 +93,13 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
         lanePeas.add(new ArrayList<>()); //line 4
         lanePeas.add(new ArrayList<>()); //line 5
         
+        deadZombies = new ArrayList<>();
+        // 小推车
         for (int i=0;i<5;i++){
             lanePeas.get(i).add(new LawnCleaner(this,i,0,0));
         }
         
+        // 植物网格
         colliders = new Collider[45];
         for (int i = 0; i < 45; i++) {
             Collider a = new Collider();
@@ -111,11 +116,13 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
 
         activeSuns = new ArrayList<>();
 
+        // 5ms刷新一次界面（gif播放），实现动态过程
         redrawTimer = new Timer(5, (ActionEvent e) -> {
             repaint();
         });
         redrawTimer.start();
 
+        // 每60s刷新一次逻辑
         advancerTimer = new Timer(60, (ActionEvent e) -> advance());
         advancerTimer.start();
 
@@ -137,7 +144,7 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
             Zombie z = null;
             for (int i = 0; i < LevelValue.length; i++) {
                 if (t >= LevelValue[i][0] && t <= LevelValue[i][1]) {
-                    z = Zombie.getZombie(Level[i], GamePanel.this, l);
+                    z = Zombie.getZombie(Level[i], this, l);
                 }
             }
             laneZombies.get(l).add(z);
@@ -166,9 +173,12 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
             
             for(int j = 0;j < laneZombies.get(i).size();j++) {
             	if(laneZombies.get(i).get(j).isDead()) {
-                	System.out.println("ZOMBIE DIED");
+                    System.out.println("ZOMBIE DIED");
+                    deadZombies.add(new DeadZombie(this, i, laneZombies.get(i).get(j).getPosX()));
+                    // System.out.printf("dead zombies%d", deadZombies.size());
                 	laneZombies.get(i).remove(laneZombies.get(i).get(j));
-                	j--;
+                    j--;
+                    // 每只僵尸10分，分数达到150之后终止此关卡
                     GamePanel.setProgress(10);
             	}
             }
@@ -193,7 +203,8 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
                 g.drawImage(p.getImage(), 60 + (i % 9) * 100, 129 + (i / 9) * 120, null);
             }
         }
-
+        
+        //Draw Zombies and Peas
         for (int i = 0; i < 5; i++) {
             for (Zombie z : laneZombies.get(i)) {
                 if (z instanceof NormalZombie && !z.isDead()) {
@@ -231,6 +242,15 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
             }
 
         }
+        
+        
+        for (Iterator<DeadZombie> ite = deadZombies.iterator(); ite.hasNext();) {
+            DeadZombie i = ite.next();
+            g.drawImage(i.deadZombieImage, i.getPosX(), 69 + (i.getMyLane() * 120), null);
+            if(i.lifespanDecrease()) ite.remove();
+        }
+        
+        //
 
         //if(!"".equals(activePlantingBrush)){
         //System.out.println(activePlantingBrush);
@@ -243,6 +263,7 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
 
     }
 
+    // 种植物
     private class PlantActionListener implements ActionListener {
 
         int x, y;
