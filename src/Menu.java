@@ -86,6 +86,8 @@ public class Menu extends JPanel {
         });
         jPanel2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) { jPanel2MouseClicked(evt); }
+            public void mouseEntered(MouseEvent evt) { jPanel2MouseEntered(evt); }
+            public void mouseExited(MouseEvent evt) { jPanel2MouseExited(evt); }
         });
 
 
@@ -113,19 +115,19 @@ public class Menu extends JPanel {
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
-        GroupLayout.SequentialGroup SGroup1 = layout.createSequentialGroup().addContainerGap(523,Short.MAX_VALUE)
-                .addComponent(jPanel1,GroupLayout.PREFERRED_SIZE,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
-                .addComponent(jPanel2,GroupLayout.PREFERRED_SIZE,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
-                .addGap(30,30,30);
+        GroupLayout.SequentialGroup SGroup1 = layout.createSequentialGroup().addContainerGap(523, Short.MAX_VALUE)
+                .addComponent(jPanel1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30);
         GroupLayout.SequentialGroup SGroup2 = layout.createSequentialGroup()
-                .addGap(122,122,122)
-                .addComponent(jPanel1,GroupLayout.PREFERRED_SIZE,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
-                .addGap(412,412,412)
-                .addComponent(jPanel2,GroupLayout.PREFERRED_SIZE,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(71,Short.MAX_VALUE);
+                .addGap(122, 122, 122)
+                .addComponent(jPanel1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                .addGap(412, 412, 412)
+                .addComponent(jPanel2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(71, Short.MAX_VALUE);
         layout.setHorizontalGroup(
                 layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                        .addGroup(GroupLayout.Alignment.TRAILING,SGroup1)
+                        .addGroup(GroupLayout.Alignment.TRAILING, SGroup1)
         );
         layout.setVerticalGroup(
                 layout.createParallelGroup(GroupLayout.Alignment.LEADING)
@@ -152,18 +154,28 @@ public class Menu extends JPanel {
     private void jPanel1MouseEntered(MouseEvent evt) {
         AdventureImage = new ImageIcon(this.getClass().getResource(
                 "images\\resources\\images\\interface\\Adventure_Highlight.png")).getImage();
+        setCursor(new Cursor(Cursor.HAND_CURSOR));
         repaint();
     }
 
     private void jPanel1MouseExited(MouseEvent evt) {
         AdventureImage = new ImageIcon(this.getClass().getResource(
                 "images\\resources\\images\\interface\\Adventure_Default.png")).getImage();
+        setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
         repaint();
     }
 
     private void jPanel2MouseClicked(MouseEvent e) {
         System.out.println("jPanel2 clicked");
         System.exit(0);
+    }
+
+    private void jPanel2MouseEntered(MouseEvent e){
+        setCursor(new Cursor(Cursor.HAND_CURSOR));
+    }
+
+    private void jPanel2MouseExited(MouseEvent e) {
+        setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
