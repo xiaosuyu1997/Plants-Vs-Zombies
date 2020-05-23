@@ -395,7 +395,6 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
                 JOptionPane.showMessageDialog(null, "LEVEL_CONTENT Completed !!!" + '\n' + "Starting next LEVEL_CONTENT");
                 GameWindow.gw.dispose();
                 LevelData.write("2");
-                GameWindow.gw = new GameWindow();
             } else {
                 JOptionPane.showMessageDialog(null, "LEVEL_CONTENT Completed !!!" + '\n' + "More Levels will come soon !!!" + '\n' + "Resetting data");
                 LevelData.write("1");
