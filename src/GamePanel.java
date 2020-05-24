@@ -296,7 +296,7 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
                 if (getSunScore() >= 50) {
                     colliders[x + y * 9].setPlant(new Sunflower(GamePanel.this, x, y));
                     setSunScore(getSunScore() - 50);
-                    gw.sunflower.countwaittime();
+                    gw.Sunflower.countwaittime();
                 }
             }
             if (activePlantingBrush == GameWindow.PlantType.Peashooter) {
@@ -304,7 +304,7 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
                 if (getSunScore() >= 100) {
                     colliders[x + y * 9].setPlant(new Peashooter(GamePanel.this, x, y));
                     setSunScore(getSunScore() - 100);
-                    gw.peashooter.countwaittime();
+                    gw.Peashooter.countwaittime();
                 }
             }
 
@@ -313,7 +313,7 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
                 if (getSunScore() >= 175) {
                     colliders[x + y * 9].setPlant(new FreezePeashooter(GamePanel.this, x, y));
                     setSunScore(getSunScore() - 175);
-                    gw.freezepeashooter.countwaittime();
+                    gw.FreezePeashooter.countwaittime();
                 }
             }
 
@@ -368,6 +368,15 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
                     colliders[x + y * 9].setPlant(new PotatoMine(GamePanel.this, x, y,1));
                     setSunScore(getSunScore() -25);
                     gw.PotatoMine.countwaittime();
+                }
+            }
+
+            if (activePlantingBrush == GameWindow.PlantType.CherryBomb){
+            	seedLift.player.start();
+                if (getSunScore() >= 150) {
+                    colliders[x + y * 9].setPlant(new CherryBomb(GamePanel.this, x, y,1));
+                    setSunScore(getSunScore() -150);
+                    gw.CherryBomb.countwaittime();
                 }
             }
             activePlantingBrush = GameWindow.PlantType.None;
