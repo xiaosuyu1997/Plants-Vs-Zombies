@@ -21,12 +21,15 @@ public class GameWindow extends JFrame {
         GatlingPea,
         PotatoMine,
         CherryBomb,
+        Tallnut,
+        Twinsunflower,
         Sholve
     }
 
     
     public PlantCard Sunflower,Peashooter,FreezePeashooter,Torchwood,
-        TwicePeashooter,ThreePeashooter,Chomper,Wallnut,GatlingPea,PotatoMine,CherryBomb,Sholve;
+        TwicePeashooter,ThreePeashooter,Chomper,Wallnut,GatlingPea,PotatoMine,CherryBomb,
+        Tallnut,Twinsunflower,Sholve;
 
     //PlantType activePlantingBrush = PlantType.None;
     private void initComponents() {
@@ -178,6 +181,23 @@ public class GameWindow extends JFrame {
                 });
                 getLayeredPane().add(CherryBomb, new Integer(3));
             }
+
+            if(name[i]=="tallwallnut"){
+                Tallnut = new PlantCard("images/cards/card_tallwallnut.png");
+                Tallnut.setAction(110+65*i, 8,30000,(ActionEvent e) -> {
+                    gp.setActivePlantingBrush(PlantType.Tallnut);
+                });
+                getLayeredPane().add(Tallnut, new Integer(3));
+            }
+
+            if(name[i]=="twinsunflower"){
+                Twinsunflower = new PlantCard("images/cards/card_twinsunflower.png");
+                Twinsunflower.setAction(110+65*i, 8,50000,(ActionEvent e) -> {
+                    gp.setActivePlantingBrush(PlantType.Twinsunflower);
+                });
+                getLayeredPane().add(Twinsunflower, new Integer(3));
+            }
+
         }
 
         Sholve = new PlantCard("images/cards/ShovelBack.png");
