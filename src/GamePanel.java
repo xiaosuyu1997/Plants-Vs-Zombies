@@ -379,6 +379,15 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
                     gw.CherryBomb.countwaittime();
                 }
             }
+
+            if (activePlantingBrush == GameWindow.PlantType.Tallnut){
+            	seedLift.player.start();
+                if (getSunScore() >= 125) {
+                    colliders[x + y * 9].setPlant(new Tallnut(GamePanel.this, x, y,1));
+                    setSunScore(getSunScore() -150);
+                    gw.Tallnut.countwaittime();
+                }
+            }
             activePlantingBrush = GameWindow.PlantType.None;
         }
     }
