@@ -96,8 +96,8 @@ public class GameWindow extends JFrame {
 
         for (int i = 0; i < 9; ++i) {
             if (name[i] == "sunflower") {
-                sunflower = new PlantCard("images/cards/card_sunflower.png");
-                sunflower.setAction(110 + 65 * i, 8, 7500, (ActionEvent e) -> {
+                Sunflower = new PlantCard("images/cards/card_sunflower.png");
+                Sunflower.setAction(110 + 65 * i, 8, 7500, (ActionEvent e) -> {
 
                     gp.setActivePlantingBrush(PlantType.Sunflower);
                 });
@@ -105,8 +105,8 @@ public class GameWindow extends JFrame {
             }
 
             if (name[i] == "peashooter") {
-                peashooter = new PlantCard("images/cards/card_peashooter.png");
-                peashooter.setAction(110 + 65 * i, 8, 7500, (ActionEvent e) -> {
+                Peashooter = new PlantCard("images/cards/card_peashooter.png");
+                Peashooter.setAction(110 + 65 * i, 8, 7500, (ActionEvent e) -> {
 
                     gp.setActivePlantingBrush(PlantType.Peashooter);
                 });
@@ -114,8 +114,8 @@ public class GameWindow extends JFrame {
             }
 
             if (name[i] == "freezepeashooter") {
-                freezepeashooter = new PlantCard("images/cards/card_freezepeashooter.png");
-                freezepeashooter.setAction(110 + 65 * i, 8, 7500, (ActionEvent e) -> {
+                FreezePeashooter = new PlantCard("images/cards/card_freezepeashooter.png");
+                FreezePeashooter.setAction(110 + 65 * i, 8, 7500, (ActionEvent e) -> {
 
                     gp.setActivePlantingBrush(PlantType.FreezePeashooter);
                 });
