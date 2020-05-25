@@ -20,11 +20,16 @@ public class GameWindow extends JFrame {
         Wallnut,
         GatlingPea,
         PotatoMine,
+        CherryBomb,
+        Tallnut,
+        Twinsunflower,
         Sholve
     }
 
-    public PlantCard sunflower, peashooter, freezepeashooter, Torchwood,
-            TwicePeashooter, ThreePeashooter, Chomper, Wallnut, GatlingPea, PotatoMine, Sholve;
+    
+    public PlantCard Sunflower,Peashooter,FreezePeashooter,Torchwood,
+        TwicePeashooter,ThreePeashooter,Chomper,Wallnut,GatlingPea,PotatoMine,CherryBomb,
+        Tallnut,Twinsunflower,Sholve;
 
     //PlantType activePlantingBrush = PlantType.None;
     private void initComponents() {
@@ -91,27 +96,33 @@ public class GameWindow extends JFrame {
         gp.setLocation(0, 0);
         getLayeredPane().add(gp, new Integer(0));
 
+
         for (int i = 0; i < 9; ++i) {
             if (name[i] == "sunflower") {
-                sunflower = new PlantCard("images/cards/card_sunflower.png");
-                sunflower.setAction(110 + 65 * i, 8, 7500, (ActionEvent e) -> {
+                Sunflower = new PlantCard("images/cards/card_sunflower.png");
+                Sunflower.setAction(110 + 65 * i, 8, 7500, (ActionEvent e) -> {
+
                     gp.setActivePlantingBrush(PlantType.Sunflower);
                 });
-                getLayeredPane().add(sunflower, new Integer(3));
+                getLayeredPane().add(Sunflower, new Integer(3));
             }
+
             if (name[i] == "peashooter") {
-                peashooter = new PlantCard("images/cards/card_peashooter.png");
-                peashooter.setAction(110 + 65 * i, 8, 7500, (ActionEvent e) -> {
+                Peashooter = new PlantCard("images/cards/card_peashooter.png");
+                Peashooter.setAction(110 + 65 * i, 8, 7500, (ActionEvent e) -> {
+
                     gp.setActivePlantingBrush(PlantType.Peashooter);
                 });
-                getLayeredPane().add(peashooter, new Integer(3));
+                getLayeredPane().add(Peashooter, new Integer(3));
             }
+
             if (name[i] == "freezepeashooter") {
-                freezepeashooter = new PlantCard("images/cards/card_freezepeashooter.png");
-                freezepeashooter.setAction(110 + 65 * i, 8, 7500, (ActionEvent e) -> {
+                FreezePeashooter = new PlantCard("images/cards/card_freezepeashooter.png");
+                FreezePeashooter.setAction(110 + 65 * i, 8, 7500, (ActionEvent e) -> {
+
                     gp.setActivePlantingBrush(PlantType.FreezePeashooter);
                 });
-                getLayeredPane().add(freezepeashooter, new Integer(3));
+                getLayeredPane().add(FreezePeashooter, new Integer(3));
             }
             if (name[i] == "twicepeashooter") {
                 TwicePeashooter = new PlantCard("images/cards/card_twicepeashooter.png");
@@ -162,6 +173,31 @@ public class GameWindow extends JFrame {
                 });
                 getLayeredPane().add(GatlingPea, new Integer(3));
             }
+
+            if(name[i]=="cherrybomb"){
+                CherryBomb = new PlantCard("images/cards/card_cherrybomb.png");
+                CherryBomb.setAction(110+65*i, 8,30000,(ActionEvent e) -> {
+                    gp.setActivePlantingBrush(PlantType.CherryBomb);
+                });
+                getLayeredPane().add(CherryBomb, new Integer(3));
+            }
+
+            if(name[i]=="tallwallnut"){
+                Tallnut = new PlantCard("images/cards/card_tallwallnut.png");
+                Tallnut.setAction(110+65*i, 8,30000,(ActionEvent e) -> {
+                    gp.setActivePlantingBrush(PlantType.Tallnut);
+                });
+                getLayeredPane().add(Tallnut, new Integer(3));
+            }
+
+            if(name[i]=="twinsunflower"){
+                Twinsunflower = new PlantCard("images/cards/card_twinsunflower.png");
+                Twinsunflower.setAction(110+65*i, 8,50000,(ActionEvent e) -> {
+                    gp.setActivePlantingBrush(PlantType.Twinsunflower);
+                });
+                getLayeredPane().add(Twinsunflower, new Integer(3));
+            }
+
         }
 
         Sholve = new PlantCard("images/cards/ShovelBack.png");

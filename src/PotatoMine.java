@@ -21,8 +21,8 @@ public class PotatoMine extends Plant{
                 boolean has=false;
                 int x1 = 60 + (x % 9) * 100;
                 for (int i = 0; i < getGp().getLaneZombies().get(y).size(); i++){
-                    if(getGp().getLaneZombies().get(y).get(i).getPosX()>=x1-155&&
-                    getGp().getLaneZombies().get(y).get(i).getPosX()<x1+155){
+                    if(getGp().getLaneZombies().get(y).get(i).getPosX()>=x1-100&&
+                    getGp().getLaneZombies().get(y).get(i).getPosX()<x1+100){
                         has=true;
                         break;
                     }

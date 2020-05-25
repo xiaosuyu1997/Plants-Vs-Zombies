@@ -207,8 +207,44 @@ public class SeedChoose extends JLayeredPane implements MouseMotionListener {
                     k++;
                 }
             });
+            
+            if(i==10)
+            a.setAction(i,337+65*(i%10),135+(i/10)*90, "images/cards/card_cherrybomb.png","cherrybomb", (ActionEvent e) -> {
+                if(a.getImage()!=null&&k<9){
+                    place[k].setImage(a.getImage());
+                    place[k].setname(a.getname());
+                    place[k].reid=a.id;
+                    a.setImage(null);
+                    a.setname(null);
+                    k++;
+                }
+            });
 
-            if(i>10)
+            if(i==11)
+            a.setAction(i,337+65*(i%10),135+(i/10)*90, "images/cards/card_tallwallnut.png","tallwallnut", (ActionEvent e) -> {
+                if(a.getImage()!=null&&k<9){
+                    place[k].setImage(a.getImage());
+                    place[k].setname(a.getname());
+                    place[k].reid=a.id;
+                    a.setImage(null);
+                    a.setname(null);
+                    k++;
+                }
+            });
+
+            if(i==12)
+            a.setAction(i,337+65*(i%10),135+(i/10)*90, "images/cards/card_twinsunflower.png","twinsunflower", (ActionEvent e) -> {
+                if(a.getImage()!=null&&k<9){
+                    place[k].setImage(a.getImage());
+                    place[k].setname(a.getname());
+                    place[k].reid=a.id;
+                    a.setImage(null);
+                    a.setname(null);
+                    k++;
+                }
+            });
+
+            if(i>13)
             a.setAction(i,337+65*(i%10),135+(i/10)*90,null,null, (ActionEvent e) -> {
                 if(a.getImage()!=null&&k<9){
                     place[k].setImage(a.getImage());
