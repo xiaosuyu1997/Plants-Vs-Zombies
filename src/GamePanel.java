@@ -280,6 +280,15 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
                 }
             }
 
+            if (activePlantingBrush == GameWindow.PlantType.Twinsunflower){
+                if (getSunScore() >= 150&&colliders[x + y * 9].assignedPlant instanceof Sunflower) {
+                    colliders[x + y * 9].removePlant();
+                    colliders[x + y * 9].setPlant(new Twinsunflower(GamePanel.this, x, y));
+                    setSunScore(getSunScore() - 150);
+                    gw.Twinsunflower.countwaittime();
+                }
+            }
+
             if (activePlantingBrush == GameWindow.PlantType.Sholve){
                 if (colliders[x + y * 9].assignedPlant!=null) {
                     colliders[x + y * 9].removePlant();
