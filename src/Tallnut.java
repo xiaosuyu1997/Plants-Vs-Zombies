@@ -10,7 +10,7 @@ public class Tallnut extends Plant{
             setHealth(1200);
             setImage(new ImageIcon(this.getClass().getResource("images/plants/TallNut.gif")).getImage());
             Ti = new Timer(0, (ActionEvent e) ->{
-                if(getHealth()<=600){
+                if(getHealth()<=800){
                     getGp().getColliders()[x + y * 9].removePlant();
                     getGp().getColliders()[x + y * 9].setPlant(new Tallnut(getGp(),x,y,2));
                 }
@@ -20,7 +20,7 @@ public class Tallnut extends Plant{
             setHealth(800);
             setImage(new ImageIcon(this.getClass().getResource("images/plants/TallnutCracked1.gif")).getImage());
             Ti = new Timer(0, (ActionEvent e) ->{
-                if(getHealth()<=300){
+                if(getHealth()<=400){
                     getGp().getColliders()[x + y * 9].removePlant();
                     getGp().getColliders()[x + y * 9].setPlant(new Tallnut(getGp(),x,y,3));
                 }
