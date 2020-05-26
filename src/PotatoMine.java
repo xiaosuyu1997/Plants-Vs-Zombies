@@ -4,9 +4,10 @@ import java.awt.event.ActionEvent;
 
 public class PotatoMine extends Plant{
     public Timer WaitTimer;
-
+    private SoundEffect potatomine = new SoundEffect("./src/bgms/potato_mine.wav");
     public PotatoMine(GamePanel parent, int x, int y,int k){
         super(parent,x,y);
+        potatomine.prepare();
         if(k==1){
             setImage(new ImageIcon(this.getClass().getResource("images/plants/PotatoMineNotReady.gif")).getImage());
             WaitTimer = new Timer(10000, (ActionEvent e) ->{
@@ -28,6 +29,7 @@ public class PotatoMine extends Plant{
                     }
                 }
                 if(has){
+                	potatomine.player.start();
                     for (int i = 0; i < getGp().getLaneZombies().get(y).size(); i++){
                         if(getGp().getLaneZombies().get(y).get(i).getPosX()>=x1-155&&
                         getGp().getLaneZombies().get(y).get(i).getPosX()<x1+155){

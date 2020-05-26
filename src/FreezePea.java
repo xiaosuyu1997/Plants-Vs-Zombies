@@ -5,9 +5,11 @@ import javax.swing.*;
  * Created by Armin on 6/28/2016.
  */
 public class FreezePea extends Pea {
+	private SoundEffect frozenpea = new SoundEffect("./src/bgms/FrozenPea.wav");
     public FreezePea(GamePanel parent, int lane, int startX) {
         super(parent, lane, startX);
         setImage(new ImageIcon(this.getClass().getResource("images/freezepea.png")).getImage());
+        frozenpea.prepare();
     }
     
     @Override
@@ -17,7 +19,8 @@ public class FreezePea extends Pea {
             Zombie z = gp.getLaneZombies().get(getMyLane()).get(i);
             Rectangle zRect = new Rectangle(z.getPosX(), 109 + getMyLane() * 120, 400, 120);
             if (pRect.intersects(zRect)) {
-                z.setHealth(z.getHealth() - 300);
+            	frozenpea.player.start();
+                z.setHealth(z.getHealth() - 250);
                 z.slow();
                 boolean exit = false;
                 if (z.getHealth() < 0) {

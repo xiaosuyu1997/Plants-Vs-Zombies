@@ -6,11 +6,12 @@ import java.awt.image.BufferedImage;
 
 public class Chomper extends Plant{
     public Timer shootTimer;
+    private SoundEffect chomp = new SoundEffect("./src/bgms/chomp2.wav");
 
     public Chomper(GamePanel parent, int x, int y,int k,int Zombiex){
         super(parent, x, y);
         setHealth(100);
-        
+
         if(k==1){
             setImage(new ImageIcon(this.getClass().getResource("images/plants/Chomper.gif")).getImage());
             shootTimer = new Timer(0, (ActionEvent e) ->{
@@ -39,6 +40,8 @@ public class Chomper extends Plant{
             });
         }
         if(k==2){
+        	chomp.prepare();
+        	chomp.player.start();
             setImage(new ImageIcon(this.getClass().getResource("images/plants/ChomperAttack.gif")).getImage());
             shootTimer = new Timer(810, (ActionEvent e)->{
                 Zombie z = getGp().getLaneZombies().get(y).get(Zombiex);
