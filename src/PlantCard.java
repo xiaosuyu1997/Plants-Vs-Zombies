@@ -33,9 +33,12 @@ public class PlantCard extends JPanel implements MouseListener {
     public Timer WaitTime;
     public Timer redrawTimer;
 
+    private SoundEffect seedLift = new SoundEffect("./src/bgms/seedlift.wav");
+    private SoundEffect buzzer = new SoundEffect("./src/bgms/buzzer.wav");
+    
     public PlantCard(String imagePath){
         setSize(64, 90);
-        //图形的两种存储方式
+        //鍥惧舰鐨勪袱绉嶅瓨鍌ㄦ柟寮�
         img = new ImageIcon(this.getClass().getResource(imagePath)).getImage();
         Im = img;
         try{
@@ -46,7 +49,9 @@ public class PlantCard extends JPanel implements MouseListener {
             System.out.println(imagePath);
         }
         addMouseListener(this);
-        // 5ms刷新一次界面（gif播放），实现动态过程
+        seedLift.prepare();
+        buzzer.prepare();
+        // 5ms鍒锋柊涓�娆＄晫闈紙gif鎾斁锛夛紝瀹炵幇鍔ㄦ�佽繃绋�
         redrawTimer = new Timer(5, (ActionEvent e) -> {
             repaint();
         });
@@ -61,9 +66,11 @@ public class PlantCard extends JPanel implements MouseListener {
         waittime = wa;
         iswait = false;
         Time = new Timer(wa,(ActionEvent e) ->{
+
             iswait=false;
             Time.stop();
         });
+        
         
         WaitTime = new Timer(wa/10,(ActionEvent e) ->{
             changetime=changetime+1;
@@ -96,7 +103,14 @@ public class PlantCard extends JPanel implements MouseListener {
 
     @Override
     public void mousePressed(MouseEvent e) {
-
+    	if(!iswait) {
+    		seedLift.player.start();
+    		seedLift.prepare();
+    	}
+    	else {
+    		buzzer.player.start();
+    		buzzer.prepare();
+    	}
     }
 
     @Override
@@ -129,16 +143,16 @@ public class PlantCard extends JPanel implements MouseListener {
                     gray = getBigger(r, g, b);
                 }
                 else{
-                    gray = getAvg(r, g, b)-2;//加权法灰度化
+                    gray = getAvg(r, g, b)-2;//鍔犳潈娉曠伆搴﹀寲
                 }
                 // if(status==1){
-                //     gray=getBigger(r, g, b);//最大值法灰度化
+                //     gray=getBigger(r, g, b);//鏈�澶у�兼硶鐏板害鍖�
                 // }else if(status==2){
-                //     gray=getSmall(r, g, b);//最小值法灰度化
+                //     gray=getSmall(r, g, b);//鏈�灏忓�兼硶鐏板害鍖�
                 // }else if(status==3){
-                //     gray=getAvg(r, g, b);//均值法灰度化
+                //     gray=getAvg(r, g, b);//鍧囧�兼硶鐏板害鍖�
                 // }else if(status==4){
-                //     gray = (int) (0.3 * r + 0.59 * g + 0.11 * b);//加权法灰度化
+                //     gray = (int) (0.3 * r + 0.59 * g + 0.11 * b);//鍔犳潈娉曠伆搴﹀寲
                 // }
                 grayImage.setRGB(i, j, colorToRGB(0, gray, gray, gray));
             }
@@ -146,7 +160,7 @@ public class PlantCard extends JPanel implements MouseListener {
         return toImage(grayImage);
     }
     /**
-     *  颜色分量转换为RGB值
+     *  棰滆壊鍒嗛噺杞崲涓篟GB鍊�
      */
     private int colorToRGB(int alpha, int red, int green, int blue) {
         int newPixel = 0;
@@ -160,7 +174,7 @@ public class PlantCard extends JPanel implements MouseListener {
  
         return newPixel;
     }
-    //比较三个大小取最大数
+    //姣旇緝涓変釜澶у皬鍙栨渶澶ф暟
     public static int getBigger(int x,int y,int z){
         if(x>=y&&x>=z){
             return x;
@@ -173,7 +187,7 @@ public class PlantCard extends JPanel implements MouseListener {
         }
     }
      
-    //比较三个大小取最小数
+    //姣旇緝涓変釜澶у皬鍙栨渶灏忔暟
     public static int getSmall(int x,int y,int z){
         if(x<=y&&x<=z){
             return x;
@@ -186,7 +200,7 @@ public class PlantCard extends JPanel implements MouseListener {
         }
     }
      
-    //均值法
+    //鍧囧�兼硶
     public static int getAvg(int x,int y,int z){
         int avg=(x+y+z)/3;
         return avg;
@@ -197,7 +211,7 @@ public class PlantCard extends JPanel implements MouseListener {
         return Toolkit.getDefaultToolkit().createImage(bufferedImage.getSource());
     }
     /**
-     * 将image对象 转成 BufferedImage
+     * 灏唅mage瀵硅薄 杞垚 BufferedImage
      */
     private BufferedImage toBufferedImage(Image image) {
         if (image instanceof BufferedImage) {

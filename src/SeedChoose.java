@@ -1,5 +1,7 @@
 import javax.swing.*;
 import javax.imageio.*;
+import javax.sound.sampled.Clip;
+
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.awt.event.ActionEvent;
@@ -25,13 +27,17 @@ public class SeedChoose extends JLayeredPane implements MouseMotionListener {
 
     private Timer redrawTimer;
     
+    private SoundEffect seedchoose = new SoundEffect("./src/bgms/ChooseSeeds.wav");
+    private SoundEffect seedclick = new SoundEffect("./src/bgms/grassstep.wav");
     public SeedChoose(){
         addMouseMotionListener(this);
         setSize(1400, 600);
         setLayout(null);
     //    addMouseMotionListener(this);
         setVisible(true);
-
+        seedchoose.prepare();
+        seedclick.prepare();
+        seedchoose.player.loop(Clip.LOOP_CONTINUOUSLY);
         bgImage = new ImageIcon(this.getClass().getResource("images/background1.png")).getImage();
 
         cardplaceImage  = new ImageIcon(this.getClass().getResource("images/cardplace1.png")).getImage();
@@ -41,6 +47,7 @@ public class SeedChoose extends JLayeredPane implements MouseMotionListener {
         beginbutton = new SeedCardpre();
         beginbutton.setAction(0, 0, 0, "images/begingame.png","", (ActionEvent e) ->{
             if(k==9){
+            	seedchoose.player.stop();
                 GameWindow.begingame();
             }
         });
@@ -59,6 +66,8 @@ public class SeedChoose extends JLayeredPane implements MouseMotionListener {
         for(int i=0;i<9;i++){
             SeedCardpre a = new SeedCardpre();
             a.setAction(i,418+65*i, 8,null,null, (ActionEvent e) -> {
+            	seedclick.prepare();
+            	seedclick.player.start();
                 if(a.getImage()!=null){
                     preplace[a.reid].setImage(a.getImage());
                     preplace[a.reid].setname(a.getname());
@@ -87,9 +96,13 @@ public class SeedChoose extends JLayeredPane implements MouseMotionListener {
 
         
         for(int i=0;i<40;i++){
+        	
+        	
             SeedCardpre a = new SeedCardpre();
             if(i==0)
             a.setAction(i,337+65*(i%10),135+(i/10)*90, "images/cards/card_sunflower.png","sunflower", (ActionEvent e) -> {
+            	seedclick.prepare();
+            	seedclick.player.start();
                 if(a.getImage()!=null&&k<9){
                     place[k].setImage(a.getImage());
                     place[k].setname(a.getname());
@@ -102,6 +115,8 @@ public class SeedChoose extends JLayeredPane implements MouseMotionListener {
             
             if(i==1)
             a.setAction(i,337+65*(i%10),135+(i/10)*90, "images/cards/card_peashooter.png","peashooter", (ActionEvent e) -> {
+            	seedclick.prepare();
+            	seedclick.player.start();
                 if(a.getImage()!=null&&k<9){
                     place[k].setImage(a.getImage());
                     place[k].setname(a.getname());
@@ -114,7 +129,9 @@ public class SeedChoose extends JLayeredPane implements MouseMotionListener {
 
             if(i==2)
             a.setAction(i,337+65*(i%10),135+(i/10)*90, "images/cards/card_freezepeashooter.png","freezepeashooter", (ActionEvent e) -> {
-                if(a.getImage()!=null&&k<9){
+            	seedclick.prepare();
+            	seedclick.player.start();
+            	if(a.getImage()!=null&&k<9){
                     place[k].setImage(a.getImage());
                     place[k].setname(a.getname());
                     place[k].reid=a.id;
@@ -126,7 +143,9 @@ public class SeedChoose extends JLayeredPane implements MouseMotionListener {
 
             if(i==3)
             a.setAction(i,337+65*(i%10),135+(i/10)*90, "images/cards/card_twicepeashooter.png","twicepeashooter", (ActionEvent e) -> {
-                if(a.getImage()!=null&&k<9){
+            	seedclick.prepare();
+            	seedclick.player.start();
+            	if(a.getImage()!=null&&k<9){
                     place[k].setImage(a.getImage());
                     place[k].setname(a.getname());
                     place[k].reid=a.id;
@@ -138,7 +157,9 @@ public class SeedChoose extends JLayeredPane implements MouseMotionListener {
 
             if(i==4)
             a.setAction(i,337+65*(i%10),135+(i/10)*90, "images/cards/card_threepeashooter.png","threepeashooter", (ActionEvent e) -> {
-                if(a.getImage()!=null&&k<9){
+            	seedclick.prepare();
+            	seedclick.player.start();
+            	if(a.getImage()!=null&&k<9){
                     place[k].setImage(a.getImage());
                     place[k].setname(a.getname());
                     place[k].reid=a.id;
@@ -150,7 +171,9 @@ public class SeedChoose extends JLayeredPane implements MouseMotionListener {
 
             if(i==5)
             a.setAction(i,337+65*(i%10),135+(i/10)*90, "images/cards/card_torchwood.png","torchwood", (ActionEvent e) -> {
-                if(a.getImage()!=null&&k<9){
+            	seedclick.prepare();
+            	seedclick.player.start();
+            	if(a.getImage()!=null&&k<9){
                     place[k].setImage(a.getImage());
                     place[k].setname(a.getname());
                     place[k].reid=a.id;
@@ -162,7 +185,9 @@ public class SeedChoose extends JLayeredPane implements MouseMotionListener {
 
             if(i==6)
             a.setAction(i,337+65*(i%10),135+(i/10)*90, "images/cards/card_wallnut.png","wallnut", (ActionEvent e) -> {
-                if(a.getImage()!=null&&k<9){
+            	seedclick.prepare();
+            	seedclick.player.start();
+            	if(a.getImage()!=null&&k<9){
                     place[k].setImage(a.getImage());
                     place[k].setname(a.getname());
                     place[k].reid=a.id;
@@ -174,7 +199,9 @@ public class SeedChoose extends JLayeredPane implements MouseMotionListener {
 
             if(i==7)
             a.setAction(i,337+65*(i%10),135+(i/10)*90, "images/cards/card_chomper.png","chomper", (ActionEvent e) -> {
-                if(a.getImage()!=null&&k<9){
+            	seedclick.prepare();
+            	seedclick.player.start();
+            	if(a.getImage()!=null&&k<9){
                     place[k].setImage(a.getImage());
                     place[k].setname(a.getname());
                     place[k].reid=a.id;
@@ -186,7 +213,9 @@ public class SeedChoose extends JLayeredPane implements MouseMotionListener {
 
             if(i==8)
             a.setAction(i,337+65*(i%10),135+(i/10)*90, "images/cards/card_potatomine.png","potatomine", (ActionEvent e) -> {
-                if(a.getImage()!=null&&k<9){
+            	seedclick.prepare();
+            	seedclick.player.start();
+            	if(a.getImage()!=null&&k<9){
                     place[k].setImage(a.getImage());
                     place[k].setname(a.getname());
                     place[k].reid=a.id;
@@ -198,7 +227,9 @@ public class SeedChoose extends JLayeredPane implements MouseMotionListener {
 
             if(i==9)
             a.setAction(i,337+65*(i%10),135+(i/10)*90, "images/cards/card_gatling.png","gatling", (ActionEvent e) -> {
-                if(a.getImage()!=null&&k<9){
+            	seedclick.prepare();
+            	seedclick.player.start();
+            	if(a.getImage()!=null&&k<9){
                     place[k].setImage(a.getImage());
                     place[k].setname(a.getname());
                     place[k].reid=a.id;
@@ -210,7 +241,9 @@ public class SeedChoose extends JLayeredPane implements MouseMotionListener {
             
             if(i==10)
             a.setAction(i,337+65*(i%10),135+(i/10)*90, "images/cards/card_cherrybomb.png","cherrybomb", (ActionEvent e) -> {
-                if(a.getImage()!=null&&k<9){
+            	seedclick.prepare();
+            	seedclick.player.start();
+            	if(a.getImage()!=null&&k<9){
                     place[k].setImage(a.getImage());
                     place[k].setname(a.getname());
                     place[k].reid=a.id;
@@ -222,7 +255,9 @@ public class SeedChoose extends JLayeredPane implements MouseMotionListener {
 
             if(i==11)
             a.setAction(i,337+65*(i%10),135+(i/10)*90, "images/cards/card_tallwallnut.png","tallwallnut", (ActionEvent e) -> {
-                if(a.getImage()!=null&&k<9){
+            	seedclick.prepare();
+            	seedclick.player.start();
+            	if(a.getImage()!=null&&k<9){
                     place[k].setImage(a.getImage());
                     place[k].setname(a.getname());
                     place[k].reid=a.id;
@@ -234,7 +269,9 @@ public class SeedChoose extends JLayeredPane implements MouseMotionListener {
 
             if(i==12)
             a.setAction(i,337+65*(i%10),135+(i/10)*90, "images/cards/card_twinsunflower.png","twinsunflower", (ActionEvent e) -> {
-                if(a.getImage()!=null&&k<9){
+            	seedclick.prepare();
+            	seedclick.player.start();
+            	if(a.getImage()!=null&&k<9){
                     place[k].setImage(a.getImage());
                     place[k].setname(a.getname());
                     place[k].reid=a.id;
@@ -246,7 +283,9 @@ public class SeedChoose extends JLayeredPane implements MouseMotionListener {
 
             if(i==13)
             a.setAction(i,337+65*(i%10),135+(i/10)*90, "images/cards/card_jalapeno.png","jalapeno", (ActionEvent e) -> {
-                if(a.getImage()!=null&&k<9){
+            	seedclick.prepare();
+            	seedclick.player.start();
+            	if(a.getImage()!=null&&k<9){
                     place[k].setImage(a.getImage());
                     place[k].setname(a.getname());
                     place[k].reid=a.id;
@@ -258,7 +297,9 @@ public class SeedChoose extends JLayeredPane implements MouseMotionListener {
 
             if(i>13)
             a.setAction(i,337+65*(i%10),135+(i/10)*90,null,null, (ActionEvent e) -> {
-                if(a.getImage()!=null&&k<9){
+            	seedclick.prepare();
+            	seedclick.player.start();
+            	if(a.getImage()!=null&&k<9){
                     place[k].setImage(a.getImage());
                     place[k].setname(a.getname());
                     place[k].reid=a.id;
@@ -315,5 +356,9 @@ public class SeedChoose extends JLayeredPane implements MouseMotionListener {
             na[i]=place[i].getname();
         }
         return na;
+    }
+    
+    public SoundEffect getSound() {
+    	return seedchoose;
     }
 }

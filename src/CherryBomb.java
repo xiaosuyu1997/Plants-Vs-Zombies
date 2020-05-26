@@ -6,10 +6,12 @@ import java.awt.event.ActionEvent;
 public class CherryBomb extends Plant{
     public Timer BombTimer;
     public Image ima;
-
+    private SoundEffect cherrybomb = new SoundEffect("./src/bgms/cherrybomb.wav");
+    
+    
     public CherryBomb(GamePanel parent, int x, int y,int k){
         super(parent, x, y);
-        setHealth(1000);
+        cherrybomb.prepare();
         if(k==1){
             setImage(new ImageIcon(this.getClass().getResource("images/plants/CherryBomb.gif")).getImage());
             BombTimer = new Timer(630, (ActionEvent e) ->{
@@ -46,6 +48,7 @@ public class CherryBomb extends Plant{
             ima.flush();
             setImage(ima);
             BombTimer = new Timer(1300, (ActionEvent e) ->{
+            	cherrybomb.player.start();
                 getGp().getColliders()[x + y * 9].removePlant();
             });
         }

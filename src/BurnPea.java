@@ -2,9 +2,12 @@ import java.awt.*;
 import javax.swing.*;
 
 public class BurnPea extends Pea{
+	private SoundEffect burnpea = new SoundEffect("./src/bgms/firepea.wav");
     public BurnPea(GamePanel parent, int lane, int startX) {
         super(parent, lane, startX);
         setImage(new ImageIcon(this.getClass().getResource("images/BurnPea.gif")).getImage());
+        burnpea.prepare();
+
     }
 
     @Override
@@ -15,7 +18,8 @@ public class BurnPea extends Pea{
             Rectangle zRect = new Rectangle(z.getPosX(), 109 + getMyLane() * 120, 400, 120);
             boolean exit = false;
             if (pRect.intersects(zRect)){
-                z.setHealth(z.getHealth() - 500);
+            	burnpea.player.start();
+                z.setHealth(z.getHealth() - 400);
                 if (z.getHealth() < 0) {
                     System.out.println("ZOMBIE DIE");
                     GamePanel.setProgress(10);
