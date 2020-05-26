@@ -23,13 +23,14 @@ public class GameWindow extends JFrame {
         CherryBomb,
         Tallnut,
         Twinsunflower,
+        Jalapeno,
         Sholve
     }
 
     
     public PlantCard Sunflower,Peashooter,FreezePeashooter,Torchwood,
         TwicePeashooter,ThreePeashooter,Chomper,Wallnut,GatlingPea,PotatoMine,CherryBomb,
-        Tallnut,Twinsunflower,Sholve;
+        Tallnut,Twinsunflower,Jalapeno,Sholve;
 
     //PlantType activePlantingBrush = PlantType.None;
     private void initComponents() {
@@ -198,6 +199,13 @@ public class GameWindow extends JFrame {
                 getLayeredPane().add(Twinsunflower, new Integer(3));
             }
 
+            if(name[i]=="jalapeno"){
+                Jalapeno = new PlantCard("images/cards/card_jalapeno.png");
+                Jalapeno.setAction(110+65*i, 8,30000,(ActionEvent e) -> {
+                    gp.setActivePlantingBrush(PlantType.Jalapeno);
+                });
+                getLayeredPane().add(Jalapeno, new Integer(3));
+            }
         }
 
         Sholve = new PlantCard("images/cards/ShovelBack.png");
