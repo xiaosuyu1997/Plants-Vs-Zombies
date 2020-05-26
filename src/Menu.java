@@ -26,7 +26,8 @@ public class Menu extends JPanel {
     public Menu() {
         initComponents();
         setSize(1012, 785);
-
+        menuBgm.prepare();
+        menuBgm.player.loop(Clip.LOOP_CONTINUOUSLY);
         bgImage = new ImageIcon(this.getClass().getResource("images/resources/images/interface/Surface.jpg")).getImage();
         AdventureImage = new ImageIcon(this.getClass().getResource(
                 "images\\resources\\images\\interface\\Adventure_Default.png")).getImage();
@@ -36,9 +37,6 @@ public class Menu extends JPanel {
                 "images\\resources\\images\\interface\\Mini_Default.png")).getImage();
         MiniShadow = new ImageIcon(this.getClass().getResource(
                 "images\\resources\\images\\interface\\SelectorScreen_Shadow_Challenge.png")).getImage();
-
-        menuBgm.prepare();
-        menuBgm.player.loop(Clip.LOOP_CONTINUOUSLY);
     }
 
     /**

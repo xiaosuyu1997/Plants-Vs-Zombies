@@ -218,6 +218,7 @@ public class GameWindow extends JFrame {
         getLayeredPane().add(sun, new Integer(2));
         setResizable(false);
         setVisible(true);
+        
     }
 
     public GameWindow(int ii) {
@@ -228,6 +229,7 @@ public class GameWindow extends JFrame {
         setVisible(true);
         aSeedChoose = new SeedChoose();
         getLayeredPane().add(aSeedChoose, new Integer(0));
+        
     }
 
     public GameWindow(boolean b) {
@@ -268,6 +270,7 @@ public class GameWindow extends JFrame {
     public static void begingame() {
         gw.dispose();
         gw = new GameWindow(gw.aSeedChoose.getplace());
+
     }
 
     public static void main(String[] args) {

@@ -5,11 +5,14 @@ import java.awt.event.ActionEvent;
 public class LawnCleaner extends Pea{
     private int move;
     private Timer Ti;
-
+    private SoundEffect lawncleaner = new SoundEffect("./src/bgms/lawnmower.wav");
+    
+    
     public LawnCleaner(GamePanel parent, int lane, int startX,int k){
         super(parent,lane,startX);
         move=k;
         setImage(new ImageIcon(this.getClass().getResource("images/LawnCleaner.png")).getImage());
+        lawncleaner.prepare();
         if(k==0){
             Ti = new Timer(0, (ActionEvent e) ->{
                 boolean has=false;
@@ -31,6 +34,7 @@ public class LawnCleaner extends Pea{
     @Override
     public void advance() {
         if(move==1){
+        	lawncleaner.player.start();
             for (int i = 0; i < gp.getLaneZombies().get(getMyLane()).size(); i++) {
                 Zombie z = gp.getLaneZombies().get(getMyLane()).get(i);
                 if (z.getPosX()<getPosX()+30){

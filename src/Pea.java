@@ -73,4 +73,8 @@ public class Pea {
     public void setImage(Image im){
         Ima=im;
     }
+    
+    public SoundEffect getSound() {
+    	return pea;
+    }
 }
