@@ -1,11 +1,16 @@
+import java.awt.Image;
+
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 public class PoleVaultingZombie  extends Zombie {
 	private int collideCount = 0;
+	private Image poleVaultingZombieImage;
 	
     public PoleVaultingZombie(GamePanel parent, int lane) {
         super(parent, lane);
-        setSpeed(2);
+        setSpeed(3);
+        poleVaultingZombieImage = new ImageIcon(this.getClass().getResource("images/zombies/PoleVaultingZombie.gif")).getImage();
     }
     
     public void advance() {

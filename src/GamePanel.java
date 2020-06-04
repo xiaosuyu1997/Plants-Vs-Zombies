@@ -18,12 +18,19 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
 
     private Image bgImage;
 
+    
     private Image normalZombieImage;
     private Image coneHeadZombieImage;
-    //private GifManipulation coneHeadZombieAttackImage = new GifManipulation("./src/images/zombies/ConeheadZombieAttack.gif",this);
     private Image coneHeadZombieAttackImage;
-    private Image metalBucketZombie;
-    private Image poleVaultingZombie;
+    private Image coneHeadZombieHurtAttackImage;
+    private Image metalBucketZombieImage;
+    private Image metalBucketZombieAttackImage;
+
+    
+    private Image footballZombieImage;
+    private Image footballZombieAttackImage;
+    private Image footballZombieHurtImage;
+    private Image footballZombieHurtAttackImage;
     private Collider[] colliders;
 
     private ArrayList<ArrayList<Zombie>> laneZombies;
@@ -48,6 +55,11 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
     private int mouseX, mouseY;
 
     private int sunScore;
+    
+    private int zombieType;
+    private int zombieProduceInterval; 
+    private int zombieProduceCount;
+    private int zombieProduceType;
 
     public int getSunScore() {
         return sunScore;
@@ -68,19 +80,25 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
         setSunScore(5000);  //pool avalie
 
         bgImage = new ImageIcon(this.getClass().getResource("images/mainB.png")).getImage();
-        
+        zombieType = 5;
         
         normalZombieImage = new ImageIcon(this.getClass().getResource("images/zombies/Zombie.gif")).getImage();
         coneHeadZombieImage = new ImageIcon(this.getClass().getResource("images/zombies/ConeheadZombie.gif")).getImage();
-        //coneHeadZombieImage.readGif("./src/images/zombies/ConeheadZombie.gif");
         coneHeadZombieAttackImage = new ImageIcon(this.getClass().getResource("images/zombies/ConeheadZombieAttack.gif")).getImage();
-        metalBucketZombie = new ImageIcon(this.getClass().getResource("images/zombies/BucketheadZombie.gif")).getImage();
-        poleVaultingZombie = new ImageIcon(this.getClass().getResource("images/zombies/PoleVaultingZombie.gif")).getImage();
-        /**try {
-        	poleVaultingZombie = ImageIO.read(new FileInputStream("images/zombies/PoleVaultingZombie.png"));
-        }catch (Exception ex) {
-        	
-        }*/
+        coneHeadZombieHurtAttackImage = new ImageIcon(this.getClass().getResource("images/zombies/ConeheadZombieAttack2.gif")).getImage();
+        metalBucketZombieImage = new ImageIcon(this.getClass().getResource("images/zombies/BucketheadZombie.gif")).getImage();
+        metalBucketZombieAttackImage = new ImageIcon(this.getClass().getResource("images/zombies/BucketheadZombieAttack.gif")).getImage();
+
+        
+        
+        footballZombieImage = new ImageIcon(this.getClass().getResource("images/zombies/FootballZombie.gif")).getImage();
+        footballZombieAttackImage = new ImageIcon(this.getClass().getResource("images/zombies/FootballZombieAttack.gif")).getImage();
+        footballZombieHurtImage = new ImageIcon(this.getClass().getResource("images/zombies/FootballZombieOrnLost.gif")).getImage();
+        footballZombieHurtAttackImage = new ImageIcon(this.getClass().getResource("images/zombies/FootballZombieOrnLostAttack.gif")).getImage();
+        
+        zombieProduceInterval = 7000;
+        zombieProduceCount = 0;
+        zombieProduceType = 1;
         
         laneZombies = new ArrayList<>();
         laneZombies.add(new ArrayList<>()); //line 1
@@ -120,13 +138,13 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
         activeSuns = new ArrayList<>();
 
         // 5ms鍒锋柊涓�娆＄晫闈紙gif鎾斁锛夛紝瀹炵幇鍔ㄦ�佽繃绋�
-        redrawTimer = new Timer(5, (ActionEvent e) -> {
+        redrawTimer = new Timer(10, (ActionEvent e) -> {
             repaint();
         });
         redrawTimer.start();
 
         // 姣�60s鍒锋柊涓�娆￠�昏緫
-        advancerTimer = new Timer(60, (ActionEvent e) -> advance());
+        advancerTimer = new Timer(50, (ActionEvent e) -> advance());
         advancerTimer.start();
 
         sunProducer = new Timer(5000, (ActionEvent e) -> {
@@ -137,20 +155,30 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
         });
         sunProducer.start();
 
-        zombieProducer = new Timer(7000, (ActionEvent e) -> {
+        zombieProducer = new Timer(zombieProduceInterval, (ActionEvent e) -> {
             Random rnd = new Random();
             LevelData lvl = new LevelData();
-            String[] Level = lvl.LEVEL_CONTENT[Integer.parseInt(lvl.LEVEL_NUMBER) - 1];
-            int[][] LevelValue = lvl.LEVEL_VALUE[Integer.parseInt(lvl.LEVEL_NUMBER) - 1];
+            //String[] Level = lvl.LEVEL_CONTENT[Integer.parseInt(lvl.LEVEL_NUMBER) - 1];
+            //int[][] LevelValue = lvl.LEVEL_VALUE[Integer.parseInt(lvl.LEVEL_NUMBER) - 1];
             int l = rnd.nextInt(5);
-            int t = rnd.nextInt(100);
-            Zombie z = null;
-            for (int i = 0; i < LevelValue.length; i++) {
-                if (t >= LevelValue[i][0] && t <= LevelValue[i][1]) {
-                    z = Zombie.getZombie(Level[i], this, l);
-                }
-            }
+            int t = rnd.nextInt(zombieProduceType);
+            Zombie z = Zombie.getZombie(lvl.LEVEL_CONTENT[t], this, l);;
+            //for (int i = 0; i < LevelValue.length; i++) {
+              //  if (t >= LevelValue[i][0] && t <= LevelValue[i][1]) {
+                //    z = Zombie.getZombie(Level[i], this, l);
+                //}
+            //}
             laneZombies.get(l).add(z);
+            add(z, new Integer(2));
+            zombieProduceCount++;
+            if(zombieProduceCount % 2 == 0) {
+            	if(zombieProduceType < 5) {
+            		zombieProduceType++;
+            	}
+            }
+            if(zombieProduceInterval > 1000) {
+            	zombieProduceInterval -= 200;
+            }
         });
         zombieProducer.start();
         
@@ -173,18 +201,20 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
                 Pea p = lanePeas.get(i).get(j);
                 p.advance();
             }
-            
+            /**
             for(int j = 0;j < laneZombies.get(i).size();j++) {
             	if(laneZombies.get(i).get(j).isDead()) {
-                    System.out.println("ZOMBIE DIED");
+            		System.out.println("ZOMBIE DIED");
                     deadZombies.add(new DeadZombie(this, i, laneZombies.get(i).get(j).getPosX()));
                     // System.out.printf("dead zombies%d", deadZombies.size());
+                    //remove(laneZombies.get(i).get(j));
                 	laneZombies.get(i).remove(laneZombies.get(i).get(j));
+                	
                     j--;
                     // 姣忓彧鍍靛案10鍒嗭紝鍒嗘暟杈惧埌150涔嬪悗缁堟姝ゅ叧鍗�
                     GamePanel.setProgress(10);
             	}
-            }
+            }*/
         }
 
         for (int i = 0; i < activeSuns.size(); i++) {
@@ -208,26 +238,77 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
         }
         
         //Draw Zombies and Peas
+        
         for (int i = 0; i < 5; i++) {
+        	/**
             for (Zombie z : laneZombies.get(i)) {
                 if (z instanceof NormalZombie && !z.isDead()) {
                     g.drawImage(normalZombieImage, z.getPosX(), 69 + (i * 120), null);
-                } else if (z instanceof ConeHeadZombie && !z.isDead()) {
+                } 
+                
+                else if (z instanceof ConeHeadZombie && !z.isDead()) {
                 	if(z.isAttacking()) {
-                		g.drawImage(coneHeadZombieAttackImage, z.getPosX()-110, 69 + (i * 120), null);
-
+                		if(z.isHurted()) {
+                			g.drawImage(coneHeadZombieHurtAttackImage, z.getPosX(), (i * 120) + 40, null);
+                		}
+                		else {
+                			g.drawImage(coneHeadZombieAttackImage, z.getPosX()-110, 69 + (i * 120), null);
+                		}
+                		
                 	}
                 	else if(z.isMoving()) {
                         g.drawImage(coneHeadZombieImage, z.getPosX(), 69 + (i * 120),null);
                 	}
                 }
+                
                 else if (z instanceof MetalBucketZombie && !z.isDead()) {
-                    g.drawImage(metalBucketZombie, z.getPosX(), 69 + (i * 120), null);
+                	if(z.isAttacking()) {
+                		g.drawImage(metalBucketZombieAttackImage, z.getPosX(), 69 + (i * 120)-10, null);
+                	}
+                	else if(z.isMoving()) {
+                		g.drawImage(metalBucketZombieImage, z.getPosX(), 69 + (i * 120)-10, null);
+                	}
                 }
+                
+                else if (z instanceof NewspaperZombie && !z.isDead()) {
+                	if(!z.isHurted()) {
+                		if(z.isAttacking()) {
+                			g.drawImage(newspaperZombieAttackImage, z.getPosX(), 69 + (i * 120)-10, null);
+                	    }
+                	    else if(z.isMoving()) {
+                		    g.drawImage(newspaperZombieImage, z.getPosX(), 69 + (i * 120)-10, null);
+                	    }
+                	}
+                	else {
+                		
+                	}
+                }
+                
                 else if (z instanceof PoleVaultingZombie && !z.isDead()) {
-                    g.drawImage(poleVaultingZombie, z.getPosX(), (i * 120)-20, null);
+                    g.drawImage(poleVaultingZombieImage, z.getPosX(), (i * 120)-20, null);
                 }
-            }
+                
+
+                else if (z instanceof FootballZombie && !z.isDead()) {
+                	if(z.isAttacking()) {
+                		if(z.isHurted()) {
+                			g.drawImage(footballZombieHurtAttackImage, z.getPosX(), (i * 120) + 40, null);
+                		}
+                		else {
+                		    g.drawImage(footballZombieAttackImage, z.getPosX(), (i * 120) + 40, null);
+                		}
+                	}
+                	else if(z.isMoving()) {
+                		if(z.isHurted()) {
+                			g.drawImage(footballZombieHurtImage, z.getPosX(), (i * 120) + 40, null);
+                		}
+                		else {
+                		    g.drawImage(footballZombieImage, z.getPosX(), (i * 120) + 40, null);
+                		}
+                	}
+                    
+                }
+            }*/
 
             for (int j = 0; j < lanePeas.get(i).size(); j++) {
                 Pea pea = lanePeas.get(i).get(j);
@@ -236,13 +317,13 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
 
         }
         
-        
+        /**
         for (Iterator<DeadZombie> ite = deadZombies.iterator(); ite.hasNext();) {
             DeadZombie i = ite.next();
             g.drawImage(i.deadZombieImage, i.getPosX(), 69 + (i.getMyLane() * 120), null);
             if(i.lifespanDecrease()) ite.remove();
         }
-        
+        */
         //
 
         //if(!"".equals(activePlantingBrush)){

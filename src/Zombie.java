@@ -4,17 +4,18 @@ import javax.sound.sampled.Clip;
 /**
  * Created by Armin on 6/25/2016.
  */
-public class Zombie {
+public class Zombie extends JPanel {
 
-    private int health = 1000;
+    private int health = 1500;
     private int speed = 1;
-
+    private int fullHealth;
     private GamePanel gp;
 
     private int posX = 1000;
     private int myLane;
     private boolean isMoving = true;
     private boolean isAttacking = false;
+    private boolean isHurt = false;
     private boolean isDead = false;
     private Collider collided = null;
     
@@ -26,7 +27,7 @@ public class Zombie {
     public Zombie(GamePanel parent, int lane) {
         this.gp = parent;
         myLane = lane;
-        
+        fullHealth = health;
         zombiesEating.prepare();
         zombiesWin.prepare();
         gulp.prepare();
@@ -54,7 +55,6 @@ public class Zombie {
                     posX -= speed;
                 }
             } else {
-            	
             	isMoving = false;
             	isAttacking = true;
             }
@@ -83,6 +83,9 @@ public class Zombie {
                 isMoving = true;
             }
         }
+        if(health < fullHealth/2) {
+        	isHurt = true;
+        }
         if(health < 50) {
         	isDead = true;
         	zombiesEating.player.stop();
@@ -109,8 +112,14 @@ public class Zombie {
             case "MetalBucketZombie":
             	z = new MetalBucketZombie(parent, lane);
                 break;
+            case "NewspaperZombie":
+            	z = new NewspaperZombie(parent, lane);
+                break;
             case "PoleVaultingZombie":
             	z = new PoleVaultingZombie(parent, lane);
+                break;
+            case "FootballZombie":
+            	z = new FootballZombie(parent, lane);
                 break;
         }
         return z;
@@ -122,6 +131,7 @@ public class Zombie {
 
     public void setHealth(int health) {
         this.health = health;
+        this.fullHealth = health;
     }
 
     public int getSpeed() {
@@ -160,7 +170,6 @@ public class Zombie {
         return isMoving;
     }
     
-   
 
     public void setMoving(boolean moving) {
         isMoving = moving;
@@ -178,6 +187,10 @@ public class Zombie {
         return isDead;
     }
 
+    public boolean isHurted() {
+        return isHurt;
+    }
+    
     public int getSlowInt() {
         return slowInt;
     }
