@@ -12,6 +12,7 @@ public class Pea {
     private Image peahit = new ImageIcon(this.getClass().getResource("images/bullet/PeaShoot.gif")).getImage();
 
     private SoundEffect pea = new SoundEffect("./src/bgms/Pea.wav");
+    private SoundEffect peaHitShiled = new SoundEffect("./src/bgms/shieldhit.wav");
     
     
     public Pea(GamePanel parent, int lane, int startX) {
@@ -21,6 +22,7 @@ public class Pea {
         Ima = new ImageIcon(this.getClass().getResource("images/bullet/pea.png")).getImage();
         
         pea.prepare();
+        peaHitShiled.prepare();
         pea.gainControl.setValue(-10.0f);
     }
 
@@ -35,7 +37,12 @@ public class Pea {
             	setImage(peahit);
             }
             if (pRect.intersects(zRect)) {
-            	pea.player.start();
+            	if(z instanceof MetalBucketZombie) {
+            		peaHitShiled.player.start();
+            	}
+            	else {
+            	    pea.player.start();
+            	}
                 z.setHealth(z.getHealth() - 200);
                 if (z.getHealth() < 0) {
                     System.out.println("ZOMBIE DIE");

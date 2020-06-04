@@ -22,9 +22,14 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
     private Image normalZombieImage;
     private Image coneHeadZombieImage;
     private Image coneHeadZombieAttackImage;
-    private Image metalBucketZombie;
-    private Image poleVaultingZombie;
-    private Image footballZombie;
+    private Image coneHeadZombieHurtAttackImage;
+    private Image metalBucketZombieImage;
+    private Image metalBucketZombieAttackImage;
+    private Image poleVaultingZombieImage;
+    private Image footballZombieImage;
+    private Image footballZombieAttackImage;
+    private Image footballZombieHurtImage;
+    private Image footballZombieHurtAttackImage;
     private Collider[] colliders;
 
     private ArrayList<ArrayList<Zombie>> laneZombies;
@@ -78,11 +83,15 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
         
         normalZombieImage = new ImageIcon(this.getClass().getResource("images/zombies/Zombie.gif")).getImage();
         coneHeadZombieImage = new ImageIcon(this.getClass().getResource("images/zombies/ConeheadZombie.gif")).getImage();
-        //coneHeadZombieImage.readGif("./src/images/zombies/ConeheadZombie.gif");
         coneHeadZombieAttackImage = new ImageIcon(this.getClass().getResource("images/zombies/ConeheadZombieAttack.gif")).getImage();
-        metalBucketZombie = new ImageIcon(this.getClass().getResource("images/zombies/BucketheadZombie.gif")).getImage();
-        poleVaultingZombie = new ImageIcon(this.getClass().getResource("images/zombies/PoleVaultingZombie.gif")).getImage();
-        footballZombie = new ImageIcon(this.getClass().getResource("images/zombies/FootballZombie.gif")).getImage();
+        coneHeadZombieHurtAttackImage = new ImageIcon(this.getClass().getResource("images/zombies/ConeheadZombieAttack2.gif")).getImage();
+        metalBucketZombieImage = new ImageIcon(this.getClass().getResource("images/zombies/BucketheadZombie.gif")).getImage();
+        metalBucketZombieAttackImage = new ImageIcon(this.getClass().getResource("images/zombies/BucketheadZombieAttack.gif")).getImage();
+        poleVaultingZombieImage = new ImageIcon(this.getClass().getResource("images/zombies/PoleVaultingZombie.gif")).getImage();
+        footballZombieImage = new ImageIcon(this.getClass().getResource("images/zombies/FootballZombie.gif")).getImage();
+        footballZombieAttackImage = new ImageIcon(this.getClass().getResource("images/zombies/FootballZombieAttack.gif")).getImage();
+        footballZombieHurtImage = new ImageIcon(this.getClass().getResource("images/zombies/FootballZombieOrnLost.gif")).getImage();
+        footballZombieHurtAttackImage = new ImageIcon(this.getClass().getResource("images/zombies/FootballZombieOrnLostAttack.gif")).getImage();
         
         zombieProduceInterval = 7000;
         zombieProduceCount = 0;
@@ -159,11 +168,11 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
             laneZombies.get(l).add(z);
             zombieProduceCount++;
             if(zombieProduceCount % 2 == 0) {
-            	if(zombieProduceType <= 5) {
+            	if(zombieProduceType < 5) {
             		zombieProduceType++;
             	}
             }
-            if(zombieProduceInterval > 2000) {
+            if(zombieProduceInterval > 1000) {
             	zombieProduceInterval -= 200;
             }
         });
@@ -230,20 +239,47 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
                 } 
                 else if (z instanceof ConeHeadZombie && !z.isDead()) {
                 	if(z.isAttacking()) {
-                		g.drawImage(coneHeadZombieAttackImage, z.getPosX()-110, 69 + (i * 120), null);
+                		if(z.isHurted()) {
+                			g.drawImage(coneHeadZombieHurtAttackImage, z.getPosX(), (i * 120) + 40, null);
+                		}
+                		else {
+                			g.drawImage(coneHeadZombieAttackImage, z.getPosX()-110, 69 + (i * 120), null);
+                		}
+                		
                 	}
                 	else if(z.isMoving()) {
                         g.drawImage(coneHeadZombieImage, z.getPosX(), 69 + (i * 120),null);
                 	}
                 }
                 else if (z instanceof PoleVaultingZombie && !z.isDead()) {
-                    g.drawImage(poleVaultingZombie, z.getPosX(), (i * 120)-20, null);
+                    g.drawImage(poleVaultingZombieImage, z.getPosX(), (i * 120)-20, null);
                 }
                 else if (z instanceof MetalBucketZombie && !z.isDead()) {
-                    g.drawImage(metalBucketZombie, z.getPosX(), 69 + (i * 120), null);
+                	if(z.isAttacking()) {
+                		g.drawImage(metalBucketZombieAttackImage, z.getPosX(), 69 + (i * 120)-10, null);
+                	}
+                	else if(z.isMoving()) {
+                		g.drawImage(metalBucketZombieImage, z.getPosX(), 69 + (i * 120)-10, null);
+                	}
                 }
                 else if (z instanceof FootballZombie && !z.isDead()) {
-                    g.drawImage(footballZombie, z.getPosX(), (i * 120)-20, null);
+                	if(z.isAttacking()) {
+                		if(z.isHurted()) {
+                			g.drawImage(footballZombieHurtAttackImage, z.getPosX(), (i * 120) + 40, null);
+                		}
+                		else {
+                		    g.drawImage(footballZombieAttackImage, z.getPosX(), (i * 120) + 40, null);
+                		}
+                	}
+                	else if(z.isMoving()) {
+                		if(z.isHurted()) {
+                			g.drawImage(footballZombieHurtImage, z.getPosX(), (i * 120) + 40, null);
+                		}
+                		else {
+                		    g.drawImage(footballZombieImage, z.getPosX(), (i * 120) + 40, null);
+                		}
+                	}
+                    
                 }
             }
 
