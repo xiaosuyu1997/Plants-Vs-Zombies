@@ -4,7 +4,7 @@ import javax.sound.sampled.Clip;
 /**
  * Created by Armin on 6/25/2016.
  */
-public class Zombie {
+public class Zombie extends JPanel {
 
     private int health = 1500;
     private int speed = 1;
@@ -111,6 +111,9 @@ public class Zombie {
                 break;
             case "MetalBucketZombie":
             	z = new MetalBucketZombie(parent, lane);
+                break;
+            case "NewspaperZombie":
+            	z = new NewspaperZombie(parent, lane);
                 break;
             case "PoleVaultingZombie":
             	z = new PoleVaultingZombie(parent, lane);
