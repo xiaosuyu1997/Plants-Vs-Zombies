@@ -13,8 +13,9 @@ import java.util.logging.Logger;
 public class LevelData {
 
     public static String LEVEL_NUMBER = "1";
-    public static String[][] LEVEL_CONTENT = {{"ConeHeadZombie"}, {"ConeHeadZombie", "ConeHeadZombie"}};
-    public static int[][][] LEVEL_VALUE = {{{0, 99}}, {{0, 49}, {50, 99}}};
+    //public static String[][] LEVEL_CONTENT = {{"ConeHeadZombie"}, {"ConeHeadZombie", "ConeHeadZombie"}};
+    public static String[] LEVEL_CONTENT = {"NormalZombie","ConeHeadZombie","PoleVaultingZombie","MetalBucketZombie","FootballZombie"};
+    //public static int[][][] LEVEL_VALUE = {{{0, 99}}, {{0, 49}, {50, 99}}};
 
     public LevelData() {
         try {

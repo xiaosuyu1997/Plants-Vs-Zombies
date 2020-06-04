@@ -8,7 +8,7 @@ public class FreezePea extends Pea {
 	private SoundEffect frozenpea = new SoundEffect("./src/bgms/FrozenPea.wav");
     public FreezePea(GamePanel parent, int lane, int startX) {
         super(parent, lane, startX);
-        setImage(new ImageIcon(this.getClass().getResource("images/freezepea.png")).getImage());
+        setImage(new ImageIcon(this.getClass().getResource("images/bullet/freezepea.png")).getImage());
         frozenpea.prepare();
     }
     

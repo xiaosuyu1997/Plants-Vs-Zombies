@@ -5,7 +5,7 @@ public class BurnPea extends Pea{
 	private SoundEffect burnpea = new SoundEffect("./src/bgms/firepea.wav");
     public BurnPea(GamePanel parent, int lane, int startX) {
         super(parent, lane, startX);
-        setImage(new ImageIcon(this.getClass().getResource("images/BurnPea.gif")).getImage());
+        setImage(new ImageIcon(this.getClass().getResource("images/bullet/BurnPea.gif")).getImage());
         burnpea.prepare();
 
     }

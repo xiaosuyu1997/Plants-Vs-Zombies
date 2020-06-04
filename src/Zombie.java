@@ -112,6 +112,9 @@ public class Zombie {
             case "PoleVaultingZombie":
             	z = new PoleVaultingZombie(parent, lane);
                 break;
+            case "FootballZombie":
+            	z = new FootballZombie(parent, lane);
+                break;
         }
         return z;
     }
