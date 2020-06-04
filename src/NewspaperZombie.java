@@ -92,12 +92,15 @@ public class NewspaperZombie  extends Zombie {
  	        else if(isAttacking()) {
  	        	currentImage= newspaperZombieDeadAttackImage;
  	        }
-	        //Timer timer = new Timer();
-        	//timer.schedule(new TimerTask() {
-     		//	public void run() {
-     				
-     		//	} }, 1000);
-        	getGp().remove(this);
+	        setSpeed(0);
+	        NewspaperZombie temp = this;
+	        Timer timer = new Timer();
+        	timer.schedule(new TimerTask() {
+     			public void run() {
+     				getGp().remove(temp);
+     				getGp().getLaneZombies().get(getMyLane()).remove(temp);
+     			} }, 1000);
+        	
         }
     }
     

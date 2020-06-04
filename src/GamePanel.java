@@ -25,12 +25,8 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
     private Image coneHeadZombieHurtAttackImage;
     private Image metalBucketZombieImage;
     private Image metalBucketZombieAttackImage;
-    private Image newspaperZombieImage;
-    private Image newspaperZombieAttackImage;
-    private Image newspaperZombieLoseImage;
-    private Image newspaperZombieLoseWalkImage;
-    private Image newspaperZombieLoseAttackImage;
-    private Image poleVaultingZombieImage;
+
+    
     private Image footballZombieImage;
     private Image footballZombieAttackImage;
     private Image footballZombieHurtImage;
@@ -92,13 +88,9 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
         coneHeadZombieHurtAttackImage = new ImageIcon(this.getClass().getResource("images/zombies/ConeheadZombieAttack2.gif")).getImage();
         metalBucketZombieImage = new ImageIcon(this.getClass().getResource("images/zombies/BucketheadZombie.gif")).getImage();
         metalBucketZombieAttackImage = new ImageIcon(this.getClass().getResource("images/zombies/BucketheadZombieAttack.gif")).getImage();
-        newspaperZombieImage = new ImageIcon(this.getClass().getResource("images/zombies/NewspaperZombie.gif")).getImage();
-        newspaperZombieAttackImage = new ImageIcon(this.getClass().getResource("images/zombies/NewspaperZombieAttack.gif")).getImage();
-        newspaperZombieLoseImage = new ImageIcon(this.getClass().getResource("images/zombies/NewspaperZombieLosePaper.gif")).getImage();
-        newspaperZombieLoseWalkImage = new ImageIcon(this.getClass().getResource("images/zombies/NewspaperZombieLose.gif")).getImage();
-        newspaperZombieLoseAttackImage = new ImageIcon(this.getClass().getResource("images/zombies/NewspaperZombieLoseAttack.gif")).getImage();
+
         
-        poleVaultingZombieImage = new ImageIcon(this.getClass().getResource("images/zombies/PoleVaultingZombie.gif")).getImage();
+        
         footballZombieImage = new ImageIcon(this.getClass().getResource("images/zombies/FootballZombie.gif")).getImage();
         footballZombieAttackImage = new ImageIcon(this.getClass().getResource("images/zombies/FootballZombieAttack.gif")).getImage();
         footballZombieHurtImage = new ImageIcon(this.getClass().getResource("images/zombies/FootballZombieOrnLost.gif")).getImage();
@@ -146,13 +138,13 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
         activeSuns = new ArrayList<>();
 
         // 5ms鍒锋柊涓�娆＄晫闈紙gif鎾斁锛夛紝瀹炵幇鍔ㄦ�佽繃绋�
-        redrawTimer = new Timer(30, (ActionEvent e) -> {
+        redrawTimer = new Timer(10, (ActionEvent e) -> {
             repaint();
         });
         redrawTimer.start();
 
         // 姣�60s鍒锋柊涓�娆￠�昏緫
-        advancerTimer = new Timer(60, (ActionEvent e) -> advance());
+        advancerTimer = new Timer(50, (ActionEvent e) -> advance());
         advancerTimer.start();
 
         sunProducer = new Timer(5000, (ActionEvent e) -> {
@@ -209,20 +201,20 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
                 Pea p = lanePeas.get(i).get(j);
                 p.advance();
             }
-            
+            /**
             for(int j = 0;j < laneZombies.get(i).size();j++) {
             	if(laneZombies.get(i).get(j).isDead()) {
             		System.out.println("ZOMBIE DIED");
                     deadZombies.add(new DeadZombie(this, i, laneZombies.get(i).get(j).getPosX()));
                     // System.out.printf("dead zombies%d", deadZombies.size());
-                    remove(laneZombies.get(i).get(j));
+                    //remove(laneZombies.get(i).get(j));
                 	laneZombies.get(i).remove(laneZombies.get(i).get(j));
                 	
                     j--;
                     // 姣忓彧鍍靛案10鍒嗭紝鍒嗘暟杈惧埌150涔嬪悗缁堟姝ゅ叧鍗�
                     GamePanel.setProgress(10);
             	}
-            }
+            }*/
         }
 
         for (int i = 0; i < activeSuns.size(); i++) {
