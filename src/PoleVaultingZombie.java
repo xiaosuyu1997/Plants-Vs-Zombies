@@ -5,7 +5,7 @@ public class PoleVaultingZombie  extends Zombie {
 	
     public PoleVaultingZombie(GamePanel parent, int lane) {
         super(parent, lane);
-        setSpeed(2);
+        setSpeed(3);
     }
     
     public void advance() {
