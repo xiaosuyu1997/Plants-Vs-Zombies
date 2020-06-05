@@ -16,14 +16,16 @@ public class Zombie extends JPanel {
     
     private GamePanel gp;
 
-    private int posX = 1000;
+    private int posX;
     private int myLane;
-    private boolean isMoving = true;
-    private boolean isAttacking = false;
-    private boolean isHurt = false;
-    private boolean isDead = false;
-    private boolean ifScore = false;
-    private Collider collided = null;
+    private boolean isMoving;
+    private boolean isAttacking;
+    private boolean quarterHurt;
+    private boolean halfHurt;
+    private boolean threeQuarterHurt;
+    private boolean isDead;
+    private boolean ifScore;
+    private Collider collided;
     
     
     public SoundEffect zombiesEating = new SoundEffect("./src/bgms/zombieEat.wav");
@@ -34,6 +36,16 @@ public class Zombie extends JPanel {
         this.gp = parent;
         myLane = lane;
         fullHealth = health;
+        posX = 1000;
+        isMoving = true;
+        isAttacking = false;
+        quarterHurt = false;
+        halfHurt = false;
+        threeQuarterHurt = false;
+        isDead = false;
+        ifScore = false;
+        collided = null;
+        
         zombiesEating.prepare();
         zombiesWin.prepare();
         gulp.prepare();
@@ -89,9 +101,16 @@ public class Zombie extends JPanel {
                 isMoving = true;
             }
         }
-        if(health < fullHealth/2) {
-        	isHurt = true;
+        if(health < fullHealth*3/4) {
+        	quarterHurt = true;
         }
+        if(health < fullHealth/2) {
+        	halfHurt = true;
+        }
+        if(health < fullHealth/4) {
+        	threeQuarterHurt = true;
+        }
+        
         if(health < 50) {
         	isDead = true;
             zombiesEating.player.stop();
@@ -156,6 +175,10 @@ public class Zombie extends JPanel {
         this.health = health;
         this.fullHealth = health;
     }
+    
+    public void changeHealth(int health) {
+        this.health = health;
+    }
 
     public int getSpeed() {
         return speed;
@@ -214,12 +237,28 @@ public class Zombie extends JPanel {
         isDead = dead;
     }
 
-    public boolean isHurted() {
-        return isHurt;
+    public boolean isQuarterHurted() {
+        return quarterHurt;
     }
     
-    public void setHurt(boolean hurt) {
-        isHurt = hurt;
+    public void setQuarterHurt(boolean hurt) {
+    	quarterHurt = hurt;
+    }
+    
+    public boolean isHalfHurted() {
+        return halfHurt;
+    }
+    
+    public void setHalfHurt(boolean hurt) {
+    	halfHurt = hurt;
+    }
+    
+    public boolean isThreeQuarterHurted() {
+        return threeQuarterHurt;
+    }
+    
+    public void setThreeQuarterHurt(boolean hurt) {
+    	threeQuarterHurt = hurt;
     }
     
     public boolean ifScore() {

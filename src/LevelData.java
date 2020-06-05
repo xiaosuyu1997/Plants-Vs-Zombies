@@ -15,7 +15,7 @@ public class LevelData {
     public static String LEVEL_NUMBER = "1";
     //public static String[][] LEVEL_CONTENT = {{"ConeHeadZombie"}, {"ConeHeadZombie", "ConeHeadZombie"}};
     //public static String[] LEVEL_CONTENT = {"NormalZombie","ConeHeadZombie","PoleVaultingZombie","MetalBucketZombie","FootballZombie"};
-    public static String[] LEVEL_CONTENT = {"PoleVaultingZombie","NewspaperZombie","NormalZombie","NewspaperZombie","NormalZombie"};
+    public static String[] LEVEL_CONTENT = {"ConeHeadZombie","ConeHeadZombie","NormalZombie","NewspaperZombie","NormalZombie"};
     //public static int[][][] LEVEL_VALUE = {{{0, 99}}, {{0, 49}, {50, 99}}};
 
     public LevelData() {

@@ -40,7 +40,7 @@ public class Pea {
             	else {
             	    pea.player.start();
             	}
-                z.setHealth(z.getHealth() - 200);
+                z.changeHealth(z.getHealth() - 200);
                 exit = true;
                 gp.getLanePeas().get(myLane).remove(this);
                 if (exit) break;

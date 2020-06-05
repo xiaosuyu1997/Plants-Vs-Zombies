@@ -22,14 +22,14 @@ public class CherryBomb extends Plant{
                 for(int i=0;i<getGp().getLaneZombies().get(y).size(); i++) {
                     if(getGp().getLaneZombies().get(y).get(i).getPosX()>=x1-255&&
                         getGp().getLaneZombies().get(y).get(i).getPosX()<x1+255){
-                            getGp().getLaneZombies().get(y).get(i).setHealth(0);
+                            getGp().getLaneZombies().get(y).get(i).changeHealth(0);
                     }
                 }
                 if(y!=0){
                     for(int i=0;i<getGp().getLaneZombies().get(y-1).size(); i++) {
                         if(getGp().getLaneZombies().get(y-1).get(i).getPosX()>=x1-255&&
                             getGp().getLaneZombies().get(y-1).get(i).getPosX()<x1+255){
-                                getGp().getLaneZombies().get(y-1).get(i).setHealth(0);
+                                getGp().getLaneZombies().get(y-1).get(i).changeHealth(0);
                         }
                     }
                 }
@@ -37,7 +37,7 @@ public class CherryBomb extends Plant{
                     for(int i=0;i<getGp().getLaneZombies().get(y+1).size(); i++) {
                         if(getGp().getLaneZombies().get(y+1).get(i).getPosX()>=x1-255&&
                             getGp().getLaneZombies().get(y+1).get(i).getPosX()<x1+255){
-                                getGp().getLaneZombies().get(y+1).get(i).setHealth(0);
+                                getGp().getLaneZombies().get(y+1).get(i).changeHealth(0);
                         }
                     }
                 }

@@ -134,7 +134,7 @@ public class PoleVaultingZombie  extends Zombie {
             }
             
             if(getHealth() < getFullHealth()/2) {
-            	setHurt(true);
+            	setHalfHurt(true);
             }
 
             if(getHealth() < 50) {
