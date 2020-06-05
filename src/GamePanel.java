@@ -42,6 +42,7 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
     private Timer advancerTimer;
     private Timer sunProducer;
     private Timer zombieProducer;
+    private Timer zombieDier;
     private JLabel sunScoreboard;
     
     private SoundEffect bgm = new SoundEffect("./src/bgms/pvzBG1.wav");
@@ -182,6 +183,23 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
         });
         zombieProducer.start();
         
+        zombieDier = new Timer(1000, (ActionEvent e) -> {
+        	for (int i = 0; i < 5; i++) {
+                for(int j = 0;j < laneZombies.get(i).size();j++) {
+                	if(laneZombies.get(i).get(j).isDead()) {
+                		System.out.println("ZOMBIE DIED");
+                        deadZombies.add(new DeadZombie(this, i, laneZombies.get(i).get(j).getPosX()));
+                        // System.out.printf("dead zombies%d", deadZombies.size());
+                        this.remove(laneZombies.get(i).get(j));
+                    	laneZombies.get(i).remove(laneZombies.get(i).get(j));
+                    	
+                        j--;
+                        GamePanel.setProgress(10);
+                	}
+                }
+        	}
+        });
+        //zombieDier.start();
         bgm.prepare();
         zombiesComing.prepare();
         

@@ -20,9 +20,9 @@ public class Zombie extends JPanel {
     private Collider collided = null;
     
     
-    private SoundEffect zombiesEating = new SoundEffect("./src/bgms/zombieEat.wav");
-    private SoundEffect zombiesWin = new SoundEffect("./src/bgms/zombiegroup.wav");
-    private SoundEffect gulp = new SoundEffect("./src/bgms/gulp.wav");
+    public SoundEffect zombiesEating = new SoundEffect("./src/bgms/zombieEat.wav");
+    public SoundEffect zombiesWin = new SoundEffect("./src/bgms/zombiegroup.wav");
+    public SoundEffect gulp = new SoundEffect("./src/bgms/gulp.wav");
 
     public Zombie(GamePanel parent, int lane) {
         this.gp = parent;
@@ -128,6 +128,10 @@ public class Zombie extends JPanel {
     public int getHealth() {
         return health;
     }
+    
+    public int getFullHealth() {
+        return fullHealth;
+    }
 
     public void setHealth(int health) {
         this.health = health;
@@ -186,9 +190,17 @@ public class Zombie extends JPanel {
     public boolean isDead() {
         return isDead;
     }
+    
+    public void setDead(boolean dead) {
+        isDead = dead;
+    }
 
     public boolean isHurted() {
         return isHurt;
+    }
+    
+    public void setHurt(boolean hurt) {
+        isHurt = hurt;
     }
     
     public int getSlowInt() {
