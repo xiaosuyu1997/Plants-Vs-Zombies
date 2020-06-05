@@ -13,8 +13,14 @@ public class FreezePeashooter extends Plant {
         super(parent, x, y);
         setImage(new ImageIcon(this.getClass().getResource("images/plants/freezepeashooter.gif")).getImage());
         shootTimer = new Timer(2000, (ActionEvent e) -> {
-            //System.out.println("SHOOT");
-            if (getGp().getLaneZombies().get(y).size() > 0) {
+            boolean has=false;
+            for(int i=0;i<getGp().getLaneZombies().get(y).size();++i){
+                if(getGp().getLaneZombies().get(y).get(i).getX()>this.getX() * 100){
+                    has=true;
+                    break;
+                }
+            }
+            if (has) {
                 getGp().getLanePeas().get(y).add(new FreezePea(getGp(), y, 103 + this.getX() * 100));
             }
         });
