@@ -252,7 +252,12 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
             Collider c = colliders[i];
             if (c.assignedPlant != null) {
                 Plant p = c.assignedPlant;
-                g.drawImage(p.getImage(), 60 + p.getX() * 100, 129 + p.getY() * 120, null);
+                if(p instanceof Tallnut){
+                    g.drawImage(p.getImage(), 60 + p.getX() * 100, 60 + p.getY() * 120, null);
+                }
+                else{
+                    g.drawImage(p.getImage(), 60 + p.getX() * 100, 129 + p.getY() * 120, null);
+                }
             }
         }
         
