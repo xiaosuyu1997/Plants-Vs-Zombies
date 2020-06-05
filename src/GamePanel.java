@@ -211,7 +211,8 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
 
     private void advance() {
         for (int i = 0; i < 5; i++) {
-            for (Zombie z : laneZombies.get(i)) {
+            for (int j = 0; j < laneZombies.get(i).size(); j++){
+                Zombie z = laneZombies.get(i).get(j);
                 z.advance();
             }
 
