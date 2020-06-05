@@ -1,4 +1,8 @@
 import javax.swing.*;
+
+import java.util.Timer;
+import java.util.TimerTask;
+
 import javax.sound.sampled.Clip;
 
 /**
@@ -9,6 +13,7 @@ public class Zombie extends JPanel {
     private int health = 1500;
     private int speed = 1;
     private int fullHealth;
+    
     private GamePanel gp;
 
     private int posX = 1000;
@@ -17,6 +22,7 @@ public class Zombie extends JPanel {
     private boolean isAttacking = false;
     private boolean isHurt = false;
     private boolean isDead = false;
+    private boolean ifScore = false;
     private Collider collided = null;
     
     
@@ -89,9 +95,19 @@ public class Zombie extends JPanel {
         if(health < 50) {
         	isDead = true;
             zombiesEating.player.stop();
-            System.out.println("ZOMBIE DIE");
-            GamePanel.setProgress(10);
-            gp.getLaneZombies().get(getMyLane()).remove(this);
+            
+            if(!ifScore) {
+            	System.out.println("ZOMBIE DIE");
+            	GamePanel.setProgress(10);
+            	ifScore = true;
+            }
+            Zombie temp = this;
+	        Timer timer = new Timer();
+        	timer.schedule(new TimerTask() {
+     			public void run() {
+     	            gp.getLaneZombies().get(getMyLane()).remove(temp);
+     			} }, 1000);
+
         }
     }
 
@@ -204,6 +220,14 @@ public class Zombie extends JPanel {
     
     public void setHurt(boolean hurt) {
         isHurt = hurt;
+    }
+    
+    public boolean ifScore() {
+    	return ifScore;
+    }
+    
+    public void setScore(boolean ifscore) {
+    	ifScore = ifscore;
     }
     
     public int getSlowInt() {

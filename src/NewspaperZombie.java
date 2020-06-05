@@ -102,7 +102,7 @@ public class NewspaperZombie  extends Zombie {
         	timer.schedule(new TimerTask() {
      			public void run() {
      				getGp().remove(temp);
-     				getGp().getLaneZombies().get(getMyLane()).remove(temp);
+     				//getGp().getLaneZombies().get(getMyLane()).remove(temp);
      			} }, 1000);
         }
     }

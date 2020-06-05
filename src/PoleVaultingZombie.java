@@ -103,8 +103,7 @@ public class PoleVaultingZombie  extends Zombie {
              				currentImage = poleVaultingZombieJumpImage2;
              				//setPosX(getPosX());
              			} }, 1000);
-                	Timer timer2 = new Timer();
-                	timer2.schedule(new TimerTask() {
+                	timer.schedule(new TimerTask() {
              			public void run() {
              				
              				currentImage = poleVaultingZombieWalkImage;
@@ -137,9 +136,23 @@ public class PoleVaultingZombie  extends Zombie {
             if(getHealth() < getFullHealth()/2) {
             	setHurt(true);
             }
+
             if(getHealth() < 50) {
             	setDead(true);
-            	zombiesEating.player.stop();
+                zombiesEating.player.stop();
+                
+                if(!ifScore()) {
+                	System.out.println("ZOMBIE DIE");
+                	GamePanel.setProgress(10);
+                	setScore(true);
+                }
+                PoleVaultingZombie temp = this;
+    	        Timer timer = new Timer();
+            	timer.schedule(new TimerTask() {
+         			public void run() {
+         				getGp().getLaneZombies().get(getMyLane()).remove(temp);
+         			} }, 1000);
+
             }
             
             if (getPosX() < 0) {
@@ -174,7 +187,7 @@ public class PoleVaultingZombie  extends Zombie {
             	timer.schedule(new TimerTask() {
          			public void run() {
          				getGp().remove(temp);
-         				getGp().getLaneZombies().get(getMyLane()).remove(temp);
+         				//getGp().getLaneZombies().get(getMyLane()).remove(temp);
          			} }, 2000);
             }
         }

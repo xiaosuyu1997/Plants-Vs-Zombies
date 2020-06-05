@@ -65,15 +65,20 @@ public class NormalZombie extends Zombie {
     	    else if(isAttacking()) {
     	        currentImage= normalZombieDeadAttackImage;
     	    }
-            setSpeed(0);
             
             NormalZombie temp = this;
             Timer timer = new Timer();
+	        timer.schedule(new TimerTask() {
+     			public void run() {
+     				currentImage = normalZombieDeadImage;
+     			} }, 1000);
+	        
         	timer.schedule(new TimerTask() {
      			public void run() {
+     				setSpeed(0);
      				getGp().remove(temp);
-     				getGp().getLaneZombies().get(getMyLane()).remove(temp);
-     			} }, 1000);
+     				//getGp().getLaneZombies().get(getMyLane()).remove(temp);
+     			} }, 2000);
         }
     }
 }
