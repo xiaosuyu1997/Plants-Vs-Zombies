@@ -81,7 +81,8 @@ public class GameWindow extends JFrame {
     }
 
     public SeedChoose aSeedChoose;
-
+    
+    //main game windows
     public GameWindow(String[] name) {
         setSize(1012, 785);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -123,6 +124,7 @@ public class GameWindow extends JFrame {
 
                     gp.setActivePlantingBrush(PlantType.FreezePeashooter);
                 });
+                FreezePeashooter.countwaittime();
                 getLayeredPane().add(FreezePeashooter, new Integer(3));
             }
             if (name[i] == "twicepeashooter") {
@@ -130,6 +132,7 @@ public class GameWindow extends JFrame {
                 TwicePeashooter.setAction(110 + 65 * i, 8, 7500, (ActionEvent e) -> {
                     gp.setActivePlantingBrush(PlantType.TwicePeashooter);
                 });
+                TwicePeashooter.countwaittime();
                 getLayeredPane().add(TwicePeashooter, new Integer(3));
             }
             if (name[i] == "threepeashooter") {
@@ -137,6 +140,7 @@ public class GameWindow extends JFrame {
                 ThreePeashooter.setAction(110 + 65 * i, 8, 7500, (ActionEvent e) -> {
                     gp.setActivePlantingBrush(PlantType.ThreePeashooter);
                 });
+                ThreePeashooter.countwaittime();
                 getLayeredPane().add(ThreePeashooter, new Integer(3));
             }
             if (name[i] == "torchwood") {
@@ -144,6 +148,7 @@ public class GameWindow extends JFrame {
                 Torchwood.setAction(110 + 65 * i, 8, 7500, (ActionEvent e) -> {
                     gp.setActivePlantingBrush(PlantType.Torchwood);
                 });
+                Torchwood.countwaittime();
                 getLayeredPane().add(Torchwood, new Integer(3));
             }
             if (name[i] == "wallnut") {
@@ -151,6 +156,7 @@ public class GameWindow extends JFrame {
                 Wallnut.setAction(110 + 65 * i, 8, 30000, (ActionEvent e) -> {
                     gp.setActivePlantingBrush(PlantType.Wallnut);
                 });
+                Wallnut.countwaittime();
                 getLayeredPane().add(Wallnut, new Integer(3));
             }
             if (name[i] == "chomper") {
@@ -158,6 +164,7 @@ public class GameWindow extends JFrame {
                 Chomper.setAction(110 + 65 * i, 8, 7500, (ActionEvent e) -> {
                     gp.setActivePlantingBrush(PlantType.Chomper);
                 });
+                Chomper.countwaittime();
                 getLayeredPane().add(Chomper, new Integer(3));
             }
             if (name[i] == "potatomine") {
@@ -165,6 +172,7 @@ public class GameWindow extends JFrame {
                 PotatoMine.setAction(110 + 65 * i, 8, 30000, (ActionEvent e) -> {
                     gp.setActivePlantingBrush(PlantType.PotatoMine);
                 });
+                PotatoMine.countwaittime();
                 getLayeredPane().add(PotatoMine, new Integer(3));
             }
             if (name[i] == "gatling") {
@@ -172,6 +180,7 @@ public class GameWindow extends JFrame {
                 GatlingPea.setAction(110 + 65 * i, 8, 50000, (ActionEvent e) -> {
                     gp.setActivePlantingBrush(PlantType.GatlingPea);
                 });
+                GatlingPea.countwaittime();
                 getLayeredPane().add(GatlingPea, new Integer(3));
             }
 
@@ -180,6 +189,7 @@ public class GameWindow extends JFrame {
                 CherryBomb.setAction(110+65*i, 8,30000,(ActionEvent e) -> {
                     gp.setActivePlantingBrush(PlantType.CherryBomb);
                 });
+                CherryBomb.countwaittime();
                 getLayeredPane().add(CherryBomb, new Integer(3));
             }
 
@@ -188,6 +198,7 @@ public class GameWindow extends JFrame {
                 Tallnut.setAction(110+65*i, 8,30000,(ActionEvent e) -> {
                     gp.setActivePlantingBrush(PlantType.Tallnut);
                 });
+                Tallnut.countwaittime();
                 getLayeredPane().add(Tallnut, new Integer(3));
             }
 
@@ -196,6 +207,7 @@ public class GameWindow extends JFrame {
                 Twinsunflower.setAction(110+65*i, 8,50000,(ActionEvent e) -> {
                     gp.setActivePlantingBrush(PlantType.Twinsunflower);
                 });
+                Twinsunflower.countwaittime();
                 getLayeredPane().add(Twinsunflower, new Integer(3));
             }
 
@@ -204,6 +216,7 @@ public class GameWindow extends JFrame {
                 Jalapeno.setAction(110+65*i, 8,30000,(ActionEvent e) -> {
                     gp.setActivePlantingBrush(PlantType.Jalapeno);
                 });
+                Jalapeno.countwaittime();
                 getLayeredPane().add(Jalapeno, new Integer(3));
             }
         }
@@ -221,6 +234,22 @@ public class GameWindow extends JFrame {
         
     }
 
+    private void jPanel1MouseClicked(MouseEvent evt) {
+        //open menu
+        gw.dispose();
+        gw = new GameWindow(true);//needed to provide a menu game_window
+        System.out.println("Exit");
+    }
+
+    private void jPanel1MouseEntered(MouseEvent evt) {
+        setCursor(new Cursor(Cursor.HAND_CURSOR));
+    }
+
+    private void jPanel1MouseExited(MouseEvent evt) {
+        setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+    }
+
+    //choose plants windows
     public GameWindow(int ii) {
         setSize(1400, 600);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -232,6 +261,7 @@ public class GameWindow extends JFrame {
         
     }
 
+    //menu windows
     public GameWindow(boolean b) {
         Menu menu = new Menu();
         menu.setLocation(0, 0);
@@ -250,21 +280,6 @@ public class GameWindow extends JFrame {
     public static void begin() {
         gw.dispose();
         gw = new GameWindow(1);
-    }
-
-    private void jPanel1MouseClicked(MouseEvent evt) {
-        //open menu
-        gw.dispose();
-        gw = new GameWindow(true);//needed to provide a menu game_window
-        System.out.println("Exit");
-    }
-
-    private void jPanel1MouseEntered(MouseEvent evt) {
-        setCursor(new Cursor(Cursor.HAND_CURSOR));
-    }
-
-    private void jPanel1MouseExited(MouseEvent evt) {
-        setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
     }
 
     public static void begingame() {

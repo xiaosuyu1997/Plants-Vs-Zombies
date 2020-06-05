@@ -339,16 +339,6 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
         }
         */
         //
-
-        //if(!"".equals(activePlantingBrush)){
-        //System.out.println(activePlantingBrush);
-            /*if(activePlantingBrush == GameWindow.PlantType.Sunflower) {
-                g.drawImage(sunflowerImage,mouseX,mouseY,null);
-            }*/
-
-        //}
-
-
     }
 
     // 绉嶆鐗�
