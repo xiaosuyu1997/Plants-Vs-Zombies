@@ -255,7 +255,7 @@ public class GameWindow extends JFrame {
     private void jPanel1MouseClicked(MouseEvent evt) {
         //open menu
         gw.dispose();
-        gw = new GameWindow(1);//needed to provide a menu game_window
+        gw = new GameWindow(true);//needed to provide a menu game_window
         System.out.println("Exit");
     }
 
