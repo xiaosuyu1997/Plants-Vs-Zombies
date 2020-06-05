@@ -18,14 +18,6 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
 
     private Image bgImage;
 
-    
-    
-
-    private Image metalBucketZombieImage;
-    private Image metalBucketZombieAttackImage;
-
-    
-
     private Collider[] colliders;
 
     private ArrayList<ArrayList<Zombie>> laneZombies;
@@ -78,14 +70,6 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
         bgImage = new ImageIcon(this.getClass().getResource("images/mainB.png")).getImage();
         zombieType = 5;
         
-        
-        
-        metalBucketZombieImage = new ImageIcon(this.getClass().getResource("images/zombies/metalbucketzombie/BucketheadZombie.gif")).getImage();
-        metalBucketZombieAttackImage = new ImageIcon(this.getClass().getResource("images/zombies/metalbucketzombie/BucketheadZombieAttack.gif")).getImage();
-
-        
-        
-       
         
         zombieProduceInterval = 7000;
         zombieProduceCount = 0;
