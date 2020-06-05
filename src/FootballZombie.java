@@ -19,11 +19,9 @@ public class FootballZombie  extends Zombie {
     private Image footballZombieDeadImage;
     private Image currentImage;
     
-    private boolean quarterHurt;
+
     public FootballZombie(GamePanel parent, int lane) {
-        super(parent, lane);
-        quarterHurt = false;
-        
+        super(parent, lane);    
         setHealth(5400);
         setSpeed(3);
         
@@ -51,10 +49,7 @@ public class FootballZombie  extends Zombie {
     public void advance() {
         super.advance();
         setLocation(getPosX(), getMyLane() * 120 + 40);
-        if(getHealth() < getFullHealth()/4) {
-        	quarterHurt = true;
-        }
-        if(!quarterHurt) {
+        if(!isThreeQuarterHurted()) {
         	if(super.isMoving()) {
         		currentImage = footballZombieImage;
         	}
@@ -62,7 +57,7 @@ public class FootballZombie  extends Zombie {
         		currentImage= footballZombieAttackImage;
         	}
         }
-        else if(quarterHurt) {
+        else if(isThreeQuarterHurted()) {
         	if(super.isMoving()) {
         		currentImage = footballZombieHurtImage;
         	}

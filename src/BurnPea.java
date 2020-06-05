@@ -17,7 +17,7 @@ public class BurnPea extends Pea{
             boolean exit = false;
             if (z.getPosX()+30>=getPosX()&&getPosX()>=z.getPosX()-30){
             	burnpea.player.start();
-                z.setHealth(z.getHealth() - 400);
+                z.changeHealth(z.getHealth() - 400);
                 exit = true;
                 gp.getLanePeas().get(getMyLane()).remove(this);
                 if (exit) break;
