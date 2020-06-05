@@ -18,11 +18,6 @@ public class BurnPea extends Pea{
             if (z.getPosX()+30>=getPosX()&&getPosX()>=z.getPosX()-30){
             	burnpea.player.start();
                 z.setHealth(z.getHealth() - 400);
-                if (z.getHealth() < 0) {
-                    System.out.println("ZOMBIE DIE");
-                    GamePanel.setProgress(10);
-                    gp.getLaneZombies().get(getMyLane()).remove(i);
-                }
                 exit = true;
                 gp.getLanePeas().get(getMyLane()).remove(this);
                 if (exit) break;

@@ -88,7 +88,10 @@ public class Zombie extends JPanel {
         }
         if(health < 50) {
         	isDead = true;
-        	zombiesEating.player.stop();
+            zombiesEating.player.stop();
+            System.out.println("ZOMBIE DIE");
+            GamePanel.setProgress(10);
+            gp.getLaneZombies().get(getMyLane()).remove(this);
         }
     }
 
