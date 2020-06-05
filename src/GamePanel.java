@@ -19,7 +19,7 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
     private Image bgImage;
 
     
-    private Image normalZombieImage;
+    
     private Image coneHeadZombieImage;
     private Image coneHeadZombieAttackImage;
     private Image coneHeadZombieHurtAttackImage;
@@ -83,19 +83,19 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
         bgImage = new ImageIcon(this.getClass().getResource("images/mainB.png")).getImage();
         zombieType = 5;
         
-        normalZombieImage = new ImageIcon(this.getClass().getResource("images/zombies/Zombie.gif")).getImage();
-        coneHeadZombieImage = new ImageIcon(this.getClass().getResource("images/zombies/ConeheadZombie.gif")).getImage();
-        coneHeadZombieAttackImage = new ImageIcon(this.getClass().getResource("images/zombies/ConeheadZombieAttack.gif")).getImage();
-        coneHeadZombieHurtAttackImage = new ImageIcon(this.getClass().getResource("images/zombies/ConeheadZombieAttack2.gif")).getImage();
-        metalBucketZombieImage = new ImageIcon(this.getClass().getResource("images/zombies/BucketheadZombie.gif")).getImage();
-        metalBucketZombieAttackImage = new ImageIcon(this.getClass().getResource("images/zombies/BucketheadZombieAttack.gif")).getImage();
+        
+        coneHeadZombieImage = new ImageIcon(this.getClass().getResource("images/zombies/coneheadzombie/ConeheadZombie.gif")).getImage();
+        coneHeadZombieAttackImage = new ImageIcon(this.getClass().getResource("images/zombies/coneheadzombie/ConeheadZombieAttack.gif")).getImage();
+        coneHeadZombieHurtAttackImage = new ImageIcon(this.getClass().getResource("images/zombies/coneheadzombie/ConeheadZombieAttack2.gif")).getImage();
+        metalBucketZombieImage = new ImageIcon(this.getClass().getResource("images/zombies/metalbucketzombie/BucketheadZombie.gif")).getImage();
+        metalBucketZombieAttackImage = new ImageIcon(this.getClass().getResource("images/zombies/metalbucketzombie/BucketheadZombieAttack.gif")).getImage();
 
         
         
-        footballZombieImage = new ImageIcon(this.getClass().getResource("images/zombies/FootballZombie.gif")).getImage();
-        footballZombieAttackImage = new ImageIcon(this.getClass().getResource("images/zombies/FootballZombieAttack.gif")).getImage();
-        footballZombieHurtImage = new ImageIcon(this.getClass().getResource("images/zombies/FootballZombieOrnLost.gif")).getImage();
-        footballZombieHurtAttackImage = new ImageIcon(this.getClass().getResource("images/zombies/FootballZombieOrnLostAttack.gif")).getImage();
+        footballZombieImage = new ImageIcon(this.getClass().getResource("images/zombies/footballzombie/FootballZombie.gif")).getImage();
+        footballZombieAttackImage = new ImageIcon(this.getClass().getResource("images/zombies/footballzombie/FootballZombieAttack.gif")).getImage();
+        footballZombieHurtImage = new ImageIcon(this.getClass().getResource("images/zombies/footballzombie/FootballZombieOrnLost.gif")).getImage();
+        footballZombieHurtAttackImage = new ImageIcon(this.getClass().getResource("images/zombies/footballzombie/FootballZombieOrnLostAttack.gif")).getImage();
         
         zombieProduceInterval = 7000;
         zombieProduceCount = 0;

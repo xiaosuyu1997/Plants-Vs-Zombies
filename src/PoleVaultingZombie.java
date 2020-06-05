@@ -34,15 +34,15 @@ public class PoleVaultingZombie  extends Zombie {
         collidedCount = 0;
         isJumping = false;
         
-        poleVaultingZombieImage = new ImageIcon(this.getClass().getResource("images/zombies/PoleVaultingZombie.gif")).getImage();
-        poleVaultingZombieJumpImage = new ImageIcon(this.getClass().getResource("images/zombies/PoleVaultingZombieJump.gif")).getImage();
-        poleVaultingZombieJumpImage2 = new ImageIcon(this.getClass().getResource("images/zombies/PoleVaultingZombieJump2.gif")).getImage();
-        poleVaultingZombieWalkImage = new ImageIcon(this.getClass().getResource("images/zombies/PoleVaultingZombieWalk.gif")).getImage();
-        poleVaultingZombieAttackImage = new ImageIcon(this.getClass().getResource("images/zombies/PoleVaultingZombieAttack.gif")).getImage();
-        poleVaultingZombieLostHeadImage = new ImageIcon(this.getClass().getResource("images/zombies/PoleVaultingZombieLostHead.gif")).getImage();
-        poleVaultingZombieDeadWalkImage = new ImageIcon(this.getClass().getResource("images/zombies/PoleVaultingZombieLostHeadWalk.gif")).getImage();
-        poleVaultingZombieDeadAttackImage = new ImageIcon(this.getClass().getResource("images/zombies/PoleVaultingZombieLostHeadAttack.gif")).getImage();
-        poleVaultingZombieDeadImage = new ImageIcon(this.getClass().getResource("images/zombies/PoleVaultingZombieDie.gif")).getImage();
+        poleVaultingZombieImage = new ImageIcon(this.getClass().getResource("images/zombies/polevaultingzombie/PoleVaultingZombie.gif")).getImage();
+        poleVaultingZombieJumpImage = new ImageIcon(this.getClass().getResource("images/zombies/polevaultingzombie/PoleVaultingZombieJump.gif")).getImage();
+        poleVaultingZombieJumpImage2 = new ImageIcon(this.getClass().getResource("images/zombies/polevaultingzombie/PoleVaultingZombieJump2.gif")).getImage();
+        poleVaultingZombieWalkImage = new ImageIcon(this.getClass().getResource("images/zombies/polevaultingzombie/PoleVaultingZombieWalk.gif")).getImage();
+        poleVaultingZombieAttackImage = new ImageIcon(this.getClass().getResource("images/zombies/polevaultingzombie/PoleVaultingZombieAttack.gif")).getImage();
+        poleVaultingZombieLostHeadImage = new ImageIcon(this.getClass().getResource("images/zombies/polevaultingzombie/PoleVaultingZombieLostHead.gif")).getImage();
+        poleVaultingZombieDeadWalkImage = new ImageIcon(this.getClass().getResource("images/zombies/polevaultingzombie/PoleVaultingZombieLostHeadWalk.gif")).getImage();
+        poleVaultingZombieDeadAttackImage = new ImageIcon(this.getClass().getResource("images/zombies/polevaultingzombie/PoleVaultingZombieLostHeadAttack.gif")).getImage();
+        poleVaultingZombieDeadImage = new ImageIcon(this.getClass().getResource("images/zombies/polevaultingzombie/PoleVaultingZombieDie.gif")).getImage();
         poleVaultingZombieJumpImage.flush();
         poleVaultingZombieJumpImage2.flush();
         poleVaultingZombieDeadWalkImage.flush();

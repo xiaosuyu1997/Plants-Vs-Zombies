@@ -33,13 +33,13 @@ public class NewspaperZombie  extends Zombie {
 
         setSize(200, 200);
         setOpaque(false);
-        newspaperZombieImage = new ImageIcon(this.getClass().getResource("images/zombies/NewspaperZombie.gif")).getImage();
-        newspaperZombieAttackImage = new ImageIcon(this.getClass().getResource("images/zombies/NewspaperZombieAttack.gif")).getImage();
-        newspaperZombieLoseImage = new ImageIcon(this.getClass().getResource("images/zombies/NewspaperZombieLosePaper.gif")).getImage();
-        newspaperZombieLoseWalkImage = new ImageIcon(this.getClass().getResource("images/zombies/NewspaperZombieLose.gif")).getImage();
-        newspaperZombieLoseAttackImage = new ImageIcon(this.getClass().getResource("images/zombies/NewspaperZombieLoseAttack.gif")).getImage();
-        newspaperZombieDeadWalkImage = new ImageIcon(this.getClass().getResource("images/zombies/NewspaperZombieDead.gif")).getImage();
-        newspaperZombieDeadAttackImage = new ImageIcon(this.getClass().getResource("images/zombies/NewspaperZombieLackDeadAttack.gif")).getImage();
+        newspaperZombieImage = new ImageIcon(this.getClass().getResource("images/zombies/newspaperzombie/NewspaperZombie.gif")).getImage();
+        newspaperZombieAttackImage = new ImageIcon(this.getClass().getResource("images/zombies/newspaperzombie/NewspaperZombieAttack.gif")).getImage();
+        newspaperZombieLoseImage = new ImageIcon(this.getClass().getResource("images/zombies/newspaperzombie/NewspaperZombieLosePaper.gif")).getImage();
+        newspaperZombieLoseWalkImage = new ImageIcon(this.getClass().getResource("images/zombies/newspaperzombie/NewspaperZombieLose.gif")).getImage();
+        newspaperZombieLoseAttackImage = new ImageIcon(this.getClass().getResource("images/zombies/newspaperzombie/NewspaperZombieLoseAttack.gif")).getImage();
+        newspaperZombieDeadWalkImage = new ImageIcon(this.getClass().getResource("images/zombies/newspaperzombie/NewspaperZombieDead.gif")).getImage();
+        newspaperZombieDeadAttackImage = new ImageIcon(this.getClass().getResource("images/zombies/newspaperzombie/NewspaperZombieLackDeadAttack.gif")).getImage();
         newspaperZombieDeadWalkImage.flush();
         newspaperZombieDeadAttackImage.flush();
         
