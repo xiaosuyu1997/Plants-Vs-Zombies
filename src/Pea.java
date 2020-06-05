@@ -28,15 +28,12 @@ public class Pea {
 
     public void advance() {
         Rectangle pRect = new Rectangle(posX, 130 + myLane * 120, 28, 28);
-        Rectangle pHit = new Rectangle(posX, 130 + myLane * 120, 40, 40);
         for (int i = 0; i < gp.getLaneZombies().get(myLane).size(); i++) {
             Zombie z = gp.getLaneZombies().get(myLane).get(i);
             Rectangle zRect = new Rectangle(z.getPosX(), 109 + myLane * 120, 400, 120);
             boolean exit = false;
-            if(pHit.intersects(zRect)) {
-            	setImage(peahit);
-            }
-            if (pRect.intersects(zRect)) {
+            if (z.getPosX()+30>=posX&&posX>=z.getPosX()-30) {
+                setImage(peahit);
             	if(z instanceof MetalBucketZombie) {
             		peaHitShiled.player.start();
             	}
