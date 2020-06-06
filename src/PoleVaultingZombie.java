@@ -12,6 +12,8 @@ public class PoleVaultingZombie  extends Zombie {
 	private int collidedCount;
 	private boolean isJumping;
 	private boolean isTallnut;
+	private Collider collided;
+	
 	private Image poleVaultingZombieImage;
 	private Image poleVaultingZombieJumpImage;
 	private Image poleVaultingZombieJumpImage2;
@@ -38,6 +40,8 @@ public class PoleVaultingZombie  extends Zombie {
         collidedCount = 0;
         isJumping = false;
         isTallnut = false;
+        collided = null;
+        
         poleVaultingZombieImage = new ImageIcon(this.getClass().getResource("images/zombies/polevaultingzombie/PoleVaultingZombie.gif")).getImage();
         poleVaultingZombieJumpImage = new ImageIcon(this.getClass().getResource("images/zombies/polevaultingzombie/PoleVaultingZombieJump.gif")).getImage();
         poleVaultingZombieJumpImage2 = new ImageIcon(this.getClass().getResource("images/zombies/polevaultingzombie/PoleVaultingZombieJump2.gif")).getImage();
@@ -70,7 +74,7 @@ public class PoleVaultingZombie  extends Zombie {
     	setLocation(getPosX()-200, getMyLane() * 120 - 20);
     	
         if (isMoving()) {
-        	Collider collided = null;
+        	collided = null;
             boolean tempCollided = false;
             if(!isJumping) {
             	for (int i = getMyLane()  * 9; i < (getMyLane()  + 1) * 9; i++) {
@@ -129,23 +133,28 @@ public class PoleVaultingZombie  extends Zombie {
              			} }, 2000);
             	}
             }
+        }
             
             
             if(isAttacking()) {
-            	currentImage = poleVaultingZombieAttackImage;
+            	currentImage= poleVaultingZombieAttackImage;
             	zombiesEating.player.loop(Clip.LOOP_CONTINUOUSLY);
-        		collided.assignedPlant.setHealth(collided.assignedPlant.getHealth() - 10);
-        		if (collided.assignedPlant.getHealth() < 0) {
-        			zombiesEating.player.stop();
-        			gulp.player.start();
-        			collided.removePlant();
-            		setAttacking(false);
-            		setMoving(true);
-        		}
+            	
+                if(collided.assignedPlant!=null){
+                    collided.assignedPlant.setHealth(collided.assignedPlant.getHealth() - 1);
+                    if (collided.assignedPlant.getHealth() <= 0) {
+                        zombiesEating.player.stop();
+                        gulp.player.start();
+                		setAttacking(false);
+                		currentImage = poleVaultingZombieWalkImage;
+                		setMoving(true);
+                    }
+                }
                 if(collided.assignedPlant==null){
                     zombiesEating.player.stop();
-            		setAttacking(false);
-            		setMoving(true);
+                    setAttacking(false);
+                    currentImage = poleVaultingZombieWalkImage;
+                    setMoving(true);
                 }
             }
             
@@ -171,7 +180,7 @@ public class PoleVaultingZombie  extends Zombie {
 
             }
             
-            
+
             if(super.isDead()) {
             	if(collidedCount == 0) {
             		currentImage = poleVaultingZombieLostHeadImage;
@@ -200,6 +209,6 @@ public class PoleVaultingZombie  extends Zombie {
          				//getGp().getLaneZombies().get(getMyLane()).remove(temp);
          			} }, 2000);
             }
-        }
+        
     }
 }
