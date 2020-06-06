@@ -19,6 +19,13 @@ public class Sunflower extends Plant {
         });
         sunProduceTimer.start();
     }
+    public Sunflower(GamePanel parent, int x, int y,int i) {
+        super(parent, x, y);
+        setImage(new ImageIcon(this.getClass().getResource("images/plants/sunflower.gif")).getImage());
+        sunProduceTimer = new Timer(15000, (ActionEvent e) -> {
+        });
+        sunProduceTimer.start();
+    }
     @Override
     public void stop() {
         super.stop();

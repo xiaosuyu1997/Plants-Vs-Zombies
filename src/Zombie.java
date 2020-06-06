@@ -63,6 +63,12 @@ public class Zombie extends JPanel {
                     collided = gp.getColliders()[i];
                 }
             }
+            if(gp.getBrain()!=null&&getPosX()<=20){
+                if(gp.getBrain()[myLane].assignedPlant != null){
+                    isCollides = true;
+                    collided = gp.getBrain()[myLane];
+                }
+            }
             if (!isCollides) {
             	isAttacking = false;
                 if (slowInt > 0) {
@@ -76,12 +82,6 @@ public class Zombie extends JPanel {
             } else {
             	isMoving = false;
             	isAttacking = true;
-            }
-            if (posX < -50) {
-            	zombiesWin.player.start();
-                isMoving = false;
-                JOptionPane.showMessageDialog(gp, "ZOMBIES ATE YOUR BRAIN !" + '\n' + "Starting the level again");
-                GameWindow.gw.dispose();
             }
         }
         if(isAttacking) {

@@ -19,6 +19,7 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
     private Image bgImage;
 
     private Collider[] colliders;
+    private Collider[] brains;
 
     private ArrayList<ArrayList<Zombie>> laneZombies;
     private ArrayList<DeadZombie> deadZombies;
@@ -30,6 +31,8 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
     private Timer sunProducer;
     private Timer zombieProducer;
     private Timer zombieDier;
+    private Timer loseTimer;
+    private Timer winTimer;
     private JLabel sunScoreboard;
     
     private SoundEffect bgm = new SoundEffect("./src/bgms/pvzBG1.wav");
@@ -176,10 +179,141 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
         bgm.prepare();
         zombiesComing.prepare();
         
+        loseTimer = new Timer(0, (ActionEvent e) -> {
+            boolean haslose=false;
+            for(int i=0;i<5;i++){
+                for(int j=0;j<laneZombies.get(i).size();++j){
+                    if(laneZombies.get(i).get(j).getPosX()<-50){
+                        haslose=true;
+                        break;
+                    }
+                }
+            }
+            if(haslose){
+                SoundEffect zombiesWin = new SoundEffect("./src/bgms/zombiegroup.wav");
+                zombiesWin.player.start();
+                loseTimer.stop();
+                JOptionPane.showMessageDialog(GamePanel.this, "ZOMBIES ATE YOUR BRAIN !" + '\n' + "Starting the level again");
+                GameWindow.gw.dispose();
+                System.exit(0);
+            }
+        });
+        loseTimer.start();
         
-        
+        winTimer = new Timer(0, (ActionEvent e) -> {
+            if (progress >= 150) {
+                if ("1".equals(LevelData.LEVEL_NUMBER)) {
+                    JOptionPane.showMessageDialog(null, "LEVEL_CONTENT Completed !!!" + '\n' + "Starting next LEVEL_CONTENT");
+                    GameWindow.gw.dispose();
+                    LevelData.write("2");
+                    System.exit(0);
+                } else {
+                    JOptionPane.showMessageDialog(null, "LEVEL_CONTENT Completed !!!" + '\n' + "More Levels will come soon !!!" + '\n' + "Resetting data");
+                    LevelData.write("1");
+                    System.exit(0);
+                }
+                progress = 0;
+                winTimer.stop();
+            }
+        });
+        winTimer.start();
+
         bgm.player.start();
         zombiesComing.player.start();
+    }
+
+    public GamePanel(GameWindow gamewin,JLabel sunScoreboard,int ii) {
+        gw = gamewin;
+
+        setSize(1000, 752);
+        setLayout(null);
+        addMouseMotionListener(this);
+        this.sunScoreboard = sunScoreboard;
+        setSunScore(5000);  //pool avalie
+
+        laneZombies = new ArrayList<>();
+        laneZombies.add(new ArrayList<>()); //line 1
+        laneZombies.add(new ArrayList<>()); //line 2
+        laneZombies.add(new ArrayList<>()); //line 3
+        laneZombies.add(new ArrayList<>()); //line 4
+        laneZombies.add(new ArrayList<>()); //line 5
+
+        lanePeas = new ArrayList<>();
+        lanePeas.add(new ArrayList<>()); //line 1
+        lanePeas.add(new ArrayList<>()); //line 2
+        lanePeas.add(new ArrayList<>()); //line 3
+        lanePeas.add(new ArrayList<>()); //line 4
+        lanePeas.add(new ArrayList<>()); //line 5
+
+        bgImage = new ImageIcon(this.getClass().getResource("images/mainN.png")).getImage();
+        brains = new Collider[5];
+        for (int i = 0; i < 5; i++) {
+            Collider a = new Collider();
+            a.setLocation(44 + (i % 9) * 100, 109 + (i / 9) * 120);
+            a.setPlant(new Brain(GamePanel.this, i) );
+            a.setSize(32,31);
+            brains[i] = a;
+            add(a, new Integer(0));
+        }
+
+        // 妞嶇墿缃戞牸
+        colliders = new Collider[45];
+        for (int i = 0; i < 45; i++) {
+            Collider a = new Collider();
+            a.setLocation(44 + (i % 9) * 100, 109 + (i / 9) * 120);
+            if(i%9>3) a.setAction(new PlantActionListener((i % 9), (i / 9)));
+            colliders[i] = a;
+            add(a, new Integer(0));
+        }
+
+        for (int x = 0; x < 4 ;x++) {
+            for (int y = 0; y < 5; y++) {
+                int c = (int)(Math.random()*10+1);
+                if(c==1) colliders[x + y * 9].setPlant(new Sunflower(GamePanel.this, x, y,1));
+                if(c==2) colliders[x + y * 9].setPlant(new Peashooter(GamePanel.this, x, y));
+                if(c==3) colliders[x + y * 9].setPlant(new FreezePeashooter(GamePanel.this, x, y));
+                if(c==4) colliders[x + y * 9].setPlant(new Torchwood(GamePanel.this, x, y));
+                if(c==5) colliders[x + y * 9].setPlant(new TwicePeashooter(GamePanel.this, x, y));
+                if(c==6) colliders[x + y * 9].setPlant(new ThreePeashooter(GamePanel.this, x, y));
+                if(c==7) colliders[x + y * 9].setPlant(new Chomper(GamePanel.this, x, y,1,0));
+                if(c==8) colliders[x + y * 9].setPlant(new Wallnut(GamePanel.this, x, y,1));
+                if(c==9) colliders[x + y * 9].setPlant(new PotatoMine(GamePanel.this, x, y,2));
+                if(c==10) colliders[x + y * 9].setPlant(new Spikeweed(GamePanel.this, x, y));
+            }
+        }
+        redrawTimer = new Timer(10, (ActionEvent e) -> {
+            repaint();
+        });
+        redrawTimer.start();
+
+        advancerTimer = new Timer(50, (ActionEvent e) -> advance());
+        advancerTimer.start();
+
+        
+        loseTimer = new Timer(0, (ActionEvent e) ->{
+            if(getSunScore()<75){
+                loseTimer.stop();
+                JOptionPane.showMessageDialog(GamePanel.this, "have no enough sun, you lose");
+                GameWindow.gw.dispose();
+                System.exit(0);
+            }
+        });
+        loseTimer.start();
+
+
+        winTimer = new Timer(0,(ActionEvent e) ->{
+            boolean nobrain = true;
+            for(int i=0;i<5;i++){
+                if(brains[i].assignedPlant!=null) nobrain=false;
+            }
+            if(nobrain){
+                winTimer.stop();
+                JOptionPane.showMessageDialog(null,"you win");
+                GameWindow.gw.dispose();
+                System.exit(0);
+            }
+        });
+        winTimer.start();
     }
 
     private void advance() {
@@ -208,11 +342,11 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
             	}
             }*/
         }
-
-        for (int i = 0; i < activeSuns.size(); i++) {
-            activeSuns.get(i).advance();
+        if(activeSuns!=null){
+            for (int i = 0; i < activeSuns.size(); i++) {
+                activeSuns.get(i).advance();
+            }
         }
-
     }
 
     @Override
@@ -220,6 +354,16 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
         super.paintComponent(g);
         g.drawImage(bgImage, 0, 0, null);
 
+        //Draw brains
+        if(brains !=null){
+            for (int i = 0; i < 5 ; i++) {
+                Collider c = brains[i];
+                if (c.assignedPlant != null){
+                    Plant p = c.assignedPlant;
+                    g.drawImage(p.getImage(), 0, 129 + p.getY() * 120, null);
+                }
+            }
+        }
         //Draw Plants
         for (int i = 0; i < 45; i++) {
             Collider c = colliders[i];
@@ -344,6 +488,51 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
+
+            if (activePlantingBrush == GameWindow.PlantType.ConeHeadZombie){
+            	plant.prepare();
+            	plant.player.start();
+                if (getSunScore() >= 75) {
+                    ConeHeadZombie z = new ConeHeadZombie(GamePanel.this,  y);
+                    z.setPosX(44 + x * 100);
+                    laneZombies.get(y).add(z);
+                    add(z, new Integer(2));
+                    setSunScore(getSunScore() - 75);
+                }
+            }
+            if (activePlantingBrush == GameWindow.PlantType.PoleVaultingZombie){
+            	plant.prepare();
+            	plant.player.start();
+                if (getSunScore() >= 75) {
+                    PoleVaultingZombie z = new PoleVaultingZombie(GamePanel.this,  y);
+                    z.setPosX(44 + x * 100);
+                    laneZombies.get(y).add(z);
+                    add(z, new Integer(2));
+                    setSunScore(getSunScore() - 75);
+                }
+            }
+            if (activePlantingBrush == GameWindow.PlantType.MetalBucketZombie){
+            	plant.prepare();
+            	plant.player.start();
+                if (getSunScore() >= 125) {
+                    MetalBucketZombie z = new MetalBucketZombie(GamePanel.this,  y);
+                    z.setPosX(44 + x * 100);
+                    laneZombies.get(y).add(z);
+                    add(z, new Integer(2));
+                    setSunScore(getSunScore() - 125);
+                }
+            }
+            if (activePlantingBrush == GameWindow.PlantType.FootballZombie){
+            	plant.prepare();
+            	plant.player.start();
+                if (getSunScore() >= 175) {
+                    FootballZombie z = new FootballZombie(GamePanel.this,  y);
+                    z.setPosX(44 + x * 100);
+                    laneZombies.get(y).add(z);
+                    add(z, new Integer(2));
+                    setSunScore(getSunScore() - 175);
+                }
+            }
             
             if (activePlantingBrush == GameWindow.PlantType.GatlingPea){
             	plant.prepare();
@@ -398,6 +587,7 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
                     gw.Sunflower.countwaittime();
                 }
             }
+            
             if (activePlantingBrush == GameWindow.PlantType.Peashooter) {
             	plant.player.start();
                 if (getSunScore() >= 100) {
@@ -525,19 +715,6 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
     public static void setProgress(int num) {
         progress = progress + num;
         System.out.println(progress);
-        if (progress >= 150) {
-            if ("1".equals(LevelData.LEVEL_NUMBER)) {
-                JOptionPane.showMessageDialog(null, "LEVEL_CONTENT Completed !!!" + '\n' + "Starting next LEVEL_CONTENT");
-                GameWindow.gw.dispose();
-                LevelData.write("2");
-                System.exit(0);
-            } else {
-                JOptionPane.showMessageDialog(null, "LEVEL_CONTENT Completed !!!" + '\n' + "More Levels will come soon !!!" + '\n' + "Resetting data");
-                LevelData.write("1");
-                System.exit(0);
-            }
-            progress = 0;
-        }
     }
 
     public GameWindow.PlantType getActivePlantingBrush() {
@@ -578,5 +755,9 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
 
     public void setColliders(Collider[] colliders) {
         this.colliders = colliders;
+    }
+
+    public Collider[] getBrain() {
+        return brains;
     }
 }
