@@ -171,12 +171,6 @@ public class PoleVaultingZombie  extends Zombie {
 
             }
             
-            if (getPosX() < -50) {
-            	setMoving(false);
-            	zombiesWin.player.start();
-                JOptionPane.showMessageDialog(getGp(), "ZOMBIES ATE YOUR BRAIN !" + '\n' + "Starting the level again");
-                GameWindow.gw.dispose();
-            }
             
             if(super.isDead()) {
             	if(collidedCount == 0) {
