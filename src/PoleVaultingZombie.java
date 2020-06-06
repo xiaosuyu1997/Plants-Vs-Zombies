@@ -24,6 +24,9 @@ public class PoleVaultingZombie  extends Zombie {
 	
 	private Image currentImage;
 	
+    private int xbias;
+    private int ybias;
+    
 	private SoundEffect poleVault = new SoundEffect("./src/bgms/polevault.wav");
 
 	
@@ -62,7 +65,7 @@ public class PoleVaultingZombie  extends Zombie {
         g.drawImage(currentImage, 0, 0, null);
     }
     
-    
+    @Override
     public void advance() {
     	setLocation(getPosX()-200, getMyLane() * 120 - 20);
     	
@@ -168,7 +171,7 @@ public class PoleVaultingZombie  extends Zombie {
 
             }
             
-            if (getPosX() < 0) {
+            if (getPosX() < -50) {
             	setMoving(false);
             	zombiesWin.player.start();
                 JOptionPane.showMessageDialog(getGp(), "ZOMBIES ATE YOUR BRAIN !" + '\n' + "Starting the level again");

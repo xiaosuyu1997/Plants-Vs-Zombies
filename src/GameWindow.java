@@ -108,7 +108,7 @@ public class GameWindow extends JFrame {
 
                     gp.setActivePlantingBrush(PlantType.Sunflower);
                 });
-                getLayeredPane().add(Sunflower, new Integer(3));
+                getLayeredPane().add(Sunflower, new Integer(1));
             }
 
             if (name[i] == "peashooter") {
@@ -117,7 +117,7 @@ public class GameWindow extends JFrame {
 
                     gp.setActivePlantingBrush(PlantType.Peashooter);
                 });
-                getLayeredPane().add(Peashooter, new Integer(3));
+                getLayeredPane().add(Peashooter, new Integer(1));
             }
 
             if (name[i] == "freezepeashooter") {
@@ -127,7 +127,7 @@ public class GameWindow extends JFrame {
                     gp.setActivePlantingBrush(PlantType.FreezePeashooter);
                 });
                 FreezePeashooter.countwaittime();
-                getLayeredPane().add(FreezePeashooter, new Integer(3));
+                getLayeredPane().add(FreezePeashooter, new Integer(1));
             }
             if (name[i] == "twicepeashooter") {
                 TwicePeashooter = new PlantCard("images/cards/card_twicepeashooter.png");
@@ -135,7 +135,7 @@ public class GameWindow extends JFrame {
                     gp.setActivePlantingBrush(PlantType.TwicePeashooter);
                 });
                 TwicePeashooter.countwaittime();
-                getLayeredPane().add(TwicePeashooter, new Integer(3));
+                getLayeredPane().add(TwicePeashooter, new Integer(1));
             }
             if (name[i] == "threepeashooter") {
                 ThreePeashooter = new PlantCard("images/cards/card_threepeashooter.png");
@@ -143,7 +143,7 @@ public class GameWindow extends JFrame {
                     gp.setActivePlantingBrush(PlantType.ThreePeashooter);
                 });
                 ThreePeashooter.countwaittime();
-                getLayeredPane().add(ThreePeashooter, new Integer(3));
+                getLayeredPane().add(ThreePeashooter, new Integer(1));
             }
             if (name[i] == "torchwood") {
                 Torchwood = new PlantCard("images/cards/card_torchwood.png");
@@ -151,7 +151,7 @@ public class GameWindow extends JFrame {
                     gp.setActivePlantingBrush(PlantType.Torchwood);
                 });
                 Torchwood.countwaittime();
-                getLayeredPane().add(Torchwood, new Integer(3));
+                getLayeredPane().add(Torchwood, new Integer(1));
             }
             if (name[i] == "wallnut") {
                 Wallnut = new PlantCard("images/cards/card_wallnut.png");
@@ -159,7 +159,7 @@ public class GameWindow extends JFrame {
                     gp.setActivePlantingBrush(PlantType.Wallnut);
                 });
                 Wallnut.countwaittime();
-                getLayeredPane().add(Wallnut, new Integer(3));
+                getLayeredPane().add(Wallnut, new Integer(1));
             }
             if (name[i] == "chomper") {
                 Chomper = new PlantCard("images/cards/card_chomper.png");
@@ -167,7 +167,7 @@ public class GameWindow extends JFrame {
                     gp.setActivePlantingBrush(PlantType.Chomper);
                 });
                 Chomper.countwaittime();
-                getLayeredPane().add(Chomper, new Integer(3));
+                getLayeredPane().add(Chomper, new Integer(1));
             }
             if (name[i] == "potatomine") {
                 PotatoMine = new PlantCard("images/cards/card_potatomine.png");
@@ -175,7 +175,7 @@ public class GameWindow extends JFrame {
                     gp.setActivePlantingBrush(PlantType.PotatoMine);
                 });
                 PotatoMine.countwaittime();
-                getLayeredPane().add(PotatoMine, new Integer(3));
+                getLayeredPane().add(PotatoMine, new Integer(1));
             }
             if (name[i] == "gatling") {
                 GatlingPea = new PlantCard("images/cards/card_gatling.png");
@@ -183,7 +183,7 @@ public class GameWindow extends JFrame {
                     gp.setActivePlantingBrush(PlantType.GatlingPea);
                 });
                 GatlingPea.countwaittime();
-                getLayeredPane().add(GatlingPea, new Integer(3));
+                getLayeredPane().add(GatlingPea, new Integer(1));
             }
 
             if(name[i]=="cherrybomb"){
@@ -192,7 +192,7 @@ public class GameWindow extends JFrame {
                     gp.setActivePlantingBrush(PlantType.CherryBomb);
                 });
                 CherryBomb.countwaittime();
-                getLayeredPane().add(CherryBomb, new Integer(3));
+                getLayeredPane().add(CherryBomb, new Integer(1));
             }
 
             if(name[i]=="tallwallnut"){
@@ -201,7 +201,7 @@ public class GameWindow extends JFrame {
                     gp.setActivePlantingBrush(PlantType.Tallnut);
                 });
                 Tallnut.countwaittime();
-                getLayeredPane().add(Tallnut, new Integer(3));
+                getLayeredPane().add(Tallnut, new Integer(1));
             }
 
             if(name[i]=="twinsunflower"){
@@ -210,7 +210,7 @@ public class GameWindow extends JFrame {
                     gp.setActivePlantingBrush(PlantType.Twinsunflower);
                 });
                 Twinsunflower.countwaittime();
-                getLayeredPane().add(Twinsunflower, new Integer(3));
+                getLayeredPane().add(Twinsunflower, new Integer(1));
             }
 
             if(name[i]=="jalapeno"){
@@ -219,7 +219,7 @@ public class GameWindow extends JFrame {
                     gp.setActivePlantingBrush(PlantType.Jalapeno);
                 });
                 Jalapeno.countwaittime();
-                getLayeredPane().add(Jalapeno, new Integer(3));
+                getLayeredPane().add(Jalapeno, new Integer(1));
             }
 
             if (name[i] == "spikeweed") {
@@ -228,7 +228,7 @@ public class GameWindow extends JFrame {
                     gp.setActivePlantingBrush(PlantType.Spikeweed);
                 });
                 Spikeweed.countwaittime();
-                getLayeredPane().add(Spikeweed, new Integer(3));
+                getLayeredPane().add(Spikeweed, new Integer(1));
             }
 
             if(name[i] == "spikerock") {
@@ -237,7 +237,7 @@ public class GameWindow extends JFrame {
                     gp.setActivePlantingBrush(PlantType.Spikerock);
                 });
                 Spikerock.countwaittime();
-                getLayeredPane().add(Spikerock, new Integer(3));
+                getLayeredPane().add(Spikerock, new Integer(1));
             }
         }
 
@@ -246,7 +246,7 @@ public class GameWindow extends JFrame {
         Sholve.setAction(760, 0, 0, (ActionEvent e) -> {
             gp.setActivePlantingBrush(PlantType.Sholve);
         });
-        getLayeredPane().add(Sholve, new Integer(3));
+        getLayeredPane().add(Sholve, new Integer(1));
 
         getLayeredPane().add(sun, new Integer(2));
         setResizable(false);

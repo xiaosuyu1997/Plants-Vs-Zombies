@@ -125,7 +125,7 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
             Random rnd = new Random();
             Sun sta = new Sun(this, rnd.nextInt(800) + 100, 0, rnd.nextInt(300) + 200);
             activeSuns.add(sta);
-            add(sta, new Integer(1));
+            add(sta, new Integer(2));
         });
         sunProducer.start();
 
@@ -143,7 +143,7 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
                 //}
             //}
             laneZombies.get(l).add(z);
-            add(z, new Integer(1));
+            add(z, new Integer(2));
             zombieProduceCount++;
             if(zombieProduceCount % 2 == 0) {
             	if(zombieProduceType < 5) {

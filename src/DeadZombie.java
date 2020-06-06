@@ -9,7 +9,7 @@ public class DeadZombie extends Zombie{
         super(parent, lane);    
         setSize(200, 200);
         setOpaque(false);
-        setLocation(posX, lane * 120 + 69);
+        setLocation(posX - 20, lane * 120 + 69);
         deadZombieImage = new ImageIcon(this.getClass().getResource("images/zombies/BoomDie.gif")).getImage();
         deadZombieImage.flush();
         
