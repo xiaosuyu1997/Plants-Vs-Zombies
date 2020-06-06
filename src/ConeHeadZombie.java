@@ -64,11 +64,12 @@ public class ConeHeadZombie extends Zombie {
         		currentImage = coneHeadZombieImage;
         	}
         	else if(super.isAttacking()) {
+        		xbias = -100;
         		currentImage= coneHeadZombieAttackImage;
         	}
         }
         else if(isHalfHurted()) {
-        	xbias = -40;
+        	xbias = -70;
         	ybias = 60;
         	if(super.isMoving()) {
         		currentImage = normalZombieImage;
