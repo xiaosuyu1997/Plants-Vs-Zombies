@@ -69,8 +69,7 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
 
         bgImage = new ImageIcon(this.getClass().getResource("images/mainB.png")).getImage();
         zombieType = 5;
-        
-        
+
         zombieProduceInterval = 7000;
         zombieProduceCount = 0;
         zombieProduceType = 1;
@@ -228,6 +227,9 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
                 Plant p = c.assignedPlant;
                 if(p instanceof Tallnut){
                     g.drawImage(p.getImage(), 60 + p.getX() * 100, 60 + p.getY() * 120, null);
+                }
+                else if(p instanceof Spikeweed){
+                    g.drawImage(p.getImage(), 60 + p.getX() * 100, 180 + p.getY() * 120, null);
                 }
                 else{
                     g.drawImage(p.getImage(), 60 + p.getX() * 100, 129 + p.getY() * 120, null);
@@ -479,6 +481,15 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
                     colliders[x + y * 9].setPlant(new Jalapeno(GamePanel.this, x, y,1));
                     setSunScore(getSunScore() -125);
                     gw.Jalapeno.countwaittime();
+                }
+            }
+
+            if (activePlantingBrush == GameWindow.PlantType.Spikeweed){
+            	plant.player.start();
+                if (getSunScore() >= 100) {
+                    colliders[x + y * 9].setPlant(new Spikeweed(GamePanel.this, x, y));
+                    setSunScore(getSunScore() -100);
+                    gw.Spikeweed.countwaittime();
                 }
             }
             activePlantingBrush = GameWindow.PlantType.None;

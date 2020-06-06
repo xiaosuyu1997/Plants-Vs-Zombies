@@ -57,7 +57,8 @@ public class Zombie extends JPanel {
         if (isMoving) {
             boolean isCollides = false;
             for (int i = myLane * 9; i < (myLane + 1) * 9; i++) {
-                if (gp.getColliders()[i].assignedPlant != null && gp.getColliders()[i].isInsideCollider(posX)) {
+                if (gp.getColliders()[i].assignedPlant != null && !(gp.getColliders()[i].assignedPlant instanceof Spikeweed)
+                && gp.getColliders()[i].isInsideCollider(posX)) {
                     isCollides = true;
                     collided = gp.getColliders()[i];
                 }
