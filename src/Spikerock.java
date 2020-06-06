@@ -11,11 +11,11 @@ public class Spikerock extends Plant {
         super(parent, x, y);
         setHealth(1000000);
         setImage(new ImageIcon(this.getClass().getResource("images/plants/Spikerock.gif")).getImage());
-        shootTimer = new Timer(1000, (ActionEvent e) ->{
+        shootTimer = new Timer(1200, (ActionEvent e) ->{
             int x1= x*100+103;
             for(int i=0;i<getGp().getLaneZombies().get(y).size();++i){
                 Zombie z = getGp().getLaneZombies().get(y).get(i);
-                if(z.getPosX()>=x1-110&&z.getPosX()<=x1+80){
+                if(z.getPosX()>=x1-100&&z.getPosX()<=x1+70){
                     z.setHealth(z.getHealth()-300);
                     pea.prepare();
                     pea.player.start();
