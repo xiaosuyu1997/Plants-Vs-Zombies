@@ -360,7 +360,12 @@ public class GameWindow extends JFrame {
 
     }
 
-    public static void main(String[] args) {
+    public static void beginmodelgame() {
+        gw.dispose();
         gw = new GameWindow(1.1);
+    }
+
+    public static void main(String[] args) {
+        gw = new GameWindow(true);
     }
 }
