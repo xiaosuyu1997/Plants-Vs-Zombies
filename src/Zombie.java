@@ -84,6 +84,7 @@ public class Zombie extends JPanel {
             	isAttacking = true;
             }
         }
+        
         if(isAttacking) {
             zombiesEating.player.loop(Clip.LOOP_CONTINUOUSLY);
             
