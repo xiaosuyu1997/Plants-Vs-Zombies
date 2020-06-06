@@ -18,6 +18,7 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
 
     private Image bgImage;
 
+    // Collider grids have plants info
     private Collider[] colliders;
 
     private ArrayList<ArrayList<Zombie>> laneZombies;
@@ -89,12 +90,12 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
         lanePeas.add(new ArrayList<>()); //line 5
         
         deadZombies = new ArrayList<>();
-        // 灏忔帹杞�
+        
         for (int i=0;i<5;i++){
             lanePeas.get(i).add(new LawnCleaner(this,i,0,0));
         }
         
-        // 妞嶇墿缃戞牸
+        // Grids to plant plants
         colliders = new Collider[45];
         for (int i = 0; i < 45; i++) {
             Collider a = new Collider();
@@ -111,16 +112,17 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
 
         activeSuns = new ArrayList<>();
 
-        // 5ms鍒锋柊涓�娆＄晫闈紙gif鎾斁锛夛紝瀹炵幇鍔ㄦ�佽繃绋�
+        // repaint every 5 ms(to play gifs)
         redrawTimer = new Timer(10, (ActionEvent e) -> {
             repaint();
         });
         redrawTimer.start();
 
-        // 姣�60s鍒锋柊涓�娆￠�昏緫
+        // advance(game logic computation) every 50 ms
         advancerTimer = new Timer(50, (ActionEvent e) -> advance());
         advancerTimer.start();
 
+        // generate one sun every 5s
         sunProducer = new Timer(5000, (ActionEvent e) -> {
             Random rnd = new Random();
             Sun sta = new Sun(this, rnd.nextInt(800) + 100, 0, rnd.nextInt(300) + 200);
@@ -128,6 +130,7 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
             add(sta, new Integer(1));
         });
         sunProducer.start();
+
 
         zombieProducer = new Timer(zombieProduceInterval, (ActionEvent e) -> {
             Random rnd = new Random();
@@ -184,29 +187,17 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
 
     private void advance() {
         for (int i = 0; i < 5; i++) {
+            // Zombies move forward and detect plants to attack
             for (int j = 0; j < laneZombies.get(i).size(); j++){
                 Zombie z = laneZombies.get(i).get(j);
                 z.advance();
             }
 
+            // Peas move forward and detect collision with zombies
             for (int j = 0; j < lanePeas.get(i).size(); j++) {
                 Pea p = lanePeas.get(i).get(j);
                 p.advance();
             }
-            /**
-            for(int j = 0;j < laneZombies.get(i).size();j++) {
-            	if(laneZombies.get(i).get(j).isDead()) {
-            		System.out.println("ZOMBIE DIED");
-                    deadZombies.add(new DeadZombie(this, i, laneZombies.get(i).get(j).getPosX()));
-                    // System.out.printf("dead zombies%d", deadZombies.size());
-                    //remove(laneZombies.get(i).get(j));
-                	laneZombies.get(i).remove(laneZombies.get(i).get(j));
-                	
-                    j--;
-                    // 姣忓彧鍍靛案10鍒嗭紝鍒嗘暟杈惧埌150涔嬪悗缁堟姝ゅ叧鍗�
-                    GamePanel.setProgress(10);
-            	}
-            }*/
         }
 
         for (int i = 0; i < activeSuns.size(); i++) {
@@ -330,7 +321,6 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
         //
     }
 
-    // 绉嶆鐗�
     private class PlantActionListener implements ActionListener {
 
         int x, y;

@@ -12,6 +12,7 @@ public class Peashooter extends Plant {
         super(parent, x, y);
         setImage(new ImageIcon(this.getClass().getResource("images/plants/peashooter.gif")).getImage());
         shootTimer = new Timer(2000, (ActionEvent e) -> {
+            // Detect whether zombies exist in lane(if exist, shoot)
             boolean has=false;
             for(int i=0;i<getGp().getLaneZombies().get(y).size();++i){
                 if(getGp().getLaneZombies().get(y).get(i).getX()>this.getX() * 100){
