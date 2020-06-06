@@ -236,7 +236,8 @@ public class Menu extends JPanel {
     private void jPanel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseClicked
         // TODO add your handling code here:
         paintComponent(getGraphics());
-        //****write mini_mode launcher hear
+        menuBgm.player.stop();
+        GameWindow.beginmodelgame();
     }//GEN-LAST:event_jPanel1MouseClicked
 
     private void jPanel3MouseEntered(MouseEvent evt) {
