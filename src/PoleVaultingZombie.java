@@ -24,6 +24,9 @@ public class PoleVaultingZombie  extends Zombie {
 	
 	private Image currentImage;
 	
+    private int xbias;
+    private int ybias;
+    
 	private SoundEffect poleVault = new SoundEffect("./src/bgms/polevault.wav");
 
 	
