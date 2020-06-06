@@ -12,7 +12,7 @@ public class ThreePeashooter extends Plant{
         shootTimer = new Timer(2000, (ActionEvent e) -> {
             boolean has1=false;
             for(int i=0;i<getGp().getLaneZombies().get(y).size();++i){
-                if(getGp().getLaneZombies().get(y).get(i).getX()>this.getX() * 100){
+                if(getGp().getLaneZombies().get(y).get(i).getPosX()>this.getX() * 100){
                     has1=true;
                     break;
                 }
@@ -20,7 +20,7 @@ public class ThreePeashooter extends Plant{
             boolean has2=false;
             if(y!=4){
                 for(int i=0;i<getGp().getLaneZombies().get(y+1).size();++i){
-                    if(getGp().getLaneZombies().get(y+1).get(i).getX()>this.getX() * 100){
+                    if(getGp().getLaneZombies().get(y+1).get(i).getPosX()>this.getX() * 100){
                         has2=true;
                         break;
                     }
@@ -29,7 +29,7 @@ public class ThreePeashooter extends Plant{
             boolean has3=false;
             if(y!=0){
                 for(int i=0;i<getGp().getLaneZombies().get(y-1).size();++i){
-                    if(getGp().getLaneZombies().get(y-1).get(i).getX()>this.getX() * 100){
+                    if(getGp().getLaneZombies().get(y-1).get(i).getPosX()>this.getX() * 100){
                         has3=true;
                         break;
                     }

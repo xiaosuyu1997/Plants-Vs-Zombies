@@ -11,9 +11,7 @@ import java.util.Random;
 import java.util.Iterator;
 import java.io.*;
 
-/**
- * Created by Armin on 6/25/2016.
- */
+
 public class GamePanel extends JLayeredPane implements MouseMotionListener {
 
     private Image bgImage;

@@ -89,7 +89,13 @@ public class PoleVaultingZombie  extends Zombie {
                         else {
                         	isTallnut = false;
                         }
-                    }
+					}
+					if(getGp().getBrain()!=null&&getPosX()<=20){
+						if(getGp().getBrain()[getMyLane()].assignedPlant != null){
+							tempCollided = true;
+							collided = getGp().getBrain()[getMyLane()];
+						}
+					}
                 }
             }
             if (!tempCollided) {
@@ -133,7 +139,7 @@ public class PoleVaultingZombie  extends Zombie {
              			} }, 2000);
             	}
             }
-        }
+        	}
             
             
             if(isAttacking()) {
