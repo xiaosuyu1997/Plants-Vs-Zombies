@@ -35,7 +35,12 @@ public class Pea {
             if (z.getPosX()+30>=posX&&posX>=z.getPosX()-30) {
                 setImage(peahit);
             	if(z instanceof MetalBucketZombie) {
-            		peaHitShiled.player.start();
+            		if(!z.isThreeQuarterHurted()) {
+            			peaHitShiled.player.start();
+            		}
+            		else {
+            			pea.player.start();
+            		}
             	}
             	else {
             	    pea.player.start();

@@ -56,19 +56,23 @@ public class MetalBucketZombie  extends Zombie {
 
         if(!isThreeQuarterHurted()) {
         	if(super.isMoving()) {
+        		xbias = -10;
         		currentImage = metalBucketZombieImage;
         	}
         	else if(super.isAttacking()) {
+        		xbias = -70;
         		currentImage= metalBucketZombieAttackImage;
         	}
         }
         else if(isThreeQuarterHurted()) {
-        	xbias = -40;
+        	
         	ybias = 60;
         	if(super.isMoving()) {
+        		xbias = -70;
         		currentImage = normalZombieImage;
         	}
         	else if(super.isAttacking()) {
+        		xbias = -90;
         		currentImage= normalZombieAttackImage;
         	}
         }
