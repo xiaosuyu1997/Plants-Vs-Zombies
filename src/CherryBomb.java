@@ -37,7 +37,7 @@ public class CherryBomb extends Plant{
                             getGp().getLaneZombies().get(y-1).get(i).getPosX()<x1+255){
                                 getGp().getLaneZombies().get(y-1).get(i).changeHealth(0);
                                 getGp().remove(getGp().getLaneZombies().get(y - 1).get(i));
-                                DeadZombie dead = new DeadZombie(parent,y - 1,getGp().getLaneZombies().get(y).get(i).getPosX()); 
+                                DeadZombie dead = new DeadZombie(parent,y - 1,getGp().getLaneZombies().get(y-1).get(i).getPosX()); 
                         }
                     }
                 }
@@ -47,7 +47,7 @@ public class CherryBomb extends Plant{
                             getGp().getLaneZombies().get(y+1).get(i).getPosX()<x1+255){
                                 getGp().getLaneZombies().get(y+1).get(i).changeHealth(0);
                                 getGp().remove(getGp().getLaneZombies().get(y + 1).get(i));
-                                DeadZombie dead = new DeadZombie(parent,y + 1,getGp().getLaneZombies().get(y).get(i).getPosX()); 
+                                DeadZombie dead = new DeadZombie(parent,y + 1,getGp().getLaneZombies().get(y + 1).get(i).getPosX()); 
                         }
                     }
                 }
