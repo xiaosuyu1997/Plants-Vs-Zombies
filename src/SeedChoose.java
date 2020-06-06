@@ -295,7 +295,21 @@ public class SeedChoose extends JLayeredPane implements MouseMotionListener {
                 }
             });
 
-            if(i>13)
+            if(i==14)
+            a.setAction(i,337+65*(i%10),135+(i/10)*90, "images/cards/card_spikeweed.png","spikeweed", (ActionEvent e) -> {
+            	seedclick.prepare();
+            	seedclick.player.start();
+            	if(a.getImage()!=null&&k<9){
+                    place[k].setImage(a.getImage());
+                    place[k].setname(a.getname());
+                    place[k].reid=a.id;
+                    a.setImage(null);
+                    a.setname(null);
+                    k++;
+                }
+            });
+
+            if(i>14)
             a.setAction(i,337+65*(i%10),135+(i/10)*90,null,null, (ActionEvent e) -> {
             	seedclick.prepare();
             	seedclick.player.start();

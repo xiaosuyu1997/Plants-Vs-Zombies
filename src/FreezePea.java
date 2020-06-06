@@ -17,25 +17,18 @@ public class FreezePea extends Pea {
     
     @Override
     public void advance() {
-        Rectangle pRect = new Rectangle(getPosX(), 130 + getMyLane() * 120, 28, 28);
         for (int i = 0; i < gp.getLaneZombies().get(getMyLane()).size(); i++) {
             Zombie z = gp.getLaneZombies().get(getMyLane()).get(i);
-            Rectangle zRect = new Rectangle(z.getPosX(), 109 + getMyLane() * 120, 400, 120);
-            if (pRect.intersects(zRect)) {
+            if (z.getPosX()+30>=getPosX()&&getPosX()>=z.getPosX()-30) {
             	if(z instanceof MetalBucketZombie) {
             		frozenpeaHitShield.player.start();
             	}
             	else {
             		frozenpea.player.start();
             	}
-                z.setHealth(z.getHealth() - 250);
+                z.changeHealth(z.getHealth() - 250);
                 z.slow();
                 boolean exit = false;
-                if (z.getHealth() < 0) {
-                    System.out.println("ZOMBIE DIE");
-                    GamePanel.setProgress(10);
-                    gp.getLaneZombies().get(getMyLane()).remove(i);
-                }
                 exit = true;
                 gp.getLanePeas().get(getMyLane()).remove(this);
                 if (exit) break;

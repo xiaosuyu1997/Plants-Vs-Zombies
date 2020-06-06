@@ -30,21 +30,24 @@ public class NewspaperZombie  extends Zombie {
         hasPaper = true;
         isCrazy = false;
         setHealth(2000);
+
+        setSize(200, 200);
+        setOpaque(false);
+        newspaperZombieImage = new ImageIcon(this.getClass().getResource("images/zombies/newspaperzombie/NewspaperZombie.gif")).getImage();
+        newspaperZombieAttackImage = new ImageIcon(this.getClass().getResource("images/zombies/newspaperzombie/NewspaperZombieAttack.gif")).getImage();
+        newspaperZombieLoseImage = new ImageIcon(this.getClass().getResource("images/zombies/newspaperzombie/NewspaperZombieLosePaper.gif")).getImage();
+        newspaperZombieLoseWalkImage = new ImageIcon(this.getClass().getResource("images/zombies/newspaperzombie/NewspaperZombieLose.gif")).getImage();
+        newspaperZombieLoseAttackImage = new ImageIcon(this.getClass().getResource("images/zombies/newspaperzombie/NewspaperZombieLoseAttack.gif")).getImage();
+        newspaperZombieDeadWalkImage = new ImageIcon(this.getClass().getResource("images/zombies/newspaperzombie/NewspaperZombieDead.gif")).getImage();
+        newspaperZombieDeadAttackImage = new ImageIcon(this.getClass().getResource("images/zombies/newspaperzombie/NewspaperZombieLackDeadAttack.gif")).getImage();
+        newspaperZombieDeadWalkImage.flush();
+        newspaperZombieDeadAttackImage.flush();
+        
+        currentImage = newspaperZombieImage;
+        
         roar[0].prepare();
         roar[1].prepare();
         paperBroken.prepare();
-        setSize(200, 200);
-        setOpaque(false);
-        newspaperZombieImage = new ImageIcon(this.getClass().getResource("images/zombies/NewspaperZombie.gif")).getImage();
-        newspaperZombieAttackImage = new ImageIcon(this.getClass().getResource("images/zombies/NewspaperZombieAttack.gif")).getImage();
-        newspaperZombieLoseImage = new ImageIcon(this.getClass().getResource("images/zombies/NewspaperZombieLosePaper.gif")).getImage();
-        newspaperZombieLoseWalkImage = new ImageIcon(this.getClass().getResource("images/zombies/NewspaperZombieLose.gif")).getImage();
-        newspaperZombieLoseAttackImage = new ImageIcon(this.getClass().getResource("images/zombies/NewspaperZombieLoseAttack.gif")).getImage();
-        newspaperZombieDeadWalkImage = new ImageIcon(this.getClass().getResource("images/zombies/NewspaperZombieDead.gif")).getImage();
-        newspaperZombieDeadAttackImage = new ImageIcon(this.getClass().getResource("images/zombies/NewspaperZombieLackDeadAttack.gif")).getImage();
-        
-        
-        currentImage = newspaperZombieImage;
     }
     
     @Override
@@ -55,7 +58,7 @@ public class NewspaperZombie  extends Zombie {
     
     public void advance() {
         super.advance();
-        setLocation(getPosX(), getMyLane() * 120 + 40);
+        setLocation(getPosX() -100, getMyLane() * 120 + 40);
         if(hasPaper) {
         	if(super.isMoving()) {
         		currentImage = newspaperZombieImage;
@@ -93,14 +96,14 @@ public class NewspaperZombie  extends Zombie {
  	        	currentImage= newspaperZombieDeadAttackImage;
  	        }
 	        setSpeed(0);
+	        
 	        NewspaperZombie temp = this;
 	        Timer timer = new Timer();
         	timer.schedule(new TimerTask() {
      			public void run() {
      				getGp().remove(temp);
-     				getGp().getLaneZombies().get(getMyLane()).remove(temp);
+     				//getGp().getLaneZombies().get(getMyLane()).remove(temp);
      			} }, 1000);
-        	
         }
     }
     

@@ -38,12 +38,7 @@ public class LawnCleaner extends Pea{
             for (int i = 0; i < gp.getLaneZombies().get(getMyLane()).size(); i++) {
                 Zombie z = gp.getLaneZombies().get(getMyLane()).get(i);
                 if (z.getPosX()<getPosX()+30){
-                    z.setHealth(-100);
-                    if (z.getHealth() < 0) {
-                        System.out.println("ZOMBIE DIE");
-                        GamePanel.setProgress(10);
-                        gp.getLaneZombies().get(getMyLane()).remove(i);
-                    }
+                    z.changeHealth(-100);
                 }
             }
             if(getPosX() > 900){

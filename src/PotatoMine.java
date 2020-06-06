@@ -33,7 +33,7 @@ public class PotatoMine extends Plant{
                     for (int i = 0; i < getGp().getLaneZombies().get(y).size(); i++){
                         if(getGp().getLaneZombies().get(y).get(i).getPosX()>=x1-155&&
                         getGp().getLaneZombies().get(y).get(i).getPosX()<x1+155){
-                            getGp().getLaneZombies().get(y).get(i).setHealth(0);
+                            getGp().getLaneZombies().get(y).get(i).changeHealth(0);
                         }
                     }
                     getGp().getColliders()[x + y * 9].removePlant();
