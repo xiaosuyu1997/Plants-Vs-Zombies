@@ -77,7 +77,7 @@ public class Zombie extends JPanel {
             	isMoving = false;
             	isAttacking = true;
             }
-            if (posX < 0) {
+            if (posX < -50) {
             	zombiesWin.player.start();
                 isMoving = false;
                 JOptionPane.showMessageDialog(gp, "ZOMBIES ATE YOUR BRAIN !" + '\n' + "Starting the level again");
