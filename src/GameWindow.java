@@ -25,13 +25,14 @@ public class GameWindow extends JFrame {
         Twinsunflower,
         Jalapeno,
         Spikeweed,
+        Spikerock,
         Sholve
     }
 
     
     public PlantCard Sunflower,Peashooter,FreezePeashooter,Torchwood,
         TwicePeashooter,ThreePeashooter,Chomper,Wallnut,GatlingPea,PotatoMine,CherryBomb,
-        Tallnut,Twinsunflower,Jalapeno,Spikeweed,Sholve;
+        Tallnut,Twinsunflower,Jalapeno,Spikeweed,Spikerock,Sholve;
 
     //PlantType activePlantingBrush = PlantType.None;
     private void initComponents() {
@@ -228,6 +229,15 @@ public class GameWindow extends JFrame {
                 });
                 Spikeweed.countwaittime();
                 getLayeredPane().add(Spikeweed, new Integer(3));
+            }
+
+            if(name[i] == "spikerock") {
+                Spikerock = new PlantCard("images/cards/card_spikerock.png");
+                Spikerock.setAction(110 + 65 * i, 8, 50000, (ActionEvent e) -> {
+                    gp.setActivePlantingBrush(PlantType.Spikerock);
+                });
+                Spikerock.countwaittime();
+                getLayeredPane().add(Spikerock, new Integer(3));
             }
         }
 

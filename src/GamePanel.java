@@ -228,7 +228,7 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
                 if(p instanceof Tallnut){
                     g.drawImage(p.getImage(), 60 + p.getX() * 100, 60 + p.getY() * 120, null);
                 }
-                else if(p instanceof Spikeweed){
+                else if(p instanceof Spikeweed || p instanceof Spikerock){
                     g.drawImage(p.getImage(), 60 + p.getX() * 100, 180 + p.getY() * 120, null);
                 }
                 else if(p instanceof Chomper){
@@ -364,6 +364,16 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
                     colliders[x + y * 9].setPlant(new Twinsunflower(GamePanel.this, x, y));
                     setSunScore(getSunScore() - 150);
                     gw.Twinsunflower.countwaittime();
+                }
+            }
+
+            if (activePlantingBrush == GameWindow.PlantType.Spikerock&&colliders[x + y * 9].assignedPlant instanceof Spikeweed){
+            	plant.player.start();
+                if (getSunScore() >= 125) {
+                    colliders[x + y * 9].removePlant();
+                    colliders[x + y * 9].setPlant(new Spikerock(GamePanel.this, x, y));
+                    setSunScore(getSunScore() -100);
+                    gw.Spikerock.countwaittime();
                 }
             }
 

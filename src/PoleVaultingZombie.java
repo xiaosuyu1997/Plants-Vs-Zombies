@@ -72,7 +72,7 @@ public class PoleVaultingZombie  extends Zombie {
             if(!isJumping) {
             	for (int i = getMyLane()  * 9; i < (getMyLane()  + 1) * 9; i++) {
 					if (getGp().getColliders()[i].assignedPlant != null && !(getGp().getColliders()[i].assignedPlant instanceof Spikeweed) 
-					&& getGp().getColliders()[i].isInsideCollider(getPosX())) {
+					&&!(getGp().getColliders()[i].assignedPlant instanceof Spikerock)&& getGp().getColliders()[i].isInsideCollider(getPosX())) {
                     	collidedCount++;
                         tempCollided = true;
                         collided = getGp().getColliders()[i];
