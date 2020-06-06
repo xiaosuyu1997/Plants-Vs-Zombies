@@ -143,7 +143,7 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
                 //}
             //}
             laneZombies.get(l).add(z);
-            add(z, new Integer(2));
+            add(z, new Integer(1));
             zombieProduceCount++;
             if(zombieProduceCount % 2 == 0) {
             	if(zombieProduceType < 5) {
@@ -230,6 +230,9 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
                 }
                 else if(p instanceof Spikeweed || p instanceof Spikerock){
                     g.drawImage(p.getImage(), 60 + p.getX() * 100, 180 + p.getY() * 120, null);
+                }
+                else if(p instanceof Chomper){
+                    g.drawImage(p.getImage(), 60 + p.getX() * 100, 90 + p.getY() * 120, null);
                 }
                 else{
                     g.drawImage(p.getImage(), 60 + p.getX() * 100, 129 + p.getY() * 120, null);
