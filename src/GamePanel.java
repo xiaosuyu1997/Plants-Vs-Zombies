@@ -191,6 +191,7 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
             }
             if(haslose){
                 SoundEffect zombiesWin = new SoundEffect("./src/bgms/zombiegroup.wav");
+                zombiesWin.prepare();
                 zombiesWin.player.start();
                 loseTimer.stop();
                 JOptionPane.showMessageDialog(GamePanel.this, "ZOMBIES ATE YOUR BRAIN !" + '\n' + "Starting the level again");
