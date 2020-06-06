@@ -26,7 +26,7 @@ public class FreezePea extends Pea {
             	else {
             		frozenpea.player.start();
             	}
-                z.setHealth(z.getHealth() - 250);
+                z.changeHealth(z.getHealth() - 250);
                 z.slow();
                 boolean exit = false;
                 exit = true;

@@ -68,7 +68,7 @@ public class NewspaperZombie  extends Zombie {
         	}
         }
 
-        if(getHealth() < 1200 & !isCrazy) {
+        if(getHealth() < 1200 &  getHealth() > 0 & !isCrazy) {
         	paperBroken.player.start();
         	roar[0].player.start();
         	isCrazy = true;
@@ -102,7 +102,7 @@ public class NewspaperZombie  extends Zombie {
         	timer.schedule(new TimerTask() {
      			public void run() {
      				getGp().remove(temp);
-     				getGp().getLaneZombies().get(getMyLane()).remove(temp);
+     				//getGp().getLaneZombies().get(getMyLane()).remove(temp);
      			} }, 1000);
         }
     }

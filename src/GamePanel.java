@@ -18,19 +18,6 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
 
     private Image bgImage;
 
-    
-    
-    private Image coneHeadZombieImage;
-    private Image coneHeadZombieAttackImage;
-    private Image coneHeadZombieHurtAttackImage;
-    private Image metalBucketZombieImage;
-    private Image metalBucketZombieAttackImage;
-
-    
-    private Image footballZombieImage;
-    private Image footballZombieAttackImage;
-    private Image footballZombieHurtImage;
-    private Image footballZombieHurtAttackImage;
     private Collider[] colliders;
 
     private ArrayList<ArrayList<Zombie>> laneZombies;
@@ -82,21 +69,7 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
 
         bgImage = new ImageIcon(this.getClass().getResource("images/mainB.png")).getImage();
         zombieType = 5;
-        
-        
-        coneHeadZombieImage = new ImageIcon(this.getClass().getResource("images/zombies/coneheadzombie/ConeheadZombie.gif")).getImage();
-        coneHeadZombieAttackImage = new ImageIcon(this.getClass().getResource("images/zombies/coneheadzombie/ConeheadZombieAttack.gif")).getImage();
-        coneHeadZombieHurtAttackImage = new ImageIcon(this.getClass().getResource("images/zombies/coneheadzombie/ConeheadZombieAttack2.gif")).getImage();
-        metalBucketZombieImage = new ImageIcon(this.getClass().getResource("images/zombies/metalbucketzombie/BucketheadZombie.gif")).getImage();
-        metalBucketZombieAttackImage = new ImageIcon(this.getClass().getResource("images/zombies/metalbucketzombie/BucketheadZombieAttack.gif")).getImage();
 
-        
-        
-        footballZombieImage = new ImageIcon(this.getClass().getResource("images/zombies/footballzombie/FootballZombie.gif")).getImage();
-        footballZombieAttackImage = new ImageIcon(this.getClass().getResource("images/zombies/footballzombie/FootballZombieAttack.gif")).getImage();
-        footballZombieHurtImage = new ImageIcon(this.getClass().getResource("images/zombies/footballzombie/FootballZombieOrnLost.gif")).getImage();
-        footballZombieHurtAttackImage = new ImageIcon(this.getClass().getResource("images/zombies/footballzombie/FootballZombieOrnLostAttack.gif")).getImage();
-        
         zombieProduceInterval = 7000;
         zombieProduceCount = 0;
         zombieProduceType = 1;
@@ -170,7 +143,7 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
                 //}
             //}
             laneZombies.get(l).add(z);
-            add(z, new Integer(2));
+            add(z, new Integer(1));
             zombieProduceCount++;
             if(zombieProduceCount % 2 == 0) {
             	if(zombieProduceType < 5) {
@@ -252,7 +225,18 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
             Collider c = colliders[i];
             if (c.assignedPlant != null) {
                 Plant p = c.assignedPlant;
-                g.drawImage(p.getImage(), 60 + p.getX() * 100, 129 + p.getY() * 120, null);
+                if(p instanceof Tallnut){
+                    g.drawImage(p.getImage(), 60 + p.getX() * 100, 60 + p.getY() * 120, null);
+                }
+                else if(p instanceof Spikeweed || p instanceof Spikerock){
+                    g.drawImage(p.getImage(), 60 + p.getX() * 100, 180 + p.getY() * 120, null);
+                }
+                else if(p instanceof Chomper){
+                    g.drawImage(p.getImage(), 60 + p.getX() * 100, 90 + p.getY() * 120, null);
+                }
+                else{
+                    g.drawImage(p.getImage(), 60 + p.getX() * 100, 129 + p.getY() * 120, null);
+                }
             }
         }
         
@@ -344,16 +328,6 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
         }
         */
         //
-
-        //if(!"".equals(activePlantingBrush)){
-        //System.out.println(activePlantingBrush);
-            /*if(activePlantingBrush == GameWindow.PlantType.Sunflower) {
-                g.drawImage(sunflowerImage,mouseX,mouseY,null);
-            }*/
-
-        //}
-
-
     }
 
     // 绉嶆鐗�
@@ -390,6 +364,16 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
                     colliders[x + y * 9].setPlant(new Twinsunflower(GamePanel.this, x, y));
                     setSunScore(getSunScore() - 150);
                     gw.Twinsunflower.countwaittime();
+                }
+            }
+
+            if (activePlantingBrush == GameWindow.PlantType.Spikerock&&colliders[x + y * 9].assignedPlant instanceof Spikeweed){
+            	plant.player.start();
+                if (getSunScore() >= 125) {
+                    colliders[x + y * 9].removePlant();
+                    colliders[x + y * 9].setPlant(new Spikerock(GamePanel.this, x, y));
+                    setSunScore(getSunScore() -100);
+                    gw.Spikerock.countwaittime();
                 }
             }
 
@@ -510,6 +494,15 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
                     colliders[x + y * 9].setPlant(new Jalapeno(GamePanel.this, x, y,1));
                     setSunScore(getSunScore() -125);
                     gw.Jalapeno.countwaittime();
+                }
+            }
+
+            if (activePlantingBrush == GameWindow.PlantType.Spikeweed){
+            	plant.player.start();
+                if (getSunScore() >= 100) {
+                    colliders[x + y * 9].setPlant(new Spikeweed(GamePanel.this, x, y));
+                    setSunScore(getSunScore() -100);
+                    gw.Spikeweed.countwaittime();
                 }
             }
             activePlantingBrush = GameWindow.PlantType.None;

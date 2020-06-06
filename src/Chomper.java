@@ -47,7 +47,8 @@ public class Chomper extends Plant{
                 Zombie z = getGp().getLaneZombies().get(y).get(Zombiex);
                 getGp().getColliders()[x + y * 9].removePlant();
                 getGp().getColliders()[x + y * 9].setPlant(new Chomper(getGp(),x,y,3,0));
-                z.setHealth(0);
+                z.changeHealth(0);
+                z.getGp().remove(z);
             });
         }
         if(k==3){

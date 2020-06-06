@@ -11,6 +11,7 @@ import java.util.TimerTask;
 public class PoleVaultingZombie  extends Zombie {
 	private int collidedCount;
 	private boolean isJumping;
+	private boolean isTallnut;
 	private Image poleVaultingZombieImage;
 	private Image poleVaultingZombieJumpImage;
 	private Image poleVaultingZombieJumpImage2;
@@ -33,7 +34,7 @@ public class PoleVaultingZombie  extends Zombie {
         setOpaque(false);
         collidedCount = 0;
         isJumping = false;
-        
+        isTallnut = false;
         poleVaultingZombieImage = new ImageIcon(this.getClass().getResource("images/zombies/polevaultingzombie/PoleVaultingZombie.gif")).getImage();
         poleVaultingZombieJumpImage = new ImageIcon(this.getClass().getResource("images/zombies/polevaultingzombie/PoleVaultingZombieJump.gif")).getImage();
         poleVaultingZombieJumpImage2 = new ImageIcon(this.getClass().getResource("images/zombies/polevaultingzombie/PoleVaultingZombieJump2.gif")).getImage();
@@ -64,15 +65,23 @@ public class PoleVaultingZombie  extends Zombie {
     
     public void advance() {
     	setLocation(getPosX()-200, getMyLane() * 120 - 20);
+    	
         if (isMoving()) {
-            Collider collided = null;
+        	Collider collided = null;
             boolean tempCollided = false;
             if(!isJumping) {
             	for (int i = getMyLane()  * 9; i < (getMyLane()  + 1) * 9; i++) {
-                    if (getGp().getColliders()[i].assignedPlant != null && getGp().getColliders()[i].isInsideCollider(getPosX())) {
+					if (getGp().getColliders()[i].assignedPlant != null && !(getGp().getColliders()[i].assignedPlant instanceof Spikeweed) 
+					&&!(getGp().getColliders()[i].assignedPlant instanceof Spikerock)&& getGp().getColliders()[i].isInsideCollider(getPosX())) {
                     	collidedCount++;
                         tempCollided = true;
                         collided = getGp().getColliders()[i];
+                        if(collided.assignedPlant instanceof Tallnut) {
+                        	isTallnut = true;
+                        }
+                        else {
+                        	isTallnut = false;
+                        }
                     }
                 }
             }
@@ -86,7 +95,8 @@ public class PoleVaultingZombie  extends Zombie {
                 } else {
                 	setPosX(getPosX() - getSpeed());
                 }
-            } else{
+            } 
+            else{
             	if(collidedCount > 1) {
             		setAttacking(true);
             		setMoving(false);
@@ -99,12 +109,14 @@ public class PoleVaultingZombie  extends Zombie {
                 	Timer timer = new Timer();
                 	timer.schedule(new TimerTask() {
              			public void run() {
-             				setPosX(getPosX() - 150);
+             				if(!isTallnut) {
+             					setPosX(getPosX() - 150);
+             				}
+             				
              				currentImage = poleVaultingZombieJumpImage2;
              				//setPosX(getPosX());
              			} }, 1000);
-                	Timer timer2 = new Timer();
-                	timer2.schedule(new TimerTask() {
+                	timer.schedule(new TimerTask() {
              			public void run() {
              				
              				currentImage = poleVaultingZombieWalkImage;
@@ -135,11 +147,25 @@ public class PoleVaultingZombie  extends Zombie {
             }
             
             if(getHealth() < getFullHealth()/2) {
-            	setHurt(true);
+            	setHalfHurt(true);
             }
+
             if(getHealth() < 50) {
             	setDead(true);
-            	zombiesEating.player.stop();
+                zombiesEating.player.stop();
+                
+                if(!ifScore()) {
+                	System.out.println("ZOMBIE DIE");
+                	GamePanel.setProgress(10);
+                	setScore(true);
+                }
+                PoleVaultingZombie temp = this;
+    	        Timer timer = new Timer();
+            	timer.schedule(new TimerTask() {
+         			public void run() {
+         				getGp().getLaneZombies().get(getMyLane()).remove(temp);
+         			} }, 1000);
+
             }
             
             if (getPosX() < 0) {
@@ -174,7 +200,7 @@ public class PoleVaultingZombie  extends Zombie {
             	timer.schedule(new TimerTask() {
          			public void run() {
          				getGp().remove(temp);
-         				getGp().getLaneZombies().get(getMyLane()).remove(temp);
+         				//getGp().getLaneZombies().get(getMyLane()).remove(temp);
          			} }, 2000);
             }
         }
