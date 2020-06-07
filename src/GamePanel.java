@@ -80,7 +80,7 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
         setLayout(null);
         addMouseMotionListener(this);
         this.sunScoreboard = sunScoreboard;
-        setSunScore(5000);  //pool avalie
+        setSunScore(150);  //pool avalie
 
         bgImage = new ImageIcon(this.getClass().getResource("images/mainB.png")).getImage();
         pauseImage = new ImageIcon(this.getClass().getResource("images/Button2.png")).getImage();
