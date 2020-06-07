@@ -5,9 +5,7 @@ import java.util.TimerTask;
 
 import javax.sound.sampled.Clip;
 
-/**
- * Created by Armin on 6/25/2016.
- */
+
 public class Zombie extends JPanel {
 
     private int health = 1500;
@@ -58,9 +56,15 @@ public class Zombie extends JPanel {
             boolean isCollides = false;
             for (int i = myLane * 9; i < (myLane + 1) * 9; i++) {
                 if (gp.getColliders()[i].assignedPlant != null && !(gp.getColliders()[i].assignedPlant instanceof Spikeweed)
-                && gp.getColliders()[i].isInsideCollider(posX)) {
+                &&!(gp.getColliders()[i].assignedPlant instanceof Spikerock)&& gp.getColliders()[i].isInsideCollider(posX)) {
                     isCollides = true;
                     collided = gp.getColliders()[i];
+                }
+            }
+            if(gp.getBrain()!=null&&getPosX()<=20){
+                if(gp.getBrain()[myLane].assignedPlant != null){
+                    isCollides = true;
+                    collided = gp.getBrain()[myLane];
                 }
             }
             if (!isCollides) {
@@ -77,13 +81,8 @@ public class Zombie extends JPanel {
             	isMoving = false;
             	isAttacking = true;
             }
-            if (posX < 0) {
-            	zombiesWin.player.start();
-                isMoving = false;
-                JOptionPane.showMessageDialog(gp, "ZOMBIES ATE YOUR BRAIN !" + '\n' + "Starting the level again");
-                GameWindow.gw.dispose();
-            }
         }
+        
         if(isAttacking) {
             zombiesEating.player.loop(Clip.LOOP_CONTINUOUSLY);
             

@@ -28,6 +28,37 @@ public class CherryBomb extends Plant{
                 int x1 = 60 + (x % 9) * 100;   // display x coordinate
                 getGp().getColliders()[x + y * 9].removePlant();
                 getGp().getColliders()[x + y * 9].setPlant(new CherryBomb(getGp(),x,y,2));
+
+
+                for(int i=0;i<getGp().getLaneZombies().get(y).size(); i++) {
+                    if(getGp().getLaneZombies().get(y).get(i).getPosX()>=x1-255&&
+                        getGp().getLaneZombies().get(y).get(i).getPosX()<x1+255){
+                            getGp().getLaneZombies().get(y).get(i).changeHealth(0);
+                            getGp().remove(getGp().getLaneZombies().get(y).get(i));
+                            DeadZombie dead = new DeadZombie(parent,y,getGp().getLaneZombies().get(y).get(i).getPosX());    
+                    }
+                }
+                if(y!=0){
+                    for(int i=0;i<getGp().getLaneZombies().get(y-1).size(); i++) {
+                        if(getGp().getLaneZombies().get(y-1).get(i).getPosX()>=x1-255&&
+                            getGp().getLaneZombies().get(y-1).get(i).getPosX()<x1+255){
+                                getGp().getLaneZombies().get(y-1).get(i).changeHealth(0);
+                                getGp().remove(getGp().getLaneZombies().get(y - 1).get(i));
+                                DeadZombie dead = new DeadZombie(parent,y - 1,getGp().getLaneZombies().get(y-1).get(i).getPosX()); 
+                        }
+                    }
+                }
+                if(y!=4){
+                    for(int i=0;i<getGp().getLaneZombies().get(y+1).size(); i++) {
+                        if(getGp().getLaneZombies().get(y+1).get(i).getPosX()>=x1-255&&
+                            getGp().getLaneZombies().get(y+1).get(i).getPosX()<x1+255){
+                                getGp().getLaneZombies().get(y+1).get(i).changeHealth(0);
+                                getGp().remove(getGp().getLaneZombies().get(y + 1).get(i));
+                                DeadZombie dead = new DeadZombie(parent,y + 1,getGp().getLaneZombies().get(y + 1).get(i).getPosX()); 
+                        }
+                    }
+                }
+
                 
                 // Blow up zombies in this lane and nearby two lanes(border detection)
                 // Notice: zombies killed by bomb have different dying gif
@@ -39,6 +70,7 @@ public class CherryBomb extends Plant{
                                 getGp().getLaneZombies().get(yi).get(i).changeHealth(0);
                                 getGp().remove(getGp().getLaneZombies().get(yi).get(i));
                                 DeadZombie dead = new DeadZombie(parent,yi,getGp().getLaneZombies().get(yi).get(i).getPosX());    
+
                         }
                     }
                 }

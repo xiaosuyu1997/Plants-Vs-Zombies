@@ -50,7 +50,7 @@ public class Menu extends JPanel {
         g.drawImage(bgImage, 0, 0, null);
         g.drawImage(AdventureShadow, 523, 103, 392, 160, null);
         g.drawImage(AdventureImage, 520, 100, 380, 150, null);
-        g.drawImage(MiniShadow, 528, 243, 360, 150, null);
+        g.drawImage(MiniShadow, 533, 243, 360, 150, null);
         g.drawImage(MiniImage, 530, 232, 350, 150, null);
     }
 
@@ -60,11 +60,14 @@ public class Menu extends JPanel {
 
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new JPanel();
+        jPanel3 = new JPanel();
 
         setPreferredSize(new java.awt.Dimension(1012, 785));
 
         jPanel1.setOpaque(false);
         jPanel2.setOpaque(false);
+        jPanel3.setOpaque(false);
+
         jPanel1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(MouseEvent evt) {
                 jPanel1MousePressed(evt);
@@ -83,9 +86,34 @@ public class Menu extends JPanel {
             }
         });
         jPanel2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) { jPanel2MouseClicked(evt); }
-            public void mouseEntered(MouseEvent evt) { jPanel2MouseEntered(evt); }
-            public void mouseExited(MouseEvent evt) { jPanel2MouseExited(evt); }
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel2MouseClicked(evt);
+            }
+
+            public void mouseEntered(MouseEvent evt) {
+                jPanel2MouseEntered(evt);
+            }
+
+            public void mouseExited(MouseEvent evt) {
+                jPanel2MouseExited(evt);
+            }
+        });
+        jPanel3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(MouseEvent evt) {
+                jPanel3MousePressed(evt);
+            }
+
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel3MouseClicked(evt);
+            }
+
+            public void mouseEntered(MouseEvent evt) {
+                jPanel3MouseEntered(evt);
+            }
+
+            public void mouseExited(MouseEvent evt) {
+                jPanel3MouseExited(evt);
+            }
         });
 
 
@@ -97,7 +125,7 @@ public class Menu extends JPanel {
         );
         jPanel1Layout.setVerticalGroup(
                 jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGap(0, 116, Short.MAX_VALUE)
+                        .addGap(0, 105, Short.MAX_VALUE)
         );
 
         GroupLayout jPanel2Layout = new GroupLayout(jPanel2);
@@ -111,16 +139,36 @@ public class Menu extends JPanel {
                         .addGap(0, 64, Short.MAX_VALUE)
         );
 
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+                jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 357, Short.MAX_VALUE)
+        );
+        jPanel3Layout.setVerticalGroup(
+                jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 100, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
-        GroupLayout.SequentialGroup SGroup1 = layout.createSequentialGroup().addContainerGap(523, Short.MAX_VALUE)
+        GroupLayout.ParallelGroup BtnGroup01 = layout.createParallelGroup()
                 .addComponent(jPanel1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                .addGap(25, 25, 25)
+                .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPanel3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                        .addGap(30, 30, 30));
+
+        GroupLayout.SequentialGroup SGroup1 = layout.createSequentialGroup().addContainerGap(523, Short.MAX_VALUE)
+                .addGroup(BtnGroup01)
                 .addComponent(jPanel2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30);
         GroupLayout.SequentialGroup SGroup2 = layout.createSequentialGroup()
                 .addGap(122, 122, 122)
                 .addComponent(jPanel1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                .addGap(412, 412, 412)
+                .addGap(25, 25, 25)
+                .addComponent(jPanel3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                .addGap(297, 297, 297)
                 .addComponent(jPanel2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(71, Short.MAX_VALUE);
         layout.setHorizontalGroup(
@@ -134,9 +182,9 @@ public class Menu extends JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jPanel1MousePressed(MouseEvent event) {
-        getGraphics().drawImage(bgImage, 0, 0, getWidth(), getHeight(), null);
+        getGraphics().drawImage(bgImage, 0, 0, null);
         getGraphics().drawImage(AdventureShadow, 523, 103, 392, 160, null);
-        getGraphics().drawImage(MiniShadow, 528, 243, 360, 150, null);
+        getGraphics().drawImage(MiniShadow, 533, 243, 360, 150, null);
         getGraphics().drawImage(MiniImage, 530, 232, 350, 150, null);
         getGraphics().drawImage(AdventureImage, 527, 107, 380, 150, null);
 
@@ -164,11 +212,10 @@ public class Menu extends JPanel {
     }
 
     private void jPanel2MouseClicked(MouseEvent e) {
-        System.out.println("jPanel2 clicked");
         System.exit(0);
     }
 
-    private void jPanel2MouseEntered(MouseEvent e){
+    private void jPanel2MouseEntered(MouseEvent e) {
         setCursor(new Cursor(Cursor.HAND_CURSOR));
     }
 
@@ -176,8 +223,39 @@ public class Menu extends JPanel {
         setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
     }
 
+    private void jPanel3MousePressed(MouseEvent event) {
+        getGraphics().drawImage(bgImage, 0, 0, null);
+        getGraphics().drawImage(AdventureShadow, 523, 103, 392, 160, null);
+        getGraphics().drawImage(MiniShadow, 533, 243, 360, 150, null);
+        getGraphics().drawImage(MiniImage, 535, 235, 350, 150, null);
+        getGraphics().drawImage(AdventureImage, 520, 100, 380, 150, null);
+
+    }
+
+    private void jPanel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseClicked
+        // TODO add your handling code here:
+        paintComponent(getGraphics());
+        menuBgm.player.stop();
+        GameWindow.beginmodelgame();
+    }//GEN-LAST:event_jPanel1MouseClicked
+
+    private void jPanel3MouseEntered(MouseEvent evt) {
+        MiniImage = new ImageIcon(this.getClass().getResource(
+                "images\\resources\\images\\interface\\Mini_Highlight.png")).getImage();
+        setCursor(new Cursor(Cursor.HAND_CURSOR));
+        repaint();
+    }
+
+    private void jPanel3MouseExited(MouseEvent evt) {
+        MiniImage = new ImageIcon(this.getClass().getResource(
+                "images\\resources\\images\\interface\\Mini_Default.png")).getImage();
+        setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+        repaint();
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel jPanel1;
-    private JPanel jPanel2;
+    private javax.swing.JPanel jPanel1;//Adventure Mode
+    private JPanel jPanel2;//Exit Button
+    private JPanel jPanel3;//Mini Mode
     // End of variables declaration//GEN-END:variables
 }
