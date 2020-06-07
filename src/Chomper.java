@@ -16,11 +16,11 @@ public class Chomper extends Plant{
             setImage(new ImageIcon(this.getClass().getResource("images/plants/Chomper.gif")).getImage());
             shootTimer = new Timer(0, (ActionEvent e) ->{
                 if (getGp().getLaneZombies().get(y).size() > 0){
-                    int x1 = 60 + (x % 9) * 100;
+                    int x1 = (x % 9) * 100;
                     boolean has=false;
                     for (int i = 0; i < getGp().getLaneZombies().get(y).size(); i++){
                         if(getGp().getLaneZombies().get(y).get(i).getPosX()>=x1&&
-                        getGp().getLaneZombies().get(y).get(i).getPosX()<x1+205){
+                        getGp().getLaneZombies().get(y).get(i).getPosX()<x1+150){
                             has=true;
                         }
                     }
@@ -37,13 +37,13 @@ public class Chomper extends Plant{
         	chomp.player.start();
             setImage(new ImageIcon(this.getClass().getResource("images/plants/ChomperAttack.gif")).getImage());
             shootTimer = new Timer(810, (ActionEvent e)->{
-                int x1 = 60 + (x % 9) * 100;
+                int x1 = (x % 9) * 100;
                 int idnow=0;
                 int zx=1000;
                 boolean has=false;
                 for (int i = 0; i < getGp().getLaneZombies().get(y).size(); i++){
                     if(getGp().getLaneZombies().get(y).get(i).getPosX()>=x1&&
-                    getGp().getLaneZombies().get(y).get(i).getPosX()<x1+205){
+                    getGp().getLaneZombies().get(y).get(i).getPosX()<x1+150){
                         has=true;
                         int nowx=getGp().getLaneZombies().get(y).get(i).getPosX()-x1;
                         if(nowx<zx){

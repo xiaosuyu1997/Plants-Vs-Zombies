@@ -234,7 +234,7 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
         setLayout(null);
         addMouseMotionListener(this);
         this.sunScoreboard = sunScoreboard;
-        setSunScore(5000);  //pool avalie
+        setSunScore(1000);  //pool avalie
 
         laneZombies = new ArrayList<>();
         laneZombies.add(new ArrayList<>()); //line 1
