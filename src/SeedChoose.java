@@ -402,7 +402,7 @@ public class SeedChoose extends JLayeredPane implements MouseMotionListener {
 
         g.drawImage(newspaperZombieImage, 1100, 50, null);
         g.drawImage(coneHeadZombieImage, 1085, 150, null);
-        g.drawImage(normalZombieImage1, 1050, 20, null);
+        g.drawImage(normalZombieImage1, 1000, 200, null);
         g.drawImage(normalZombieImage2, 1100, 350, null);
         g.drawImage(normalZombieImage3, 1280, 300, null);
         g.drawImage(metalBucketZombieImage, 1210, 200, null);
