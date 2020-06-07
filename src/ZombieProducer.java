@@ -4,14 +4,14 @@ import java.awt.Image;
 
 public class ZombieProducer {
     final static int MAXSTAGE = 2;
-    final static int[] MIDDLEINTERVAL = {6000, 4000, 2000};
+    final static int[] MIDDLEINTERVAL = {10000, 4000, 2000};
     final static int NUMBEROFZOMBIECLASSES = 5;
     final static int DEVIATION = 1000;
 
-    final static String[] ZOMBIES = {"NormalZombie", "ConeHeadZombie", "PoleVaultingZombie", "MetalBucketZombie", "NewspaperZombie", "FootballZombie"};
+    final static String[] ZOMBIES = {"NormalZombie", "NormalZombie","ConeHeadZombie", "PoleVaultingZombie", "MetalBucketZombie", "NewspaperZombie", "FootballZombie"};
     final static int[] ZOMBIESCORES = {5, 7, 9, 10, 13, 14};
     final static int[] STAGETOTALSCORES = {100, 140, 200};
-    final static int[] STAGEAVAILABLEZOMBIES = {2, 4, 6};
+    final static int[] STAGEAVAILABLEZOMBIES = {3, 5, 7};
 
     Timer producer;
     Timer imgPresenter;

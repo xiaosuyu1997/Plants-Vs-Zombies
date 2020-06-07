@@ -100,6 +100,11 @@ public class PlantCard extends JPanel implements MouseListener {
         super.paintComponent(g);
         if(changetime==10&&gp.getSunScore()<needsun){
             Im=grayImage(changetime);
+            iswait = true;
+        }
+        else if(changetime==10&&gp.getSunScore()>=needsun) {
+        	Im = img;
+        	iswait = false;
         }
         g.drawImage(Im, 0, 0, null);
     }
