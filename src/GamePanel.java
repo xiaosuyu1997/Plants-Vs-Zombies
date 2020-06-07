@@ -54,6 +54,13 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
 
     private Random rnd;
 
+    // Two boolean var to determine whether display new Wave image
+    public boolean newStage = false;
+    public boolean finalStage = false;
+
+    private Image newStageImg;
+    private Image finalStageImg;
+
     public int getSunScore() {
         return sunScore;
     }
@@ -74,8 +81,12 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
         setSunScore(5000);  //pool avalie
 
         bgImage = new ImageIcon(this.getClass().getResource("images/mainB.png")).getImage();
-        pauseImage = new ImageIcon(this.getClass().getResource(
-                "images\\Button2.png")).getImage();
+        pauseImage = new ImageIcon(this.getClass().getResource("images/Button2.png")).getImage();
+        
+        System.out.printf("before img loading");
+        newStageImg = new ImageIcon(this.getClass().getResource("images/LargeWave.gif")).getImage();
+        finalStageImg = new ImageIcon(this.getClass().getResource("images/FinalWave.gif")).getImage();
+        System.out.printf("after img loading");
 
         zombieType = 5;
 
@@ -177,7 +188,7 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
             for (int i = 0; i < 5; i++) {
                 for (int j = 0; j < laneZombies.get(i).size(); j++) {
                     if (laneZombies.get(i).get(j).isDead()) {
-                        System.out.println("ZOMBIE DIED");
+                        // System.out.println("ZOMBIE DIED");
                         deadZombies.add(new DeadZombie(this, i, laneZombies.get(i).get(j).getPosX()));
                         // System.out.printf("dead zombies%d", deadZombies.size());
                         this.remove(laneZombies.get(i).get(j));
@@ -217,6 +228,8 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
         loseTimer.start();
         
         winTimer = new Timer(0, (ActionEvent e) -> {
+
+            /*
             if (progress >= 150) {
                 if ("1".equals(LevelData.LEVEL_NUMBER)) {
                     JOptionPane.showMessageDialog(null, "LEVEL_CONTENT Completed !!!" + '\n' + "Starting next LEVEL_CONTENT");
@@ -230,6 +243,22 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
                 }
                 progress = 0;
                 winTimer.stop();
+            }
+            */
+            
+            boolean empty = true;
+            for(int i = 0; i < 5; ++i){
+                if(!laneZombies.get(i).isEmpty())
+                {
+                    empty = false;
+                    break;
+                }
+            }
+            if(empty && zombieProducer.total_complete)
+            {
+                JOptionPane.showMessageDialog(null, "LEVEL_CONTENT Completed !!!" + '\n' + "More Levels will come soon !!!" + '\n' + "Resetting data");
+                LevelData.write("1");
+                System.exit(0);
             }
         });
         winTimer.start();
@@ -412,10 +441,6 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
         }
 
 
-        //Draw Zombies and Peas
-
-
-        
         // Draw Peas
 
         for (int i = 0; i < 5; i++) {
@@ -497,6 +522,12 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
         }
 
         
+        if(newStage)
+            g.drawImage(newStageImg, 400, 300, null);
+        if(finalStage)
+            g.drawImage(finalStageImg, 400, 300, null);
+        
+
         // Zombies are JPanels, don't need to draw manually here
         /**
          for (Iterator<DeadZombie> ite = deadZombies.iterator(); ite.hasNext();) {
@@ -747,7 +778,7 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
 
     public static void setProgress(int num) {
         progress = progress + num;
-        System.out.println(progress);
+        // System.out.println(progress);
     }
 
     public GameWindow.PlantType getActivePlantingBrush() {

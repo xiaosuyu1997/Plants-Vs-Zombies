@@ -1,10 +1,12 @@
 import java.util.*;
+import java.awt.Graphics;
+import java.awt.Image;
 
 public class ZombieProducer {
     final static int MAXSTAGE = 2;
-    final static int[] MIDDLEINTERVAL = {7000, 6000, 5000};
+    final static int[] MIDDLEINTERVAL = {8000, 6000, 2000};
     final static int NUMBEROFZOMBIECLASSES = 5;
-    final static int DEVIATION = 2000;
+    final static int DEVIATION = 1000;
 
     final static String[] ZOMBIES = {"NormalZombie", "ConeHeadZombie", "PoleVaultingZombie", "MetalBucketZombie", "FootballZombie"};
     final static int[] ZOMBIESCORES = {5, 7, 10, 12, 15};
@@ -12,6 +14,7 @@ public class ZombieProducer {
     final static int[] STAGEAVAILABLEZOMBIES = {3, 4, 5};
 
     Timer producer;
+    Timer imgPresenter;
     int stage;
     int stage_score;
     
@@ -28,11 +31,19 @@ public class ZombieProducer {
         stage = 0;
         stage_score = STAGETOTALSCORES[stage];
         producer = new Timer();
+        imgPresenter = new Timer();
     }
 
     void start()
     {
         System.out.printf("Producing Zombies\n");
+        gp.newStage = true;
+                imgPresenter.schedule(new TimerTask(){
+                    @Override
+                    public void run() {
+                        gp.newStage = false;
+                    }
+                }, 3000);
         nextZombie(MIDDLEINTERVAL[stage]);
     }
 
@@ -58,14 +69,35 @@ public class ZombieProducer {
         if(stage_score < 0)
         {
             stage_complete[stage] = true;
-            tmp_interval = 15000;
+            tmp_interval = 10000;
             System.out.printf("Stage %d Complete\n", stage);
             if(stage == 2)
+            {
                 total_complete = true;
+            }
             else
             {
                 stage += 1;
                 stage_score = STAGETOTALSCORES[stage];
+                if(stage <= 1){
+                    gp.newStage = true;
+                    imgPresenter.schedule(new TimerTask(){
+                        @Override
+                        public void run() {
+                            gp.newStage = false;
+                        
+                        }
+                    }, 5000);
+                }
+                else{
+                    gp.finalStage = true;
+                    imgPresenter.schedule(new TimerTask(){
+                        @Override
+                        public void run() {
+                            gp.finalStage = false;
+                        }
+                    }, 5000);
+                }
             }
         }
 
