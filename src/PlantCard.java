@@ -26,6 +26,9 @@ public class PlantCard extends JPanel implements MouseListener {
     private ActionListener al;
     private int x,y;
 
+    public GamePanel gp;
+    public int needsun;
+
     public int changetime=10;
     public int waittime;
     public boolean iswait;
@@ -58,7 +61,9 @@ public class PlantCard extends JPanel implements MouseListener {
         redrawTimer.start();
     }
 
-    public void setAction(int kx,int ky,int wa,ActionListener al) {
+    public void setAction(GamePanel gp,int needsun,int kx,int ky,int wa,ActionListener al) {
+        this.needsun=needsun;
+        this.gp=gp;
         this.al = al;
         x=kx;
         y=ky;
@@ -93,6 +98,9 @@ public class PlantCard extends JPanel implements MouseListener {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
+        if(changetime==10&&gp.getSunScore()<needsun){
+            Im=grayImage(changetime);
+        }
         g.drawImage(Im, 0, 0, null);
     }
 
