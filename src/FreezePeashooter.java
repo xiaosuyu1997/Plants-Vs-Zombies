@@ -1,9 +1,7 @@
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 
-/**
- * Created by Armin on 6/25/2016.
- */
+
 public class FreezePeashooter extends Plant {
 
     private Timer shootTimer;
@@ -15,7 +13,7 @@ public class FreezePeashooter extends Plant {
         shootTimer = new Timer(2000, (ActionEvent e) -> {
             boolean has=false;
             for(int i=0;i<getGp().getLaneZombies().get(y).size();++i){
-                if(getGp().getLaneZombies().get(y).get(i).getX()>this.getX() * 100){
+                if(getGp().getLaneZombies().get(y).get(i).getPosX()>this.getX() * 100){
                     has=true;
                     break;
                 }

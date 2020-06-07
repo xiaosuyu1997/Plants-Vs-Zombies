@@ -1,8 +1,6 @@
 import java.awt.*;
 import javax.swing.*;
-/**
- * Created by Armin on 6/25/2016.
- */
+
 public class Pea {
 
     private int posX;
@@ -27,6 +25,7 @@ public class Pea {
     }
 
     public void advance() {
+
         // Rectangle pRect = new Rectangle(posX, 130 + myLane * 120, 28, 28);
         for (int i = 0; i < gp.getLaneZombies().get(myLane).size(); i++) {
             Zombie z = gp.getLaneZombies().get(myLane).get(i);
@@ -35,7 +34,12 @@ public class Pea {
             if (z.getPosX()+30>=posX&&posX>=z.getPosX()-30) {
                 setImage(peahit);
             	if(z instanceof MetalBucketZombie) {
-            		peaHitShiled.player.start();
+            		if(!z.isThreeQuarterHurted()) {
+            			peaHitShiled.player.start();
+            		}
+            		else {
+            			pea.player.start();
+            		}
             	}
             	else {
             	    pea.player.start();

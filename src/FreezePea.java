@@ -1,9 +1,6 @@
 import java.awt.*;
 import javax.swing.*;
 
-/**
- * Created by Armin on 6/28/2016.
- */
 public class FreezePea extends Pea {
 	private SoundEffect frozenpea = new SoundEffect("./src/bgms/FrozenPea.wav");
 	private SoundEffect frozenpeaHitShield = new SoundEffect("./src/bgms/shieldhit2.wav");
@@ -21,7 +18,12 @@ public class FreezePea extends Pea {
             Zombie z = gp.getLaneZombies().get(getMyLane()).get(i);
             if (z.getPosX()+30>=getPosX()&&getPosX()>=z.getPosX()-30) {
             	if(z instanceof MetalBucketZombie) {
-            		frozenpeaHitShield.player.start();
+            		if(!z.isThreeQuarterHurted()) {
+            			frozenpeaHitShield.player.start();
+            		}
+            		else {
+            			frozenpea.player.start();
+            		}
             	}
             	else {
             		frozenpea.player.start();
