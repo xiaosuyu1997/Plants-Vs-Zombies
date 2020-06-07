@@ -28,7 +28,7 @@ public class Menu extends JPanel {
         setSize(1012, 785);
         menuBgm.prepare();
         menuBgm.player.loop(Clip.LOOP_CONTINUOUSLY);
-        bgImage = new ImageIcon(this.getClass().getResource("images/resources/images/interface/Surface.jpg")).getImage();
+        bgImage = new ImageIcon(this.getClass().getResource("images\\resources\\images\\interface\\Surface.jpg")).getImage();
         AdventureImage = new ImageIcon(this.getClass().getResource(
                 "images\\resources\\images\\interface\\Adventure_Default.png")).getImage();
         AdventureShadow = new ImageIcon((this.getClass().getResource(
