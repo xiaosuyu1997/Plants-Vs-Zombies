@@ -20,6 +20,8 @@ public class SeedChoose extends JLayeredPane implements MouseMotionListener {
     public SeedCardpre[] preplace;
     public SeedCardpre beginbutton;
 
+    public Timer ti;
+
     public int k = 0;
 
     private Timer redrawTimer;
@@ -43,14 +45,26 @@ public class SeedChoose extends JLayeredPane implements MouseMotionListener {
         beginImage = new ImageIcon(this.getClass().getResource("images/begingame.png")).getImage();
 
         beginbutton = new SeedCardpre();
-        beginbutton.setAction(0, 0, 0, "images/begingame.png", "", (ActionEvent e) -> {
+        beginbutton.setAction(0, 580, 500, "images/nobegingame.png", "", (ActionEvent e) -> {
             if (k == 9) {
                 seedchoose.player.stop();
                 GameWindow.begingame();
             }
         });
-        beginbutton.setSize(113, 41);
-        beginbutton.setLocation(0, 0);
+        ti = new Timer(0, (ActionEvent e) -> {
+            if (k == 9) {
+                Image img = new ImageIcon(this.getClass().getResource("images/begingame1.png")).getImage();
+                beginbutton.setImage(img);
+            }
+            if (k < 9){
+                Image img = new ImageIcon(this.getClass().getResource("images/nobegingame.png")).getImage();
+                beginbutton.setImage(img);
+            }
+        });
+        ti.start();
+
+        beginbutton.setSize(154, 37);
+        beginbutton.setLocation(580, 500);
         beginbutton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {

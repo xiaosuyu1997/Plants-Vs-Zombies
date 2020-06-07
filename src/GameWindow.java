@@ -26,13 +26,17 @@ public class GameWindow extends JFrame {
         Jalapeno,
         Spikeweed,
         Spikerock,
+        ConeHeadZombie,
+        MetalBucketZombie,
+        PoleVaultingZombie,
+        FootballZombie,
         Sholve
     }
 
     
-    public PlantCard Sunflower,Peashooter,FreezePeashooter,Torchwood,
-        TwicePeashooter,ThreePeashooter,Chomper,Wallnut,GatlingPea,PotatoMine,CherryBomb,
-        Tallnut,Twinsunflower,Jalapeno,Spikeweed,Spikerock,Sholve;
+    public PlantCard Sunflower,Peashooter,FreezePeashooter,Torchwood,TwicePeashooter,ThreePeashooter,
+        Chomper,Wallnut,GatlingPea,PotatoMine,CherryBomb,Tallnut,Twinsunflower,Jalapeno,Spikeweed,Spikerock,
+        Sholve,ConeHeadZombie,MetalBucketZombie,PoleVaultingZombie,FootballZombie;
 
     //PlantType activePlantingBrush = PlantType.None;
     private void initComponents() {
@@ -293,6 +297,54 @@ public class GameWindow extends JFrame {
         setVisible(true);
     }
 
+    //I'm Zombie model windows
+    public GameWindow(double b){
+        setSize(1012, 785);
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        setLayout(null);
+
+        initComponents();
+
+        JLabel sun = new JLabel("SUN");
+        sun.setLocation(45, 70);
+        sun.setSize(60, 20);
+
+        GamePanel gp = new GamePanel(this, sun, 1);
+        gp.setLocation(0, 0);
+        getLayeredPane().add(gp, new Integer(0));
+
+        getLayeredPane().add(sun, new Integer(2));
+        setResizable(false);
+        setVisible(true);
+
+        ConeHeadZombie = new PlantCard("images/cards/card_coneheadzombies.png");
+        ConeHeadZombie.setAction(115, 12, 7500, (ActionEvent e) -> {
+            gp.setActivePlantingBrush(PlantType.ConeHeadZombie);
+        });
+        ConeHeadZombie.setSize(48,68);
+        getLayeredPane().add(ConeHeadZombie, new Integer(1));
+
+        MetalBucketZombie = new PlantCard("images/cards/card_metalbucketzombie.png");
+        MetalBucketZombie.setAction(173, 12, 7500, (ActionEvent e) -> {
+            gp.setActivePlantingBrush(PlantType.MetalBucketZombie);
+        });
+        MetalBucketZombie.setSize(48,68);
+        getLayeredPane().add(MetalBucketZombie, new Integer(1));
+        
+        PoleVaultingZombie = new PlantCard("images/cards/card_polevaultingzombie.png");
+        PoleVaultingZombie.setAction(231, 12, 7500, (ActionEvent e) -> {
+            gp.setActivePlantingBrush(PlantType.PoleVaultingZombie);
+        });
+        PoleVaultingZombie.setSize(48,68);
+        getLayeredPane().add(PoleVaultingZombie, new Integer(1));
+
+        FootballZombie = new PlantCard("images/cards/card_footballzombie.png");
+        FootballZombie.setAction(289, 12, 7500, (ActionEvent e) -> {
+            gp.setActivePlantingBrush(PlantType.FootballZombie);
+        });
+        FootballZombie.setSize(48,68);
+        getLayeredPane().add(FootballZombie, new Integer(1));
+    }
     static GameWindow gw;
     private JPanel jPanel1;
     static GameWindow gw1;
@@ -306,6 +358,11 @@ public class GameWindow extends JFrame {
         gw.dispose();
         gw = new GameWindow(gw.aSeedChoose.getplace());
 
+    }
+
+    public static void beginmodelgame() {
+        gw.dispose();
+        gw = new GameWindow(1.1);
     }
 
     public static void main(String[] args) {

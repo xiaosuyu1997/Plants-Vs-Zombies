@@ -14,6 +14,17 @@ public abstract class Plant {
     private GamePanel gp;
 
 
+    public Plant(GamePanel parent, int i){
+        gp = parent;
+        this.y = i;
+        Time = new Timer(0,(ActionEvent e) ->{
+            if(health<=0){
+                gp.getBrain()[i].removePlant();
+            }
+        });
+        Time.start();
+    }
+
     public Plant(GamePanel parent, int x, int y) {
         this.x = x;
         this.y = y;
