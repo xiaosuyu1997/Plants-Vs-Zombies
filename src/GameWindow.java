@@ -165,7 +165,7 @@ public class GameWindow extends JFrame {
             }
             if (name[i] == "chomper") {
                 Chomper = new PlantCard("images/cards/card_chomper.png");
-                Chomper.setAction(110 + 65 * i, 8, 7500, (ActionEvent e) -> {
+                Chomper.setAction(110 + 65 * i, 8, 0, (ActionEvent e) -> {
                     gp.setActivePlantingBrush(PlantType.Chomper);
                 });
                 Chomper.countwaittime();
