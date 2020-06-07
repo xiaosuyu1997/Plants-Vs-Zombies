@@ -116,7 +116,7 @@ public class Zombie extends JPanel {
             zombiesEating.player.stop();
             
             if(!ifScore) {
-            	System.out.println("ZOMBIE DIE");
+            	// System.out.println("ZOMBIE DIE");
             	GamePanel.setProgress(10);
             	ifScore = true;
             }

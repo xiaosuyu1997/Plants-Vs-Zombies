@@ -4,14 +4,14 @@ import java.awt.Image;
 
 public class ZombieProducer {
     final static int MAXSTAGE = 2;
-    final static int[] MIDDLEINTERVAL = {8000, 6000, 2000};
+    final static int[] MIDDLEINTERVAL = {6000, 4000, 2000};
     final static int NUMBEROFZOMBIECLASSES = 5;
     final static int DEVIATION = 1000;
 
-    final static String[] ZOMBIES = {"NormalZombie", "ConeHeadZombie", "PoleVaultingZombie", "MetalBucketZombie", "FootballZombie"};
-    final static int[] ZOMBIESCORES = {5, 7, 10, 12, 15};
+    final static String[] ZOMBIES = {"NormalZombie", "ConeHeadZombie", "PoleVaultingZombie", "MetalBucketZombie", "NewspaperZombie", "FootballZombie"};
+    final static int[] ZOMBIESCORES = {5, 7, 9, 10, 13, 14};
     final static int[] STAGETOTALSCORES = {50, 70, 100};
-    final static int[] STAGEAVAILABLEZOMBIES = {3, 4, 5};
+    final static int[] STAGEAVAILABLEZOMBIES = {2, 4, 6};
 
     Timer producer;
     Timer imgPresenter;
@@ -64,7 +64,7 @@ public class ZombieProducer {
         // Determine the zombie after this zombie interval
         int tmp_interval = MIDDLEINTERVAL[stage] + (int) (DEVIATION * rnd.nextGaussian());
         
-  
+        
         stage_score -= ZOMBIESCORES[zombie_index];
         if(stage_score < 0)
         {
@@ -102,6 +102,7 @@ public class ZombieProducer {
         }
 
         // variable used in timertask must be final
+        if(tmp_interval < 0) tmp_interval = 100;
         final int next_interval = tmp_interval;
         System.out.printf("Next Zombie in %d ms\n", next_interval);
 

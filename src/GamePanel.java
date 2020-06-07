@@ -1,5 +1,7 @@
 import javax.swing.*;
 import javax.imageio.*;
+import javax.sound.sampled.Clip;
+
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.awt.event.ActionEvent;
@@ -219,6 +221,7 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
                 SoundEffect zombiesWin = new SoundEffect("./src/bgms/zombiegroup.wav");
                 zombiesWin.prepare();
                 zombiesWin.player.start();
+                bgm.player.stop();
                 loseTimer.stop();
                 JOptionPane.showMessageDialog(GamePanel.this, "ZOMBIES ATE YOUR BRAIN !" + '\n' + "Starting the level again");
                 GameWindow.gw.dispose();
@@ -256,6 +259,7 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
             }
             if(empty && zombieProducer.total_complete)
             {
+            	bgm.player.stop();
                 JOptionPane.showMessageDialog(null, "LEVEL_CONTENT Completed !!!" + '\n' + "More Levels will come soon !!!" + '\n' + "Resetting data");
                 LevelData.write("1");
                 System.exit(0);
@@ -264,7 +268,7 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
         winTimer.start();
 
 
-        bgm.player.start();
+        bgm.player.loop(Clip.LOOP_CONTINUOUSLY);
         zombiesComing.player.start();
     }
 
@@ -341,6 +345,7 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
         loseTimer = new Timer(0, (ActionEvent e) ->{
             if(getSunScore()<75){
                 loseTimer.stop();
+                bgm.player.stop();
                 JOptionPane.showMessageDialog(GamePanel.this, "have no enough sun, you lose");
                 GameWindow.gw.dispose();
                 System.exit(0);
@@ -349,7 +354,7 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
         loseTimer.start();
 
 
-        winTimer = new Timer(0,(ActionEvent e) ->{
+        winTimer = new Timer(25,(ActionEvent e) ->{
             boolean nobrain = true;
             for(int i=0;i<5;i++){
                 if(brains[i].assignedPlant!=null) nobrain=false;
@@ -357,6 +362,7 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
             if(nobrain){
                 winTimer.stop();
                 JOptionPane.showMessageDialog(null,"you win");
+                bgm.player.stop();
                 GameWindow.gw.dispose();
                 System.exit(0);
             }
