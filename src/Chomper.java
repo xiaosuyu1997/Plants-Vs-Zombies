@@ -20,7 +20,7 @@ public class Chomper extends Plant{
                     boolean has=false;
                     for (int i = 0; i < getGp().getLaneZombies().get(y).size(); i++){
                         if(getGp().getLaneZombies().get(y).get(i).getPosX()>=x1&&
-                        getGp().getLaneZombies().get(y).get(i).getPosX()<x1+150){
+                        getGp().getLaneZombies().get(y).get(i).getPosX()<x1+280){
                             has=true;
                         }
                     }
@@ -43,7 +43,7 @@ public class Chomper extends Plant{
                 boolean has=false;
                 for (int i = 0; i < getGp().getLaneZombies().get(y).size(); i++){
                     if(getGp().getLaneZombies().get(y).get(i).getPosX()>=x1&&
-                    getGp().getLaneZombies().get(y).get(i).getPosX()<x1+150){
+                    getGp().getLaneZombies().get(y).get(i).getPosX()<x1+280){
                         has=true;
                         int nowx=getGp().getLaneZombies().get(y).get(i).getPosX()-x1;
                         if(nowx<zx){
