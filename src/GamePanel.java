@@ -251,10 +251,13 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
         lanePeas.add(new ArrayList<>()); //line 5
 
         bgImage = new ImageIcon(this.getClass().getResource("images/mainN.png")).getImage();
+        pauseImage = new ImageIcon(this.getClass().getResource(
+                "images\\Button0.png")).getImage();
+                
         brains = new Collider[5];
         for (int i = 0; i < 5; i++) {
             Collider a = new Collider();
-            a.setLocation(44 + (i % 9) * 100, 109 + (i / 9) * 120);
+//            a.setLocation(44 + (i % 9) * 100, 109 + (i / 9) * 120);
             a.setPlant(new Brain(GamePanel.this, i) );
             a.setSize(32,31);
             brains[i] = a;
