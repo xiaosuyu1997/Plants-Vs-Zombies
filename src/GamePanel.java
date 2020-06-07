@@ -198,6 +198,8 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
                 Pea p = lanePeas.get(i).get(j);
                 p.advance();
             }
+
+            // Plants have self timer tasks to produce peas or attack(don't advance here)
         }
 
         for (int i = 0; i < activeSuns.size(); i++) {
@@ -211,7 +213,7 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
         super.paintComponent(g);
         g.drawImage(bgImage, 0, 0, null);
 
-        //Draw Plants
+        // Draw Plants
         for (int i = 0; i < 45; i++) {
             Collider c = colliders[i];
             if (c.assignedPlant != null) {
@@ -231,8 +233,7 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
             }
         }
         
-        //Draw Zombies and Peas
-        
+        // Draw Peas
         for (int i = 0; i < 5; i++) {
         	/**
             for (Zombie z : laneZombies.get(i)) {
@@ -311,6 +312,7 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
 
         }
         
+        // Zombies are JPanels, don't need to draw manually here
         /**
         for (Iterator<DeadZombie> ite = deadZombies.iterator(); ite.hasNext();) {
             DeadZombie i = ite.next();
