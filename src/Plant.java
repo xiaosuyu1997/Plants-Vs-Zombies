@@ -29,7 +29,7 @@ public abstract class Plant {
         this.x = x;
         this.y = y;
         gp = parent;
-        Time = new Timer(0,(ActionEvent e) ->{
+        Time = new Timer(25,(ActionEvent e) ->{
             if(health<=0){
                 gp.getColliders()[x + y * 9].removePlant();
             }

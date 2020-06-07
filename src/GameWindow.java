@@ -94,16 +94,20 @@ public class GameWindow extends JFrame {
 
         initComponents();
 
+        // Add sun counter board in up-left corner(Add after game panel init, to be
+        // in the upper layer)
         JLabel sun = new JLabel("SUN");
         sun.setLocation(37, 80);
         sun.setSize(60, 20);
 
+        // Init basic game panel(the most background layer)
         GamePanel gp = new GamePanel(this, sun);
         gp.setLocation(0, 0);
         getLayeredPane().add(gp, new Integer(0));
 
-
+        // Add plant cards to game window
         for (int i = 0; i < 9; ++i) {
+            
             if (name[i] == "sunflower") {
                 Sunflower = new PlantCard("images/cards/card_sunflower.png");
                 Sunflower.setAction(110 + 65 * i, 8, 7500, (ActionEvent e) -> {
@@ -243,6 +247,7 @@ public class GameWindow extends JFrame {
             }
         }
 
+        // Add shovel to game window
         Sholve = new PlantCard("images/cards/ShovelBack.png");
         Sholve.setSize(100, 50);
         Sholve.setAction(760, 0, 0, (ActionEvent e) -> {
@@ -258,9 +263,7 @@ public class GameWindow extends JFrame {
 
     private void jPanel1MouseClicked(MouseEvent evt) {
         //open menu
-        gw.dispose();
-        gw = new GameWindow(true);//needed to provide a menu game_window
-        System.out.println("Exit");
+        System.exit(0);
     }
 
     private void jPanel1MouseEntered(MouseEvent evt) {
@@ -347,6 +350,7 @@ public class GameWindow extends JFrame {
     private JPanel jPanel1;
     static GameWindow gw1;
 
+    // Start choose plant cards menu
     public static void begin() {
         gw.dispose();
         gw = new GameWindow(1);

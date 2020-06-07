@@ -77,7 +77,7 @@ public class PoleVaultingZombie  extends Zombie {
         	collided = null;
             boolean tempCollided = false;
             if(!isJumping) {
-            	for (int i = getMyLane()  * 9; i < (getMyLane()  + 1) * 9; i++) {
+            	for (int i = getMyLane() * 9; i < (getMyLane() + 1) * 9; i++) {
 					if (getGp().getColliders()[i].assignedPlant != null && !(getGp().getColliders()[i].assignedPlant instanceof Spikeweed) 
 					&&!(getGp().getColliders()[i].assignedPlant instanceof Spikerock)&& getGp().getColliders()[i].isInsideCollider(getPosX())) {
                     	collidedCount++;
@@ -142,7 +142,6 @@ public class PoleVaultingZombie  extends Zombie {
             }
         	}
             
-            
             if(isAttacking()) {
             	currentImage= poleVaultingZombieAttackImage;
             	zombiesEating.player.loop(Clip.LOOP_CONTINUOUSLY);
@@ -184,7 +183,6 @@ public class PoleVaultingZombie  extends Zombie {
          			public void run() {
          				getGp().getLaneZombies().get(getMyLane()).remove(temp);
          			} }, 1000);
-
             }
             
 

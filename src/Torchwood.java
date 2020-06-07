@@ -20,7 +20,8 @@ public class Torchwood extends Plant {
                     }
                     continue;
                 }
-                else if (getGp().getLanePeas().get(y).get(i) instanceof BurnPea){
+                else if (getGp().getLanePeas().get(y).get(i) instanceof BurnPea ||
+                getGp().getLanePeas().get(y).get(i) instanceof LawnCleaner){
                     continue;
                 }
                 else{
