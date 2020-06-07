@@ -319,28 +319,28 @@ public class GameWindow extends JFrame {
         setVisible(true);
 
         ConeHeadZombie = new PlantCard("images/cards/card_coneheadzombies.png");
-        ConeHeadZombie.setAction(115, 12, 7500, (ActionEvent e) -> {
+        ConeHeadZombie.setAction(115, 12, 0, (ActionEvent e) -> {
             gp.setActivePlantingBrush(PlantType.ConeHeadZombie);
         });
         ConeHeadZombie.setSize(48,68);
         getLayeredPane().add(ConeHeadZombie, new Integer(1));
 
         MetalBucketZombie = new PlantCard("images/cards/card_metalbucketzombie.png");
-        MetalBucketZombie.setAction(173, 12, 7500, (ActionEvent e) -> {
+        MetalBucketZombie.setAction(173, 12, 0, (ActionEvent e) -> {
             gp.setActivePlantingBrush(PlantType.MetalBucketZombie);
         });
         MetalBucketZombie.setSize(48,68);
         getLayeredPane().add(MetalBucketZombie, new Integer(1));
         
         PoleVaultingZombie = new PlantCard("images/cards/card_polevaultingzombie.png");
-        PoleVaultingZombie.setAction(231, 12, 7500, (ActionEvent e) -> {
+        PoleVaultingZombie.setAction(231, 12, 0, (ActionEvent e) -> {
             gp.setActivePlantingBrush(PlantType.PoleVaultingZombie);
         });
         PoleVaultingZombie.setSize(48,68);
         getLayeredPane().add(PoleVaultingZombie, new Integer(1));
 
         FootballZombie = new PlantCard("images/cards/card_footballzombie.png");
-        FootballZombie.setAction(289, 12, 7500, (ActionEvent e) -> {
+        FootballZombie.setAction(289, 12, 0, (ActionEvent e) -> {
             gp.setActivePlantingBrush(PlantType.FootballZombie);
         });
         FootballZombie.setSize(48,68);

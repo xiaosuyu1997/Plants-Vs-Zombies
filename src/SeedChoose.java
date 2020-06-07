@@ -3,6 +3,7 @@ import javax.imageio.*;
 import javax.sound.sampled.Clip;
 
 import java.awt.*;
+import java.awt.Image;
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.util.Iterator;
@@ -15,6 +16,13 @@ public class SeedChoose extends JLayeredPane implements MouseMotionListener {
     private Image cardplaceImage;
     private Image seedchooseImage;
     private Image beginImage;
+
+    private Image newspaperZombieImagenew = new ImageIcon(this.getClass().getResource("images/zombies/newspaperzombie/NewspaperZombie.gif")).getImage();
+    private Image coneHeadZombieImage = new ImageIcon(this.getClass().getResource("images/zombies/coneheadzombie/ConeheadZombie.gif")).getImage();
+    private Image normalZombieImage = new ImageIcon(this.getClass().getResource("images/zombies/normalzombie/Zombie.gif")).getImage();
+    private Image metalBucketZombieImage = new ImageIcon(this.getClass().getResource("images/zombies/metalbucketzombie/BucketheadZombie.gif")).getImage();
+    private Image poleVaultingZombieImage = new ImageIcon(this.getClass().getResource("images/zombies/polevaultingzombie/PoleVaultingZombie.gif")).getImage();
+    private Image footballZombieImage = new ImageIcon(this.getClass().getResource("images/zombies/footballzombie/FootballZombie.gif")).getImage();
 
     public SeedCardpre[] place;
     public SeedCardpre[] preplace;
@@ -389,6 +397,13 @@ public class SeedChoose extends JLayeredPane implements MouseMotionListener {
         }
 
         g.drawImage(beginbutton.getImage(), beginbutton.getX(), beginbutton.getY(), null);
+
+        g.drawImage(newspaperZombieImagenew, 1100, 50, null);
+        g.drawImage(coneHeadZombieImage, 1085, 150, null);
+        g.drawImage(normalZombieImage, 1050, 20, null);
+        g.drawImage(metalBucketZombieImage, 1210, 200, null);
+        g.drawImage(poleVaultingZombieImage, 1030, 250, null);
+        g.drawImage(footballZombieImage, 1110, 400, null);
     }
 
     @Override

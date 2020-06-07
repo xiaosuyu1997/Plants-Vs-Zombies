@@ -568,6 +568,7 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
                     laneZombies.get(y).add(z);
                     add(z, new Integer(2));
                     setSunScore(getSunScore() - 75);
+                    gw.ConeHeadZombie.countwaittime();
                 }
             }
             if (activePlantingBrush == GameWindow.PlantType.PoleVaultingZombie){
@@ -579,6 +580,7 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
                     laneZombies.get(y).add(z);
                     add(z, new Integer(2));
                     setSunScore(getSunScore() - 75);
+                    gw.PoleVaultingZombie.countwaittime();
                 }
             }
             if (activePlantingBrush == GameWindow.PlantType.MetalBucketZombie){
@@ -590,6 +592,7 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
                     laneZombies.get(y).add(z);
                     add(z, new Integer(2));
                     setSunScore(getSunScore() - 125);
+                    gw.MetalBucketZombie.countwaittime();
                 }
             }
             if (activePlantingBrush == GameWindow.PlantType.FootballZombie){
@@ -601,6 +604,7 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
                     laneZombies.get(y).add(z);
                     add(z, new Integer(2));
                     setSunScore(getSunScore() - 175);
+                    gw.FootballZombie.countwaittime();
                 }
             }
             
