@@ -80,7 +80,7 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
         setLayout(null);
         addMouseMotionListener(this);
         this.sunScoreboard = sunScoreboard;
-        setSunScore(5000);  //pool avalie
+        setSunScore(150);  //pool avalie
 
         bgImage = new ImageIcon(this.getClass().getResource("images/mainB.png")).getImage();
         pauseImage = new ImageIcon(this.getClass().getResource("images/Button2.png")).getImage();
@@ -345,7 +345,6 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
         loseTimer = new Timer(0, (ActionEvent e) ->{
             if(getSunScore()<75){
                 loseTimer.stop();
-                bgm.player.stop();
                 JOptionPane.showMessageDialog(GamePanel.this, "have no enough sun, you lose");
                 GameWindow.gw.dispose();
                 System.exit(0);
