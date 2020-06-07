@@ -17,12 +17,14 @@ public class SeedChoose extends JLayeredPane implements MouseMotionListener {
     private Image seedchooseImage;
     private Image beginImage;
 
-    private Image newspaperZombieImagenew = new ImageIcon(this.getClass().getResource("images/zombies/newspaperzombie/NewspaperZombie.gif")).getImage();
-    private Image coneHeadZombieImage = new ImageIcon(this.getClass().getResource("images/zombies/coneheadzombie/ConeheadZombie.gif")).getImage();
-    private Image normalZombieImage = new ImageIcon(this.getClass().getResource("images/zombies/normalzombie/Zombie.gif")).getImage();
-    private Image metalBucketZombieImage = new ImageIcon(this.getClass().getResource("images/zombies/metalbucketzombie/BucketheadZombie.gif")).getImage();
-    private Image poleVaultingZombieImage = new ImageIcon(this.getClass().getResource("images/zombies/polevaultingzombie/PoleVaultingZombie.gif")).getImage();
-    private Image footballZombieImage = new ImageIcon(this.getClass().getResource("images/zombies/footballzombie/FootballZombie.gif")).getImage();
+    private Image newspaperZombieImage = new ImageIcon(this.getClass().getResource("images/zombies/newspaperzombie/NewspaperZombieRelax.gif")).getImage();
+    private Image coneHeadZombieImage = new ImageIcon(this.getClass().getResource("images/zombies/coneheadzombie/ConeheadZombieRelax.gif")).getImage();
+    private Image normalZombieImage1 = new ImageIcon(this.getClass().getResource("images/zombies/normalzombie/ZombieRelax1.gif")).getImage();
+    private Image normalZombieImage2 = new ImageIcon(this.getClass().getResource("images/zombies/normalzombie/ZombieRelax2.gif")).getImage();
+    private Image normalZombieImage3 = new ImageIcon(this.getClass().getResource("images/zombies/normalzombie/ZombieRelax3.gif")).getImage();
+    private Image metalBucketZombieImage = new ImageIcon(this.getClass().getResource("images/zombies/metalbucketzombie/BucketZombieRelax.gif")).getImage();
+    private Image poleVaultingZombieImage = new ImageIcon(this.getClass().getResource("images/zombies/polevaultingzombie/PoleVaultingZombieRelax.gif")).getImage();
+    private Image footballZombieImage = new ImageIcon(this.getClass().getResource("images/zombies/footballzombie/FootballZombieRelax.gif")).getImage();
 
     public SeedCardpre[] place;
     public SeedCardpre[] preplace;
@@ -398,9 +400,11 @@ public class SeedChoose extends JLayeredPane implements MouseMotionListener {
 
         g.drawImage(beginbutton.getImage(), beginbutton.getX(), beginbutton.getY(), null);
 
-        g.drawImage(newspaperZombieImagenew, 1100, 50, null);
+        g.drawImage(newspaperZombieImage, 1100, 50, null);
         g.drawImage(coneHeadZombieImage, 1085, 150, null);
-        g.drawImage(normalZombieImage, 1050, 20, null);
+        g.drawImage(normalZombieImage1, 1050, 20, null);
+        g.drawImage(normalZombieImage2, 1100, 350, null);
+        g.drawImage(normalZombieImage3, 1280, 300, null);
         g.drawImage(metalBucketZombieImage, 1210, 200, null);
         g.drawImage(poleVaultingZombieImage, 1030, 250, null);
         g.drawImage(footballZombieImage, 1110, 400, null);
