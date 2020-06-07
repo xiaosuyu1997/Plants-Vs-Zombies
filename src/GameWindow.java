@@ -110,7 +110,7 @@ public class GameWindow extends JFrame {
             
             if (name[i] == "sunflower") {
                 Sunflower = new PlantCard("images/cards/card_sunflower.png");
-                Sunflower.setAction(110 + 65 * i, 8, 7500, (ActionEvent e) -> {
+                Sunflower.setAction(gp,50,110 + 65 * i, 8, 7500, (ActionEvent e) -> {
 
                     gp.setActivePlantingBrush(PlantType.Sunflower);
                 });
@@ -119,7 +119,7 @@ public class GameWindow extends JFrame {
 
             if (name[i] == "peashooter") {
                 Peashooter = new PlantCard("images/cards/card_peashooter.png");
-                Peashooter.setAction(110 + 65 * i, 8, 7500, (ActionEvent e) -> {
+                Peashooter.setAction(gp,100,110 + 65 * i, 8, 7500, (ActionEvent e) -> {
 
                     gp.setActivePlantingBrush(PlantType.Peashooter);
                 });
@@ -128,7 +128,7 @@ public class GameWindow extends JFrame {
 
             if (name[i] == "freezepeashooter") {
                 FreezePeashooter = new PlantCard("images/cards/card_freezepeashooter.png");
-                FreezePeashooter.setAction(110 + 65 * i, 8, 7500, (ActionEvent e) -> {
+                FreezePeashooter.setAction(gp,175,110 + 65 * i, 8, 7500, (ActionEvent e) -> {
 
                     gp.setActivePlantingBrush(PlantType.FreezePeashooter);
                 });
@@ -137,7 +137,7 @@ public class GameWindow extends JFrame {
             }
             if (name[i] == "twicepeashooter") {
                 TwicePeashooter = new PlantCard("images/cards/card_twicepeashooter.png");
-                TwicePeashooter.setAction(110 + 65 * i, 8, 7500, (ActionEvent e) -> {
+                TwicePeashooter.setAction(gp,200,110 + 65 * i, 8, 7500, (ActionEvent e) -> {
                     gp.setActivePlantingBrush(PlantType.TwicePeashooter);
                 });
                 TwicePeashooter.countwaittime();
@@ -145,7 +145,7 @@ public class GameWindow extends JFrame {
             }
             if (name[i] == "threepeashooter") {
                 ThreePeashooter = new PlantCard("images/cards/card_threepeashooter.png");
-                ThreePeashooter.setAction(110 + 65 * i, 8, 7500, (ActionEvent e) -> {
+                ThreePeashooter.setAction(gp,325,110 + 65 * i, 8, 7500, (ActionEvent e) -> {
                     gp.setActivePlantingBrush(PlantType.ThreePeashooter);
                 });
                 ThreePeashooter.countwaittime();
@@ -153,7 +153,7 @@ public class GameWindow extends JFrame {
             }
             if (name[i] == "torchwood") {
                 Torchwood = new PlantCard("images/cards/card_torchwood.png");
-                Torchwood.setAction(110 + 65 * i, 8, 7500, (ActionEvent e) -> {
+                Torchwood.setAction(gp,175,110 + 65 * i, 8, 7500, (ActionEvent e) -> {
                     gp.setActivePlantingBrush(PlantType.Torchwood);
                 });
                 Torchwood.countwaittime();
@@ -161,7 +161,7 @@ public class GameWindow extends JFrame {
             }
             if (name[i] == "wallnut") {
                 Wallnut = new PlantCard("images/cards/card_wallnut.png");
-                Wallnut.setAction(110 + 65 * i, 8, 30000, (ActionEvent e) -> {
+                Wallnut.setAction(gp,50,110 + 65 * i, 8, 30000, (ActionEvent e) -> {
                     gp.setActivePlantingBrush(PlantType.Wallnut);
                 });
                 Wallnut.countwaittime();
@@ -169,7 +169,7 @@ public class GameWindow extends JFrame {
             }
             if (name[i] == "chomper") {
                 Chomper = new PlantCard("images/cards/card_chomper.png");
-                Chomper.setAction(110 + 65 * i, 8, 7500, (ActionEvent e) -> {
+                Chomper.setAction(gp,150,110 + 65 * i, 8, 7500, (ActionEvent e) -> {
                     gp.setActivePlantingBrush(PlantType.Chomper);
                 });
                 Chomper.countwaittime();
@@ -177,7 +177,7 @@ public class GameWindow extends JFrame {
             }
             if (name[i] == "potatomine") {
                 PotatoMine = new PlantCard("images/cards/card_potatomine.png");
-                PotatoMine.setAction(110 + 65 * i, 8, 30000, (ActionEvent e) -> {
+                PotatoMine.setAction(gp,25,110 + 65 * i, 8, 30000, (ActionEvent e) -> {
                     gp.setActivePlantingBrush(PlantType.PotatoMine);
                 });
                 PotatoMine.countwaittime();
@@ -185,7 +185,7 @@ public class GameWindow extends JFrame {
             }
             if (name[i] == "gatling") {
                 GatlingPea = new PlantCard("images/cards/card_gatling.png");
-                GatlingPea.setAction(110 + 65 * i, 8, 50000, (ActionEvent e) -> {
+                GatlingPea.setAction(gp,250,110 + 65 * i, 8, 50000, (ActionEvent e) -> {
                     gp.setActivePlantingBrush(PlantType.GatlingPea);
                 });
                 GatlingPea.countwaittime();
@@ -194,7 +194,7 @@ public class GameWindow extends JFrame {
 
             if(name[i]=="cherrybomb"){
                 CherryBomb = new PlantCard("images/cards/card_cherrybomb.png");
-                CherryBomb.setAction(110+65*i, 8,30000,(ActionEvent e) -> {
+                CherryBomb.setAction(gp,150,110+65*i, 8,30000,(ActionEvent e) -> {
                     gp.setActivePlantingBrush(PlantType.CherryBomb);
                 });
                 CherryBomb.countwaittime();
@@ -203,7 +203,7 @@ public class GameWindow extends JFrame {
 
             if(name[i]=="tallwallnut"){
                 Tallnut = new PlantCard("images/cards/card_tallwallnut.png");
-                Tallnut.setAction(110+65*i, 8,30000,(ActionEvent e) -> {
+                Tallnut.setAction(gp,125,110+65*i, 8,30000,(ActionEvent e) -> {
                     gp.setActivePlantingBrush(PlantType.Tallnut);
                 });
                 Tallnut.countwaittime();
@@ -212,7 +212,7 @@ public class GameWindow extends JFrame {
 
             if(name[i]=="twinsunflower"){
                 Twinsunflower = new PlantCard("images/cards/card_twinsunflower.png");
-                Twinsunflower.setAction(110+65*i, 8,50000,(ActionEvent e) -> {
+                Twinsunflower.setAction(gp,150,110+65*i, 8,50000,(ActionEvent e) -> {
                     gp.setActivePlantingBrush(PlantType.Twinsunflower);
                 });
                 Twinsunflower.countwaittime();
@@ -221,7 +221,7 @@ public class GameWindow extends JFrame {
 
             if(name[i]=="jalapeno"){
                 Jalapeno = new PlantCard("images/cards/card_jalapeno.png");
-                Jalapeno.setAction(110+65*i, 8,30000,(ActionEvent e) -> {
+                Jalapeno.setAction(gp,125,110+65*i, 8,30000,(ActionEvent e) -> {
                     gp.setActivePlantingBrush(PlantType.Jalapeno);
                 });
                 Jalapeno.countwaittime();
@@ -230,7 +230,7 @@ public class GameWindow extends JFrame {
 
             if (name[i] == "spikeweed") {
                 Spikeweed = new PlantCard("images/cards/card_spikeweed.png");
-                Spikeweed.setAction(110 + 65 * i, 8, 7500, (ActionEvent e) -> {
+                Spikeweed.setAction(gp,100,110 + 65 * i, 8, 7500, (ActionEvent e) -> {
                     gp.setActivePlantingBrush(PlantType.Spikeweed);
                 });
                 Spikeweed.countwaittime();
@@ -239,7 +239,7 @@ public class GameWindow extends JFrame {
 
             if(name[i] == "spikerock") {
                 Spikerock = new PlantCard("images/cards/card_spikerock.png");
-                Spikerock.setAction(110 + 65 * i, 8, 50000, (ActionEvent e) -> {
+                Spikerock.setAction(gp,125,110 + 65 * i, 8, 50000, (ActionEvent e) -> {
                     gp.setActivePlantingBrush(PlantType.Spikerock);
                 });
                 Spikerock.countwaittime();
@@ -250,7 +250,7 @@ public class GameWindow extends JFrame {
         // Add shovel to game window
         Sholve = new PlantCard("images/cards/ShovelBack.png");
         Sholve.setSize(100, 50);
-        Sholve.setAction(760, 0, 0, (ActionEvent e) -> {
+        Sholve.setAction(gp,0,760, 0, 0, (ActionEvent e) -> {
             gp.setActivePlantingBrush(PlantType.Sholve);
         });
         getLayeredPane().add(Sholve, new Integer(1));
@@ -319,28 +319,28 @@ public class GameWindow extends JFrame {
         setVisible(true);
 
         ConeHeadZombie = new PlantCard("images/cards/card_coneheadzombies.png");
-        ConeHeadZombie.setAction(115, 12, 0, (ActionEvent e) -> {
+        ConeHeadZombie.setAction(gp,75,115, 12, 0, (ActionEvent e) -> {
             gp.setActivePlantingBrush(PlantType.ConeHeadZombie);
         });
         ConeHeadZombie.setSize(48,68);
         getLayeredPane().add(ConeHeadZombie, new Integer(1));
 
         MetalBucketZombie = new PlantCard("images/cards/card_metalbucketzombie.png");
-        MetalBucketZombie.setAction(173, 12, 0, (ActionEvent e) -> {
+        MetalBucketZombie.setAction(gp,125,173, 12, 0, (ActionEvent e) -> {
             gp.setActivePlantingBrush(PlantType.MetalBucketZombie);
         });
         MetalBucketZombie.setSize(48,68);
         getLayeredPane().add(MetalBucketZombie, new Integer(1));
         
         PoleVaultingZombie = new PlantCard("images/cards/card_polevaultingzombie.png");
-        PoleVaultingZombie.setAction(231, 12, 0, (ActionEvent e) -> {
+        PoleVaultingZombie.setAction(gp,75,231, 12, 0, (ActionEvent e) -> {
             gp.setActivePlantingBrush(PlantType.PoleVaultingZombie);
         });
         PoleVaultingZombie.setSize(48,68);
         getLayeredPane().add(PoleVaultingZombie, new Integer(1));
 
         FootballZombie = new PlantCard("images/cards/card_footballzombie.png");
-        FootballZombie.setAction(289, 12, 0, (ActionEvent e) -> {
+        FootballZombie.setAction(gp,175,289, 12, 0, (ActionEvent e) -> {
             gp.setActivePlantingBrush(PlantType.FootballZombie);
         });
         FootballZombie.setSize(48,68);

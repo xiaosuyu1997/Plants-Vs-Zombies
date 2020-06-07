@@ -345,7 +345,6 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
         loseTimer = new Timer(0, (ActionEvent e) ->{
             if(getSunScore()<75){
                 loseTimer.stop();
-                bgm.player.stop();
                 JOptionPane.showMessageDialog(GamePanel.this, "have no enough sun, you lose");
                 GameWindow.gw.dispose();
                 System.exit(0);
