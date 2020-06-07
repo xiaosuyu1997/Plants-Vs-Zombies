@@ -48,11 +48,17 @@ public class ZombieProducer {
         Zombie z = Zombie.getZombie(ZOMBIES[zombie_index], gp, lane);
         gp.getLaneZombies().get(lane).add(z);
         gp.add(z);
+
+
+        // Determine the zombie after this zombie interval
+        int tmp_interval = MIDDLEINTERVAL[stage] + (int) (DEVIATION * rnd.nextGaussian());
+        
   
         stage_score -= ZOMBIESCORES[zombie_index];
         if(stage_score < 0)
         {
             stage_complete[stage] = true;
+            tmp_interval = 15000;
             System.out.printf("Stage %d Complete\n", stage);
             if(stage == 2)
                 total_complete = true;
@@ -63,12 +69,11 @@ public class ZombieProducer {
             }
         }
 
-
-        // Determine the zombie after this zombie interval
-        int next_interval = MIDDLEINTERVAL[stage] + (int) (DEVIATION * rnd.nextGaussian());
+        // variable used in timertask must be final
+        final int next_interval = tmp_interval;
         System.out.printf("Next Zombie in %d ms\n", next_interval);
 
-        
+
         producer.schedule(new TimerTask(){
             @Override
             public void run() {
