@@ -354,7 +354,7 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
         loseTimer.start();
 
 
-        winTimer = new Timer(0,(ActionEvent e) ->{
+        winTimer = new Timer(25,(ActionEvent e) ->{
             boolean nobrain = true;
             for(int i=0;i<5;i++){
                 if(brains[i].assignedPlant!=null) nobrain=false;
