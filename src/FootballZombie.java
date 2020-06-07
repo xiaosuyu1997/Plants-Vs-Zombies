@@ -22,7 +22,7 @@ public class FootballZombie  extends Zombie {
 
     public FootballZombie(GamePanel parent, int lane) {
         super(parent, lane);    
-        setHealth(5400);
+        setHealth(10000);
         setSpeed(3);
         
         setSize(200, 200);

@@ -8,7 +8,7 @@ import javax.sound.sampled.Clip;
 
 public class Zombie extends JPanel {
 
-    private int health = 1500;
+    private int health = 2500;
     private int speed = 1;
     private int fullHealth;
     
@@ -44,6 +44,7 @@ public class Zombie extends JPanel {
         ifScore = false;
         collided = null;
         
+        setLocation(1000, getMyLane() * 120);
         zombiesEating.prepare();
         zombiesWin.prepare();
         gulp.prepare();
