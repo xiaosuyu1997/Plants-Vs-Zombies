@@ -29,7 +29,8 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
     private Timer redrawTimer;
     private Timer advancerTimer;
     private Timer sunProducer;
-    private Timer zombieProducer;
+    private ZombieProducer zombieProducer;
+    // private Timer zombieProducer;
     private Timer zombieDier;
     private JLabel sunScoreboard;
     
@@ -50,6 +51,8 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
     private int zombieProduceCount;
     private int zombieProduceType;
 
+    private Random rnd;
+
     public int getSunScore() {
         return sunScore;
     }
@@ -61,6 +64,7 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
 
     public GamePanel(GameWindow gamewin,JLabel sunScoreboard) {
         gw = gamewin;
+        rnd = new Random();
 
         setSize(1000, 752);
         setLayout(null);
@@ -124,14 +128,13 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
 
         // generate one sun every 5s
         sunProducer = new Timer(5000, (ActionEvent e) -> {
-            Random rnd = new Random();
             Sun sta = new Sun(this, rnd.nextInt(800) + 100, 0, rnd.nextInt(300) + 200);
             activeSuns.add(sta);
             add(sta, new Integer(1));
         });
         sunProducer.start();
 
-
+        /*
         zombieProducer = new Timer(zombieProduceInterval, (ActionEvent e) -> {
             Random rnd = new Random();
             LevelData lvl = new LevelData();
@@ -157,6 +160,9 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
             	zombieProduceInterval -= 200;
             }
         });
+        zombieProducer.start();
+        */
+        zombieProducer = new ZombieProducer(rnd, this);
         zombieProducer.start();
         
         zombieDier = new Timer(1000, (ActionEvent e) -> {
