@@ -10,7 +10,7 @@ public class ZombieProducer {
 
     final static String[] ZOMBIES = {"NormalZombie", "ConeHeadZombie", "PoleVaultingZombie", "MetalBucketZombie", "NewspaperZombie", "FootballZombie"};
     final static int[] ZOMBIESCORES = {5, 7, 9, 10, 13, 14};
-    final static int[] STAGETOTALSCORES = {50, 70, 100};
+    final static int[] STAGETOTALSCORES = {100, 140, 200};
     final static int[] STAGEAVAILABLEZOMBIES = {2, 4, 6};
 
     Timer producer;

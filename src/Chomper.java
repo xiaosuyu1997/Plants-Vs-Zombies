@@ -16,25 +16,18 @@ public class Chomper extends Plant{
             setImage(new ImageIcon(this.getClass().getResource("images/plants/Chomper.gif")).getImage());
             shootTimer = new Timer(0, (ActionEvent e) ->{
                 if (getGp().getLaneZombies().get(y).size() > 0){
-                    int x1 = 60 + (x % 9) * 100;
-                    int idnow=0;
-                    int zx=1000;
+                    int x1 = (x % 9) * 100;
                     boolean has=false;
                     for (int i = 0; i < getGp().getLaneZombies().get(y).size(); i++){
                         if(getGp().getLaneZombies().get(y).get(i).getPosX()>=x1&&
-                        getGp().getLaneZombies().get(y).get(i).getPosX()<x1+205){
+                        getGp().getLaneZombies().get(y).get(i).getPosX()<x1+280){
                             has=true;
-                            int nowx=getGp().getLaneZombies().get(y).get(i).getPosX()-x1;
-                            if(nowx<zx){
-                                zx=nowx;
-                                idnow=i;
-                            }
                         }
                     }
                     
                     if(has){
                         getGp().getColliders()[x + y * 9].removePlant();
-                        getGp().getColliders()[x + y * 9].setPlant(new Chomper(getGp(),x,y,2,idnow));
+                        getGp().getColliders()[x + y * 9].setPlant(new Chomper(getGp(),x,y,2,0));
                     }
                 }
             });
@@ -44,11 +37,32 @@ public class Chomper extends Plant{
         	chomp.player.start();
             setImage(new ImageIcon(this.getClass().getResource("images/plants/ChomperAttack.gif")).getImage());
             shootTimer = new Timer(810, (ActionEvent e)->{
-                Zombie z = getGp().getLaneZombies().get(y).get(Zombiex);
-                getGp().getColliders()[x + y * 9].removePlant();
-                getGp().getColliders()[x + y * 9].setPlant(new Chomper(getGp(),x,y,3,0));
-                z.changeHealth(0);
-                z.getGp().remove(z);
+                int x1 = (x % 9) * 100;
+                int idnow=0;
+                int zx=1000;
+                boolean has=false;
+                for (int i = 0; i < getGp().getLaneZombies().get(y).size(); i++){
+                    if(getGp().getLaneZombies().get(y).get(i).getPosX()>=x1&&
+                    getGp().getLaneZombies().get(y).get(i).getPosX()<x1+280){
+                        has=true;
+                        int nowx=getGp().getLaneZombies().get(y).get(i).getPosX()-x1;
+                        if(nowx<zx){
+                            zx=nowx;
+                            idnow=i;
+                        }
+                    }
+                }
+                if(has&&getGp().getLaneZombies().get(y)!=null&&getGp().getLaneZombies().get(y).size()>idnow){
+                    Zombie z = getGp().getLaneZombies().get(y).get(idnow);
+                    getGp().getColliders()[x + y * 9].removePlant();
+                    getGp().getColliders()[x + y * 9].setPlant(new Chomper(getGp(),x,y,3,0));
+                    z.changeHealth(0);
+                    z.getGp().remove(z);
+                }
+                else{
+                    getGp().getColliders()[x + y * 9].removePlant();
+                    getGp().getColliders()[x + y * 9].setPlant(new Chomper(getGp(),x,y,1,0));
+                }
             });
         }
         if(k==3){

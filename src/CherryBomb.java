@@ -80,8 +80,8 @@ public class CherryBomb extends Plant{
             ima = new ImageIcon(this.getClass().getResource("images/plants/Boom.gif")).getImage();
             ima.flush();
             setImage(ima);
+            cherrybomb.player.start();
             BombTimer = new Timer(1300, (ActionEvent e) ->{
-            	cherrybomb.player.start();
                 getGp().getColliders()[x + y * 9].removePlant();
             });
         }

@@ -1,5 +1,7 @@
 import javax.swing.*;
 import javax.imageio.*;
+import javax.sound.sampled.Clip;
+
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.awt.event.ActionEvent;
@@ -219,6 +221,7 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
                 SoundEffect zombiesWin = new SoundEffect("./src/bgms/zombiegroup.wav");
                 zombiesWin.prepare();
                 zombiesWin.player.start();
+                bgm.player.stop();
                 loseTimer.stop();
                 JOptionPane.showMessageDialog(GamePanel.this, "ZOMBIES ATE YOUR BRAIN !" + '\n' + "Starting the level again");
                 GameWindow.gw.dispose();
@@ -256,6 +259,7 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
             }
             if(empty && zombieProducer.total_complete)
             {
+            	bgm.player.stop();
                 JOptionPane.showMessageDialog(null, "LEVEL_CONTENT Completed !!!" + '\n' + "More Levels will come soon !!!" + '\n' + "Resetting data");
                 LevelData.write("1");
                 System.exit(0);
@@ -264,7 +268,7 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
         winTimer.start();
 
 
-        bgm.player.start();
+        bgm.player.loop(Clip.LOOP_CONTINUOUSLY);
         zombiesComing.player.start();
     }
 
@@ -275,7 +279,7 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
         setLayout(null);
         addMouseMotionListener(this);
         this.sunScoreboard = sunScoreboard;
-        setSunScore(5000);  //pool avalie
+        setSunScore(1000);  //pool avalie
 
         laneZombies = new ArrayList<>();
         laneZombies.add(new ArrayList<>()); //line 1
@@ -297,7 +301,7 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
         brains = new Collider[5];
         for (int i = 0; i < 5; i++) {
             Collider a = new Collider();
-            a.setLocation(44 + (i % 9) * 100, 109 + (i / 9) * 120);
+//            a.setLocation(44 + (i % 9) * 100, 109 + (i / 9) * 120);
             a.setPlant(new Brain(GamePanel.this, i) );
             a.setSize(32,31);
             brains[i] = a;
@@ -341,6 +345,7 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
         loseTimer = new Timer(0, (ActionEvent e) ->{
             if(getSunScore()<75){
                 loseTimer.stop();
+                bgm.player.stop();
                 JOptionPane.showMessageDialog(GamePanel.this, "have no enough sun, you lose");
                 GameWindow.gw.dispose();
                 System.exit(0);
@@ -357,6 +362,7 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
             if(nobrain){
                 winTimer.stop();
                 JOptionPane.showMessageDialog(null,"you win");
+                bgm.player.stop();
                 GameWindow.gw.dispose();
                 System.exit(0);
             }
@@ -562,6 +568,7 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
                     laneZombies.get(y).add(z);
                     add(z, new Integer(2));
                     setSunScore(getSunScore() - 75);
+                    gw.ConeHeadZombie.countwaittime();
                 }
             }
             if (activePlantingBrush == GameWindow.PlantType.PoleVaultingZombie){
@@ -573,6 +580,7 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
                     laneZombies.get(y).add(z);
                     add(z, new Integer(2));
                     setSunScore(getSunScore() - 75);
+                    gw.PoleVaultingZombie.countwaittime();
                 }
             }
             if (activePlantingBrush == GameWindow.PlantType.MetalBucketZombie){
@@ -584,6 +592,7 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
                     laneZombies.get(y).add(z);
                     add(z, new Integer(2));
                     setSunScore(getSunScore() - 125);
+                    gw.MetalBucketZombie.countwaittime();
                 }
             }
             if (activePlantingBrush == GameWindow.PlantType.FootballZombie){
@@ -595,6 +604,7 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
                     laneZombies.get(y).add(z);
                     add(z, new Integer(2));
                     setSunScore(getSunScore() - 175);
+                    gw.FootballZombie.countwaittime();
                 }
             }
             
