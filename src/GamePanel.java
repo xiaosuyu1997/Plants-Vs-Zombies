@@ -11,9 +11,7 @@ import java.util.Random;
 import java.util.Iterator;
 import java.io.*;
 
-/**
- * Created by Armin on 6/25/2016.
- */
+
 public class GamePanel extends JLayeredPane implements MouseMotionListener {
 
     private Image bgImage;
@@ -494,8 +492,6 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-
-
             if (activePlantingBrush == GameWindow.PlantType.ConeHeadZombie){
             	plant.prepare();
             	plant.player.start();
@@ -541,12 +537,10 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
                 }
             }
             
-
-            if (activePlantingBrush == GameWindow.PlantType.GatlingPea) {
-                plant.prepare();
-                plant.player.start();
-                if (getSunScore() >= 250 && colliders[x + y * 9].assignedPlant instanceof TwicePeashooter) {
-
+            if (activePlantingBrush == GameWindow.PlantType.GatlingPea){
+            	plant.prepare();
+            	plant.player.start();
+                if (getSunScore() >= 250&&colliders[x + y * 9].assignedPlant instanceof TwicePeashooter) {
                     colliders[x + y * 9].removePlant();
                     colliders[x + y * 9].setPlant(new GatlingPea(GamePanel.this, x, y));
                     setSunScore(getSunScore() - 250);

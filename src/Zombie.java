@@ -5,9 +5,7 @@ import java.util.TimerTask;
 
 import javax.sound.sampled.Clip;
 
-/**
- * Created by Armin on 6/25/2016.
- */
+
 public class Zombie extends JPanel {
 
     private int health = 1500;

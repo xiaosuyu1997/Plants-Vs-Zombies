@@ -3,9 +3,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseEvent;
 
-/**
- * Created by Armin on 6/25/2016.
- */
+
 public class GameWindow extends JFrame {
 
     enum PlantType {

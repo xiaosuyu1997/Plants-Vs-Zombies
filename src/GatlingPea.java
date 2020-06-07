@@ -10,7 +10,7 @@ public class GatlingPea extends Plant{
         shootTimer = new Timer(2000, (ActionEvent e) -> {
             boolean has=false;
             for(int i=0;i<getGp().getLaneZombies().get(y).size();++i){
-                if(getGp().getLaneZombies().get(y).get(i).getX()>this.getX() * 100){
+                if(getGp().getLaneZombies().get(y).get(i).getPosX()>this.getX() * 100){
                     has=true;
                     break;
                 }
