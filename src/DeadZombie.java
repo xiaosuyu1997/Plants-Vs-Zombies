@@ -19,7 +19,7 @@ public class DeadZombie extends Zombie{
         Timer timer = new Timer();
     	timer.schedule(new TimerTask() {
  			public void run() {
- 				getGp().remove(temp);
+                getGp().remove(temp);
  			} }, 2000);
     }
     

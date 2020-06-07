@@ -121,6 +121,7 @@ public class Zombie extends JPanel {
             	ifScore = true;
             }
             Zombie temp = this;
+            // after zombie dead, remove this zombie after 1000ms to finish dead gif
 	        Timer timer = new Timer();
         	timer.schedule(new TimerTask() {
      			public void run() {
@@ -139,7 +140,7 @@ public class Zombie extends JPanel {
    
     
     public static Zombie getZombie(String type, GamePanel parent, int lane) {
-        Zombie z = new Zombie(parent, lane);
+        Zombie z = null; // = new Zombie(parent, lane);
         switch (type) {
             case "NormalZombie":
                 z = new NormalZombie(parent, lane);
@@ -159,6 +160,8 @@ public class Zombie extends JPanel {
             case "FootballZombie":
             	z = new FootballZombie(parent, lane);
                 break;
+            default:
+                System.out.printf("getZombie error");
         }
         return z;
     }

@@ -38,7 +38,7 @@ public class PlantCard extends JPanel implements MouseListener {
     
     public PlantCard(String imagePath){
         setSize(64, 90);
-        //鍥惧舰鐨勪袱绉嶅瓨鍌ㄦ柟寮�
+        
         img = new ImageIcon(this.getClass().getResource(imagePath)).getImage();
         Im = img;
         try{
@@ -51,7 +51,7 @@ public class PlantCard extends JPanel implements MouseListener {
         addMouseListener(this);
         seedLift.prepare();
         buzzer.prepare();
-        // 5ms鍒锋柊涓�娆＄晫闈紙gif鎾斁锛夛紝瀹炵幇鍔ㄦ�佽繃绋�
+        
         redrawTimer = new Timer(5, (ActionEvent e) -> {
             repaint();
         });
