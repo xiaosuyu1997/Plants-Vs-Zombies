@@ -212,7 +212,6 @@ public class Menu extends JPanel {
     }
 
     private void jPanel2MouseClicked(MouseEvent e) {
-        System.out.println("jPanel2 clicked");
         System.exit(0);
     }
 
