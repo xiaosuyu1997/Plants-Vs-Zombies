@@ -172,7 +172,7 @@ public class PoleVaultingZombie  extends Zombie {
                 zombiesEating.player.stop();
                 
                 if(!ifScore()) {
-                	System.out.println("ZOMBIE DIE");
+                	// System.out.println("ZOMBIE DIE");
                 	GamePanel.setProgress(10);
                 	setScore(true);
                 }
